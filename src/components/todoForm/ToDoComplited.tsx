@@ -18,7 +18,7 @@ import { TodoItemType } from '../../types/todoTypes';
 import TodoItem from '../todoItem/TodoItem';
 import TodoItemEdit from '../todoItem/TodoItemEdit';
 
-const ToDoForm: FC = () => {
+const ToDoComplited: FC = () => {
   const [inputValue, setIputValue] = useState('');
   const dispatch = useAppDispatch();
   const allTodos: TodoItemType[] = useAppSelector(selectTodoByFilter)
@@ -69,7 +69,7 @@ const ToDoForm: FC = () => {
   );
 
   useEffect(() => {
-    dispatch(changeFilter('all'));
+    dispatch(changeFilter('completed'));
   }, [])
 
   return (
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ToDoForm;
+export default ToDoComplited;

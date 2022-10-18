@@ -9,10 +9,9 @@ type PropType = {
   toggleCheck(id: number): void;
   removeTask(id: number): void;
   toggleEditable(id: number): void;
-  onPress(): void;
 }
 
-const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, onPress, toggleCheck, removeTask }) => {
+const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, toggleCheck, removeTask }) => {
   const textDecorationLine = complete ? 'line-through' : 'none';
   const backgroundColor = complete ? 'palegreen' : '#f0ffff';
 
@@ -20,10 +19,7 @@ const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, onPress, t
     <View style={styles.input}>
       <Text
         style={{ backgroundColor, textDecorationLine }}
-        onLongPress={() => {
-          toggleEditable(id)
-          onPress()
-        }}
+        onLongPress={() => toggleEditable(id)}
         onPressOut={() => toggleCheck(id)}
       >
         {task}
