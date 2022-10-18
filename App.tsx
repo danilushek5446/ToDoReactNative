@@ -16,12 +16,12 @@ type PropType = {
   route?: RouteProp<{ params: { name: string } }>
 }
 
-export type TNavigatorRootStackParamList = {
+export type NavigatorRootStackParamList = {
 Home: undefined;
 Profile: { name: string };
 }
 
-const Stack = createNativeStackNavigator<TNavigatorRootStackParamList>();
+const Stack = createNativeStackNavigator<NavigatorRootStackParamList>();
 
 const ProfileScreen: FC<PropType> = ({ route }) => {
   return <Text>This is {route?.params.name}'s profile</Text>;
@@ -39,7 +39,7 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'home' }}
+          options={{ title: 'ToDo' }}
         />
         <Stack.Screen
           name="Profile"

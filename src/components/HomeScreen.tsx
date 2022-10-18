@@ -1,28 +1,21 @@
 import React, { FC, type PropsWithChildren } from 'react';
 import {
-    Button,
-    Text,
-    View,
-  } from 'react-native';
+  View,
+} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { TNavigatorRootStackParamList } from '../../App';
+import { NavigatorRootStackParamList } from '../../App';
+import ToDoForm from './todoForm/TodoForm';
 
-  type PropType = {
-    navigation: NativeStackNavigationProp<TNavigatorRootStackParamList, any>;
-  }
+type PropType = {
+  navigation: NativeStackNavigationProp<NavigatorRootStackParamList, any>;
+}
 
 const HomeScreen: FC<PropType> = ({ navigation }) => {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-            title="Go to Jane's profile"
-            onPress={() =>
-                navigation.navigate('Profile', { name: 'Jane' })
-            } />
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
+  return (
+    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
+      <ToDoForm />
+    </View>
+  );
+}
 
-  export default HomeScreen;
-  
+export default HomeScreen;
