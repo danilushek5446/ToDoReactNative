@@ -1,5 +1,7 @@
-import React, { FC, useState } from 'react';
-import { Button, Image, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import React, { FC } from 'react';
+import { Image, Text, TouchableHighlight, View } from 'react-native';
+
+import { todoItemStyles } from './todoItemStyles';
 
 
 type PropType = {
@@ -16,7 +18,7 @@ const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, toggleChec
   const backgroundColor = complete ? 'palegreen' : '#f0ffff';
 
   return (
-    <View style={styles.input}>
+    <View style={todoItemStyles.input}>
       <Text
         style={{ backgroundColor, textDecorationLine }}
         onLongPress={() => toggleEditable(id)}
@@ -27,10 +29,10 @@ const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, toggleChec
       <TouchableHighlight onPress={() => removeTask(id)}>
         <View
           onPointerUp={() => removeTask(id)}
-          style={styles.button}
+          style={todoItemStyles.button}
         >
           <Image
-            style={styles.button}
+            style={todoItemStyles.button}
             source={require('../../assets/3481306.png')}
           />
         </View>
@@ -38,23 +40,5 @@ const TodoItem: FC<PropType> = ({ complete, id, task, toggleEditable, toggleChec
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    width: 200,
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: '#f0ffff',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  button: {
-    width: 25,
-    height: 25,
-  }
-});
 
 export default TodoItem;

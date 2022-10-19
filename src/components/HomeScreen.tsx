@@ -2,16 +2,14 @@ import React, { FC, useEffect, type PropsWithChildren } from 'react';
 import {
   View,
 } from 'react-native';
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-
-import { NavigatorRootStackParamList } from '../../App';
-import ToDoForm from './todoForm/TodoForm';
 import { RouteProp } from '@react-navigation/native';
+
+import ToDoForm from './todoForm/TodoForm';
+
 import { useAppDispatch } from '../store/hooks';
 import { changeFilter } from '../store/todoSlice/todoSlice';
 
 type PropType = {
-//  navigation: BottomTabNavigationProp<NavigatorRootStackParamList, any, any>;
   route?: RouteProp<{ params: { name: string } }>
 }
 

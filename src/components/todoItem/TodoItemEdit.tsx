@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
+import { todoItemStyles } from './todoItemStyles';
 
 type PropType = {
   task: string;
@@ -16,7 +17,7 @@ const TodoItemEdit: FC<PropType> = ({ id, task, toggleEditable, changeTodo }) =>
       <TextInput
         autoFocus
         value={inputValue}
-        style={styles.input}
+        style={todoItemStyles.input}
         onChangeText={setIputValue}
         onSubmitEditing={() => changeTodo(id, inputValue)}
         onBlur={() => toggleEditable(id)}
@@ -24,16 +25,5 @@ const TodoItemEdit: FC<PropType> = ({ id, task, toggleEditable, changeTodo }) =>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    width: 200,
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: "#f0ffff",
-  },
-});
 
 export default TodoItemEdit;

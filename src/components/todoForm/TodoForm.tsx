@@ -1,24 +1,25 @@
-import { RouteProp } from '@react-navigation/native';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useState } from 'react';
 import {
   FlatList,
   ListRenderItem,
   NativeSyntheticEvent,
   SafeAreaView,
-  StyleSheet,
   Text,
   TextInput,
   TextInputSubmitEditingEventData,
   View
 } from 'react-native';
-import { useSelector } from 'react-redux';
+
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectAllTodos, selectTodoByFilter } from '../../store/selectors';
-import { addToDo, changeCompletion, changeFilter, editToDo, removeToDo, setEditable } from '../../store/todoSlice/todoSlice';
+import { selectTodoByFilter } from '../../store/selectors';
+import { addToDo, changeCompletion, editToDo, removeToDo, setEditable } from '../../store/todoSlice/todoSlice';
 
 import { TodoItemType } from '../../types/todoTypes';
+
 import TodoItem from '../todoItem/TodoItem';
 import TodoItemEdit from '../todoItem/TodoItemEdit';
+
+import { formStyles } from './TodoFormStyles';
 
 const ToDoForm: FC = () => {
   const [inputValue, setIputValue] = useState('');
@@ -73,18 +74,18 @@ const ToDoForm: FC = () => {
 
   return (
     <View>
-      <View style={styles.titleInput}>
+      <View style={formStyles.titleInput}>
         <Text>todos</Text>
         <TextInput
           value={inputValue}
-          style={styles.input}
+          style={formStyles.input}
           onChangeText={setIputValue}
           onSubmitEditing={addNewToD}
         />
       </View>
-      <SafeAreaView style={styles.itemList}>
+      <SafeAreaView style={formStyles.itemList}>
         <FlatList
-          style={styles.flatList}
+          style={formStyles.flatList}
           data={allTodos}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
@@ -94,36 +95,5 @@ const ToDoForm: FC = () => {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-
-  input: {
-    width: 200,
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: "#f0ffff",
-  },
-
-  itemList: {
-    backgroundColor: 'beige',
-    borderWidth: 1,
-  },
-
-  flatList: {
-    flexGrow: 0
-  },
-
-  titleInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  title: {
-    width: 50,
-    height: 50,
-  },
-});
 
 export default ToDoForm;

@@ -1,22 +1,12 @@
-import React, { FC } from 'react';
-import {
-  Text,
-  useColorScheme,
-} from 'react-native';
+import React from 'react';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-import HomeScreen from './src/components/HomeScreen';
-import type { RouteProp } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import HomeScreen from './src/components/HomeScreen';
+
 import store from '/Users/fusion/Desktop/react-native/AwesomeTSProject/src/store/store';
 
-type PropType = {
-  route?: RouteProp<{ params: { name: string } }>
-}
 
 export type NavigatorRootStackParamList = {
   All: { name: string };
@@ -25,10 +15,6 @@ export type NavigatorRootStackParamList = {
 }
 
 const Tab = createBottomTabNavigator<NavigatorRootStackParamList>();
-
-const ProfileScreen: FC<PropType> = ({ route }) => {
-  return <Text>This is {route?.params.name}'s profile</Text>;
-}
 
 const App = () => {
   return (
