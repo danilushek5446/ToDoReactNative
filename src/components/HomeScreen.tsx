@@ -1,16 +1,27 @@
-import React, { FC, type PropsWithChildren } from 'react';
+import React, { FC, useEffect, type PropsWithChildren } from 'react';
 import {
   View,
 } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+
 import { NavigatorRootStackParamList } from '../../App';
 import ToDoForm from './todoForm/TodoForm';
+import { RouteProp } from '@react-navigation/native';
+import { useAppDispatch } from '../store/hooks';
+import { changeFilter } from '../store/todoSlice/todoSlice';
 
 type PropType = {
-  navigation: NativeStackNavigationProp<NavigatorRootStackParamList, any>;
+//  navigation: BottomTabNavigationProp<NavigatorRootStackParamList, any, any>;
+  route?: RouteProp<{ params: { name: string } }>
 }
 
-const HomeScreen: FC<PropType> = ({ navigation }) => {
+const HomeScreen: FC<PropType> = ({ route }) => {
+  const dispatch = useAppDispatch();
+  
+  useEffect(() => {
+    dispatch(changeFilter(route?.params.name || 'All'));
+
+  }, [route])
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
       <ToDoForm />

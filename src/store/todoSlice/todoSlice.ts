@@ -3,7 +3,7 @@ import { StateType, TodoItemType, ChangeTodoType } from '../../types/todoTypes';
 
 export const initialState: StateType = {
   todoList: [],
-  filter: 'all',
+  filter: 'All',
 };
 
 export const todoSlice = createSlice({

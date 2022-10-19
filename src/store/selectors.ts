@@ -8,9 +8,9 @@ export const selectActiveFilter = (state: RootState) => state.todo.filter;
 export const selectTodoByFilter = createSelector(
   [selectAllTodos, selectActiveFilter],
   (allTodo:TodoItemType[], activeFilter:string) => {
-    if (activeFilter === 'all') return allTodo;
+    if (activeFilter === 'All') return allTodo;
 
-    if (activeFilter === 'completed') {
+    if (activeFilter === 'Completed') {
       return allTodo.filter(todo => todo.complete)
     }
 

@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
+import { RouteProp } from '@react-navigation/native';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import {
   FlatList,
   ListRenderItem,
@@ -10,8 +11,9 @@ import {
   TextInputSubmitEditingEventData,
   View
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectTodoByFilter } from '../../store/selectors';
+import { selectAllTodos, selectTodoByFilter } from '../../store/selectors';
 import { addToDo, changeCompletion, changeFilter, editToDo, removeToDo, setEditable } from '../../store/todoSlice/todoSlice';
 
 import { TodoItemType } from '../../types/todoTypes';
@@ -20,8 +22,9 @@ import TodoItemEdit from '../todoItem/TodoItemEdit';
 
 const ToDoForm: FC = () => {
   const [inputValue, setIputValue] = useState('');
+  const allTodos: TodoItemType[] = useAppSelector(selectTodoByFilter);
+
   const dispatch = useAppDispatch();
-  const allTodos: TodoItemType[] = useAppSelector(selectTodoByFilter)
 
   const addNewToD = ({ nativeEvent }: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
     if (!nativeEvent.text) {
@@ -67,10 +70,6 @@ const ToDoForm: FC = () => {
         changeTodo={changeTodo}
       />
   );
-
-  useEffect(() => {
-    dispatch(changeFilter('all'));
-  }, [])
 
   return (
     <View>

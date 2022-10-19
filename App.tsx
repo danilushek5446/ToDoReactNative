@@ -13,15 +13,15 @@ import HomeScreen from './src/components/HomeScreen';
 import type { RouteProp } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import store from '/Users/fusion/Desktop/react-native/AwesomeTSProject/src/store/store';
-import ComplitedScreen from './src/components/ComplitedScreen';
 
 type PropType = {
   route?: RouteProp<{ params: { name: string } }>
 }
 
 export type NavigatorRootStackParamList = {
-  Home: undefined;
-  ComplitedScreen: undefined;
+  All: { name: string };
+  Completed: { name: string };
+  Active: { name: string };
 }
 
 const Tab = createBottomTabNavigator<NavigatorRootStackParamList>();
@@ -31,22 +31,27 @@ const ProfileScreen: FC<PropType> = ({ route }) => {
 }
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStysle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
-            name="Home"
+            name="All"
+            options={{ title: 'all' }}
             component={HomeScreen}
+            initialParams={{name: 'All'}}
           />
           <Tab.Screen
-            name="ComplitedScreen"
-            component={ComplitedScreen}
+            name="Completed"
+            options={{ title: 'Completed' }}
+            component={HomeScreen}
+            initialParams={{name: 'Completed'}}
+          />
+          <Tab.Screen
+            name="Active"
+            options={{ title: 'Active' }}
+            component={HomeScreen}
+            initialParams={{name: 'Active'}}
           />
         </Tab.Navigator>
       </NavigationContainer>
