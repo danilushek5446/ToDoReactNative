@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer, TabActions } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import RNBootSplash from "react-native-bootsplash";
 
 import HomeScreen from './src/components/HomeScreen';
 
@@ -17,9 +18,19 @@ export type NavigatorRootStackParamList = {
 const Tab = createBottomTabNavigator<NavigatorRootStackParamList>();
 
 const App = () => {
+  useEffect(() => {
+    const init = async () => {
+    };
+
+    init().finally(async () => {
+      await RNBootSplash.hide({ fade: true });
+      console.log("Bootsplash has been hidden successfully");
+    });
+  }, [])
+
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer onReady={() => RNBootSplash.hide()}>
         <Tab.Navigator>
           <Tab.Screen
             name="All"
