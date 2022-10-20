@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 
-import ToDoForm from './todoForm/TodoForm';
+import ToDoForm from '../components/todoForm/TodoForm';
 
 import { useAppDispatch } from '../store/hooks';
 import { changeFilter } from '../store/todoSlice/todoSlice';
