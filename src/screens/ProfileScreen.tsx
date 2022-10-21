@@ -27,11 +27,11 @@ const ProfileScreen: FC<PropType> = ({ setIslogin }) => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'peachpuff', flexDirection: 'column' }}>
-      <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
+      <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
         <Text>login: </Text>
         <Text>{login}</Text>
       </View>
-      <View>
+      <View style={{ paddingTop: 20, }}>
         <Button onPress={onPress} title='log out' />
       </View>
     </View>

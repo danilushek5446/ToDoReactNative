@@ -32,7 +32,7 @@ const SignInScreen: FC<PropType> = ({ setIslogin }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
       <Text>Sign in</Text>
-      <View>
+      <View style={{paddingTop: 20}}>
         <Text>login</Text>
         <TextInput
           style={{width: 200, height: 40, backgroundColor: 'white'}}
@@ -40,7 +40,7 @@ const SignInScreen: FC<PropType> = ({ setIslogin }) => {
           onChangeText={setLoginValue}
         />
       </View>
-      <View>
+      <View style={{paddingTop: 20}}>
         <Text>password</Text>
         <TextInput
           style={{width: 200, height: 40, backgroundColor: 'white'}}

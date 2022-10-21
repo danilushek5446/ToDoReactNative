@@ -5,7 +5,7 @@ import RNBootSplash from "react-native-bootsplash";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 
 import store from './src/store/store';
-import { NavigatorRootStackParamList, MyTabNavigator } from './src/screens/tabNavigator/MyTabNavigator';
+import { NavigatorRootStackParamList, MyTabNavigator } from './src/components/tabNavigator/MyTabNavigator';
 
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
@@ -33,7 +33,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer onReady={() => RNBootSplash.hide()}>
-        <MyTabNavigator />
+        <MyTabNavigator isSignedIn={isSignedIn} changeIsLogin={changeIsLogin}/>
       </NavigationContainer>
     </Provider>
   );

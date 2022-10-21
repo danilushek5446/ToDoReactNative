@@ -9,15 +9,20 @@ export const formStyles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     backgroundColor: "#f0ffff",
+    borderRadius: 20,
+    border: 'none',
+    outline: 'none'
   },
 
   itemList: {
     backgroundColor: 'beige',
     borderWidth: 1,
+    borderRadius: 20,
   },
 
   flatList: {
-    flexGrow: 0
+    flexGrow: 0,
+    borderRadius: 20,
   },
 
   titleInput: {

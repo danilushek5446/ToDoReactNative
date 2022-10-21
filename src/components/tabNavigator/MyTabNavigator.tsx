@@ -3,10 +3,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import React, { FC, useState } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from '../HomeScreen';
-import ProfileScreen from '../ProfileScreen';
-import SignInScreen from '../SignInScreen';
-import SignUpScreen from '../SignUpScreen';
+import HomeScreen from '../../screens/HomeScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
+import SignInScreen from '../../screens/SignInScreen';
+import SignUpScreen from '../../screens/SignUpScreen';
 
 export type NavigatorRootStackParamList = {
   All: { name: string };
@@ -17,14 +17,15 @@ export type NavigatorRootStackParamList = {
   Profile: undefined;
 }
 
+type PropType = {
+  isSignedIn: boolean;
+  changeIsLogin:() => void;
+}
+
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
-export const MyTabNavigator: FC = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+export const MyTabNavigator: FC<PropType> = ({isSignedIn, changeIsLogin}) => {
 
-  const changeIsLogin = () => {
-    setIsSignedIn(!isSignedIn);
-  }
   return (
     <Tab.Navigator
       activeColor="#f0edf6"
@@ -70,12 +71,15 @@ export const MyTabNavigator: FC = () => {
               <Tab.Screen
                 name="SignIn"
                 options={{ tabBarIcon: ({ color }) => (
-                  <MaterialCommunityIcons name="home" color={color} size={26} />
+                  <MaterialCommunityIcons name="login" color={color} size={26} />
                 ), }}
                 children={() => <SignInScreen setIslogin={changeIsLogin}/>}
               />
                <Tab.Screen
                 name="SignUp"
+                options={{ tabBarIcon: ({ color }) => (
+                  <MaterialCommunityIcons name="lead-pencil" color={color} size={26} />
+                ), }}
                 children={() => <SignUpScreen setIslogin={changeIsLogin}/>}
               />
             </>

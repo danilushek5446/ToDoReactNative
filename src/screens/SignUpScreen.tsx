@@ -29,7 +29,7 @@ const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
       <Text>registration</Text>
-      <View>
+      <View style={{paddingTop: 20}}>
         <Text>login</Text>
         <TextInput
           style={{width: 200, height: 40, backgroundColor: 'white'}}
@@ -37,7 +37,7 @@ const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
           onChangeText={setLoginValue}
         />
       </View>
-      <View>
+      <View style={{paddingTop: 20}}>
         <Text>password</Text>
         <TextInput
           style={{width: 200, height: 40, backgroundColor: 'white'}}
