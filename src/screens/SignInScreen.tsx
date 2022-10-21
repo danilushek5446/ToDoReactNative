@@ -31,7 +31,7 @@ const SignInScreen: FC<PropType> = ({ setIslogin }) => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
-      <Text>registration</Text>
+      <Text>Sign in</Text>
       <View>
         <Text>login</Text>
         <TextInput

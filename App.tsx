@@ -1,26 +1,13 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RNBootSplash from "react-native-bootsplash";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import HomeScreen from './src/screens/HomeScreen';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 
 import store from './src/store/store';
-import SignInScreen from './src/screens/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
+import { NavigatorRootStackParamList, MyTabNavigator } from './src/screens/tabNavigator/MyTabNavigator';
 
-
-export type NavigatorRootStackParamList = {
-  All: { name: string };
-  Completed: { name: string };
-  Active: { name: string };
-  SignIn: undefined;
-  SignUp: undefined;
-}
-
-const Tab = createBottomTabNavigator<NavigatorRootStackParamList>();
+const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -31,10 +18,10 @@ const App = () => {
 
   useEffect(() => {
     const init = async () => {
-      const value = await AsyncStorage.getItem('login');
-      if (value) {
-        setIsSignedIn(true);
-      }
+      // const value = await AsyncStorage.getItem('login');
+      // if (value) {
+      //   setIsSignedIn(true);
+      // }
     };
 
     init().finally(async () => {
@@ -46,41 +33,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer onReady={() => RNBootSplash.hide()}>
-        <Tab.Navigator>
-          {isSignedIn ? (
-            <>
-              <Tab.Screen
-                name="All"
-                options={{ title: 'all' }}
-                children={() => <HomeScreen />}
-                initialParams={{ name: 'All' }}
-              />
-              <Tab.Screen
-                name="Completed"
-                options={{ title: 'Completed' }}
-                component={HomeScreen}
-                initialParams={{ name: 'Completed' }}
-              />
-              <Tab.Screen
-                name="Active"
-                options={{ title: 'Active' }}
-                component={HomeScreen}
-                initialParams={{ name: 'Active' }}
-              />
-            </>
-          ) : (
-            <>
-              <Tab.Screen
-                name="SignIn"
-                children={() => <SignInScreen setIslogin={changeIsLogin}/>}
-              />
-               <Tab.Screen
-                name="SignUp"
-                children={() => <SignUpScreen setIslogin={changeIsLogin}/>}
-              />
-            </>
-          )}
-        </Tab.Navigator>
+        <MyTabNavigator />
       </NavigationContainer>
     </Provider>
   );
