@@ -3,10 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import RNBootSplash from "react-native-bootsplash";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
+import messaging from '@react-native-firebase/messaging';
 
 import store from './src/store/store';
 import { NavigatorRootStackParamList, MyTabNavigator } from './src/components/tabNavigator/MyTabNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
@@ -23,6 +25,24 @@ const App = () => {
       if (token) {
         setIsSignedIn(true);
       }
+
+      const authStatus = await messaging().requestPermission();
+      const enabled =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+      if (enabled) {
+        const fcmToken = await messaging().getToken();
+        if (fcmToken) {
+          console.log(fcmToken);
+          console.log("Your Firebase Token is:", fcmToken);
+          console.log('Authorization status:', authStatus);
+        } else {
+          console.log("Failed", "No token received");
+        }
+        // console.log('Authorization status:', authStatus);
+      }
+      
     };
 
     init().finally(async () => {
@@ -31,10 +51,26 @@ const App = () => {
     });
   }, [])
 
+  useEffect(() => {
+    const subscribe = messaging().onMessage(async remoteMessage => {
+
+      // Get the message body
+      let messageBody = remoteMessage?.notification?.body;
+
+      // Get the message title
+      let messageTitle = remoteMessage?.notification?.title;
+
+      // Show an alert to the user
+      Alert.alert(messageTitle || '', messageBody);
+    });
+
+    return subscribe;
+  }, []);
+
   return (
     <Provider store={store}>
       <NavigationContainer onReady={() => RNBootSplash.hide()}>
-        <MyTabNavigator isSignedIn={isSignedIn} changeIsLogin={changeIsLogin}/>
+        <MyTabNavigator isSignedIn={isSignedIn} changeIsLogin={changeIsLogin} />
       </NavigationContainer>
     </Provider>
   );
