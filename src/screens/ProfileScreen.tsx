@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { screenStyles } from './screenStyles'
+
 type PropType = {
   setIslogin: () => void;
 }
@@ -14,8 +16,7 @@ const ProfileScreen: FC<PropType> = ({ setIslogin }) => {
   const [login, setLogin] = useState('');
 
   const onPress = () => {
-    AsyncStorage.removeItem('login');
-    AsyncStorage.removeItem('password');
+    AsyncStorage.removeItem('token');
     setIslogin();
   }
 
@@ -26,12 +27,12 @@ const ProfileScreen: FC<PropType> = ({ setIslogin }) => {
   }, [])
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'peachpuff', flexDirection: 'column' }}>
+    <View style={screenStyles.screenContainer}>
       <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
         <Text>login: </Text>
         <Text>{login}</Text>
       </View>
-      <View style={{ paddingTop: 20, }}>
+      <View style={screenStyles.inputPadding}>
         <Button onPress={onPress} title='log out' />
       </View>
     </View>

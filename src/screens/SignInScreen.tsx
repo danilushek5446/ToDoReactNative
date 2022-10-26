@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { screenStyles } from './screenStyles';
 
 type PropType = {
   setIslogin: () => void;
@@ -14,6 +15,7 @@ type PropType = {
 const SignInScreen: FC<PropType> = ({ setIslogin }) => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [error, setError] = useState('');
 
   const onPress = async () => {
     if (!loginValue || !passwordValue) {
@@ -23,35 +25,51 @@ const SignInScreen: FC<PropType> = ({ setIslogin }) => {
     const login = await AsyncStorage.getItem('login');
     const password = await AsyncStorage.getItem('password');
 
-    if(login === loginValue && password === passwordValue) {
-      setIslogin();
+    console.log(login, password)
+
+    if (login !== loginValue) {
+      setError('Wrong login');
+      return;
     }
 
+    if (password !== passwordValue) {
+      setError('Wrong password');
+      return;
+    }
+
+    AsyncStorage.setItem('token', 'token');
+
+    setIslogin();
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
+    <View style={screenStyles.screenContainer}>
       <Text>Sign in</Text>
-      <View style={{paddingTop: 20}}>
+      <View style={screenStyles.inputPadding}>
         <Text>login</Text>
         <TextInput
-          style={{width: 200, height: 40, backgroundColor: 'white'}}
+          style={screenStyles.inputStyles}
           value={loginValue}
           onChangeText={setLoginValue}
         />
+        <Text>{error.includes('login') && error}</Text>
       </View>
-      <View style={{paddingTop: 20}}>
+      <View style={screenStyles.inputPadding}>
         <Text>password</Text>
         <TextInput
-          style={{width: 200, height: 40, backgroundColor: 'white'}}
+          style={screenStyles.inputStyles}
           value={passwordValue}
           onChangeText={setPasswordValue}
+          secureTextEntry
+        />
+        <Text>{error.includes('password') && error}</Text>
+      </View>
+      <View style={screenStyles.inputPadding}>
+        <Button
+          title='submit'
+          onPress={onPress}
         />
       </View>
-      <Button
-        title='submit'
-        onPress={onPress}
-      />
     </View>
   );
 }

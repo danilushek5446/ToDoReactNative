@@ -8,6 +8,7 @@ import ToDoForm from '../components/todoForm/TodoForm';
 
 import { useAppDispatch } from '../store/hooks';
 import { changeFilter } from '../store/todoSlice/todoSlice';
+import { screenStyles } from './screenStyles';
 
 type PropType = {
   route?: RouteProp<{ params: { name: string } }>
@@ -21,7 +22,7 @@ const HomeScreen: FC<PropType> = ({ route }) => {
 
   }, [route])
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
+    <View style={screenStyles.homeScreen}>
       <ToDoForm />
     </View>
   );

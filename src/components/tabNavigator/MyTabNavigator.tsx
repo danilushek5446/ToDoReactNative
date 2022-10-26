@@ -1,12 +1,13 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../../screens/HomeScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 import SignInScreen from '../../screens/SignInScreen';
 import SignUpScreen from '../../screens/SignUpScreen';
+
+import HomeLogo from '../../assets/Home_free_icon.svg';
 
 export type NavigatorRootStackParamList = {
   All: { name: string };
@@ -28,16 +29,16 @@ export const MyTabNavigator: FC<PropType> = ({isSignedIn, changeIsLogin}) => {
 
   return (
     <Tab.Navigator
-      activeColor="#f0edf6"
-      inactiveColor="#3e2465"
-      barStyle={{ backgroundColor: '#E9967A' }}
+      activeColor="white"
+      inactiveColor="#A8A8A8"
+      barStyle={{ backgroundColor: '#505050' }}
     >
           {isSignedIn ? (
             <>
               <Tab.Screen
                 name="All"
                 options={{ title: 'All', tabBarIcon: ({ color }) => (
-                  <MaterialCommunityIcons name="bookmark" color={color} size={26} />
+                  <HomeLogo width={30} height={30} fill={color}/>
                 ), }}
                 component={HomeScreen}
                 initialParams={{ name: 'All' }}

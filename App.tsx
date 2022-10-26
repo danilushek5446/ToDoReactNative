@@ -6,6 +6,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 import store from './src/store/store';
 import { NavigatorRootStackParamList, MyTabNavigator } from './src/components/tabNavigator/MyTabNavigator';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
@@ -18,10 +19,10 @@ const App = () => {
 
   useEffect(() => {
     const init = async () => {
-      // const value = await AsyncStorage.getItem('login');
-      // if (value) {
-      //   setIsSignedIn(true);
-      // }
+      const token = await AsyncStorage.getItem('token');
+      if (token) {
+        setIsSignedIn(true);
+      }
     };
 
     init().finally(async () => {

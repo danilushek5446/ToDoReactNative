@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { screenStyles } from './screenStyles';
 
 type PropType = {
   setIslogin: () => void;
@@ -15,40 +16,44 @@ const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const onPress = async () => {
+  const onPress = () => {
     if (!loginValue || !passwordValue) {
       return;
     }
 
-    await AsyncStorage.setItem('login', loginValue);
-    await AsyncStorage.setItem('password', passwordValue);
+    AsyncStorage.setItem('login', loginValue);
+    AsyncStorage.setItem('password', passwordValue);
+    AsyncStorage.setItem('token', 'token');
 
     setIslogin();
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: 'peachpuff' }}>
+    <View style={screenStyles.screenContainer}>
       <Text>registration</Text>
-      <View style={{paddingTop: 20}}>
+      <View style={screenStyles.inputPadding}>
         <Text>login</Text>
         <TextInput
-          style={{width: 200, height: 40, backgroundColor: 'white'}}
+          style={screenStyles.inputStyles}
           value={loginValue}
           onChangeText={setLoginValue}
         />
       </View>
-      <View style={{paddingTop: 20}}>
+      <View style={screenStyles.inputPadding}>
         <Text>password</Text>
         <TextInput
-          style={{width: 200, height: 40, backgroundColor: 'white'}}
+          style={screenStyles.inputStyles}
           value={passwordValue}
           onChangeText={setPasswordValue}
+          secureTextEntry
         />
       </View>
-      <Button
-        title='submit'
-        onPress={onPress}
-      />
+      <View style={screenStyles.inputPadding}>
+        <Button
+          title='submit'
+          onPress={onPress}
+        />
+      </View>
     </View>
   );
 }
