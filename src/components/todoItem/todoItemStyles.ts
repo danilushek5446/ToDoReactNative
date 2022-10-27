@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const todoItemStyles = StyleSheet.create({
   input: {
-    width: 280,
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
+    width: 300,
+    height: 50,
+    margin: 8,
+    borderWidth: 0,
     padding: 10,
     backgroundColor: 'white',
     flexDirection: 'row',
@@ -13,14 +13,17 @@ export const todoItemStyles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     border: 'none',
-    outline: 'none'
+    outline: 'none',
+    fontSize: 40,
   },
   button: {
     width: 25,
     height: 25,
   },
   checkboxContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
   checkbox: {
     marginRight: 10,

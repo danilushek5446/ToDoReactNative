@@ -1,20 +1,17 @@
-import React, { FC, useState } from 'react';
-import {
-  Button,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import React, {FC, useState} from 'react';
+import {Button, Text, TextInput, View} from 'react-native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { screenStyles } from './screenStyles';
 
-type PropType = {
-  setIslogin: () => void;
-}
+import {screenStyles} from './screenStyles';
+import {addUser} from 'src/store/userSlice/userSlice';
+import {useAppDispatch} from 'src/store/hooks';
 
-const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
+const SignUpScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const onPress = () => {
     if (!loginValue || !passwordValue) {
@@ -25,8 +22,8 @@ const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
     AsyncStorage.setItem('password', passwordValue);
     AsyncStorage.setItem('token', 'token');
 
-    setIslogin();
-  }
+    dispatch(addUser(loginValue));
+  };
 
   return (
     <View style={screenStyles.screenContainer}>
@@ -49,13 +46,10 @@ const SignUpScreen: FC<PropType> = ({ setIslogin }) => {
         />
       </View>
       <View style={screenStyles.inputPadding}>
-        <Button
-          title='submit'
-          onPress={onPress}
-        />
+        <Button title="submit" onPress={onPress} />
       </View>
     </View>
   );
-}
+};
 
 export default SignUpScreen;

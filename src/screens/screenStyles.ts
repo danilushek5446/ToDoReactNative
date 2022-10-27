@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const screenStyles = StyleSheet.create({
   screenContainer: {
@@ -8,7 +8,7 @@ export const screenStyles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
     flexDirection: 'column',
   },
-  homeScreen : {
+  homeScreen: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -21,6 +21,6 @@ export const screenStyles = StyleSheet.create({
   inputStyles: {
     width: 200,
     height: 40,
-    backgroundColor: 'white' 
-  }
+    backgroundColor: 'white',
+  },
 });
