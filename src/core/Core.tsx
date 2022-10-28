@@ -1,30 +1,20 @@
 import React, {useEffect} from 'react';
 import RNBootSplash from 'react-native-bootsplash';
+// import {Alert, AppRegistry} from 'react-native';
+import messaging from '@react-native-firebase/messaging';
 
-import {useAppSelector} from 'src/store/hooks';
 import {Navigation} from 'src/navigation/Navigation';
+import {Alert} from 'react-native';
+import useCurrentUser from 'src/hooks/useCurrentUser';
 
 const Core = () => {
-  const user = useAppSelector(state => state.user);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useCurrentUser();
 
   useEffect(() => {
     const init = async () => {
-      // const authStatus = await messaging().requestPermission();
-      // const enabled =
-      //   authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      //   authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-      // if (enabled) {
-      //   const channel = firebase.initializeApp()
-      //   const fcmToken = await messaging().getToken();
-      //   if (fcmToken) {
-      //     console.log(fcmToken);
-      //     console.log("Your Firebase Token is:", fcmToken);
-      //     console.log('Authorization status:', authStatus);
-      //   } else {
-      //     console.log("Failed", "No token received");
-      //   }
-      //   // console.log('Authorization status:', authStatus);
-      // }
+      // const tokens = await messaging().getToken();
+      // // console.log(tokens);
     };
 
     init().finally(async () => {
@@ -34,15 +24,13 @@ const Core = () => {
   }, [user]);
 
   useEffect(() => {
-    // const subscribe = messaging().onMessage(async remoteMessage => {
-    //   // Get the message body
-    //   let messageBody = remoteMessage?.notification?.body;
-    //   // Get the message title
-    //   let messageTitle = remoteMessage?.notification?.title;
-    //   // Show an alert to the user
-    //   Alert.alert(messageTitle || '', messageBody);
-    // });
-    // return subscribe;
+    const subscribe = messaging().onMessage(async remoteMessage => {
+      const messageBody = remoteMessage?.notification?.body;
+      const messageTitle = remoteMessage?.notification?.title;
+
+      Alert.alert(messageTitle || '', messageBody);
+    });
+    return subscribe;
   }, []);
 
   return <Navigation />;

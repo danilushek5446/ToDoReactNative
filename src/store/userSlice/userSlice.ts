@@ -1,8 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-type UserInitialType = {
-  username: string | null;
-};
+import {UserInitialType} from 'src/types/userTypes';
 
 export const initialState: UserInitialType = {
   username: null,
@@ -12,16 +9,12 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    addUser: (state, action: PayloadAction<string>) => {
+    changeUser: (state, action: PayloadAction<string | null>) => {
       state.username = action.payload;
-    },
-
-    removeUser: state => {
-      state.username = null;
     },
   },
 });
 
-export const {addUser, removeUser} = userSlice.actions;
+export const {changeUser} = userSlice.actions;
 
 export default userSlice.reducer;

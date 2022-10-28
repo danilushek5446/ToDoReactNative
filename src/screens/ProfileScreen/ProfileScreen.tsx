@@ -2,17 +2,17 @@ import React, {FC, useEffect, useState} from 'react';
 import {Button, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {screenStyles} from './screenStyles';
-import {useAppDispatch} from 'src/store/hooks';
-import {removeUser} from 'src/store/userSlice/userSlice';
+import {profileScreenStyles} from './ProfileScreenStyles';
+import useCurrentUser from 'src/hooks/useCurrentUser';
 
 const ProfileScreen: FC = () => {
   const [login, setLogin] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [user, setUser] = useCurrentUser();
 
-  const dispatch = useAppDispatch();
   const onPress = () => {
     AsyncStorage.removeItem('token');
-    dispatch(removeUser);
+    setUser(null);
   };
 
   useEffect(() => {
@@ -22,12 +22,12 @@ const ProfileScreen: FC = () => {
   }, []);
 
   return (
-    <View style={screenStyles.screenContainer}>
-      <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+    <View style={profileScreenStyles.screenContainer}>
+      <View style={profileScreenStyles.loginContainer}>
         <Text>login: </Text>
         <Text>{login}</Text>
       </View>
-      <View style={screenStyles.inputPadding}>
+      <View style={profileScreenStyles.inputPadding}>
         <Button onPress={onPress} title="log out" />
       </View>
     </View>

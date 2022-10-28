@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const screenStyles = StyleSheet.create({
+export const signInScreenStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
@@ -22,5 +22,14 @@ export const screenStyles = StyleSheet.create({
     width: 200,
     height: 40,
     backgroundColor: 'white',
+  },
+  container: {
+    backgroundColor: '#DCDCDC',
+    flex: 1,
+  },
+  navigateButton: {
+    width: 70,
+    alignSelf: 'flex-end',
+    margin: 15,
   },
 });

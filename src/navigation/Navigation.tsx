@@ -4,7 +4,7 @@ import {useAppSelector} from 'src/store/hooks';
 import {NavigationContainer} from '@react-navigation/native';
 
 import AuthNavigation from './AuthStack';
-import RootStack from './RootStack';
+import RootStack from './RootStack/RootStack';
 
 export const Navigation: FC = () => {
   const username = useAppSelector(state => state.user.username);

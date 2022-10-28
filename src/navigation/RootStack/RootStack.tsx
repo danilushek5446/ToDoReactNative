@@ -2,27 +2,21 @@ import React, {FC} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from 'src/screens/HomeScreen';
-import ProfileScreen from 'src/screens/ProfileScreen';
+import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
+import ProfileScreen from 'src/screens/ProfileScreen/ProfileScreen';
 import HomeLogo from 'src/assets/Home_free_icon.svg';
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
+import {rootStackStyles} from './RootStackStyles';
 
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
 
 const RootStack: FC = () => {
   return (
     <Tab.Navigator
-      style={{backgroundColor: '#DCDCDC'}}
+      style={rootStackStyles.navigatorStyle}
       activeColor="white"
       inactiveColor="#A8A8A8"
-      barStyle={{
-        backgroundColor: '#505050',
-        borderRadius: 40,
-        overflow: 'hidden',
-        width: 200,
-        alignSelf: 'center',
-        margin: 10,
-      }}>
+      barStyle={rootStackStyles.barStyle}>
       <Tab.Screen
         name="All"
         options={{

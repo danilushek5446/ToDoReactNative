@@ -2,11 +2,11 @@ import React, {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 
-import ToDoForm from '../components/TodoForm/TodoForm';
+import ToDoForm from 'src/components/TodoForm/TodoForm';
 
-import {useAppDispatch} from '../store/hooks';
-import {changeFilter} from '../store/todoSlice/todoSlice';
-import {screenStyles} from './screenStyles';
+import {useAppDispatch} from 'src/store/hooks';
+import {changeFilter} from 'src/store/todoSlice/todoSlice';
+import {homeScreenStyles} from './HomeScreenStyles';
 
 type PropType = {
   route?: RouteProp<{params: {name: string}}>;
@@ -21,7 +21,7 @@ const HomeScreen: FC<PropType> = ({route}) => {
   }, [route]);
 
   return (
-    <View style={screenStyles.homeScreen}>
+    <View style={homeScreenStyles.homeScreen}>
       <ToDoForm />
     </View>
   );
