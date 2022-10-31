@@ -6,3 +6,7 @@ export type UserStorageType = {
   login: string;
   password: string;
 };
+
+export type UserArrayStorageType = {
+  users: UserStorageType[];
+};

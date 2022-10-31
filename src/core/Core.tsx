@@ -5,7 +5,7 @@ import messaging from '@react-native-firebase/messaging';
 
 import {Navigation} from 'src/navigation/Navigation';
 import {Alert} from 'react-native';
-import useCurrentUser from 'src/hooks/useCurrentUser';
+import useCurrentUser from 'src/hooks/';
 
 const Core = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

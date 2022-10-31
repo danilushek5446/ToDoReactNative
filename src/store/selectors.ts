@@ -1,5 +1,6 @@
 import {createSelector} from 'reselect';
-import {TodoItemType} from '../types/todoTypes';
+
+import {TodoItemType} from 'src/types/todoTypes';
 import {RootState} from './store';
 
 export const selectAllTodos = (state: RootState) => state.todo.todoList;

@@ -1,17 +1,17 @@
 import React, {FC, useState} from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
 
-// import {Notifier} from 'react-native-notifier';
+import {Notifier} from 'react-native-notifier';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {signInScreenStyles} from './SignInScreenStyles';
-import {useNavigation} from '@react-navigation/native';
 
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
-import useCurrentUser from 'src/hooks/useCurrentUser';
-import {getStateFromStorage} from 'src/utils/storageWorker';
+import useCurrentUser from 'src/hooks/';
+import {getUserFromStorage} from 'src/utils/storageWorker';
 
 const SignInScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
@@ -30,37 +30,57 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    const users = await getStateFromStorage('user');
-    console.log(users);
-    // const passwordArray = (await getStateFromStorage('password'))?.split(',');
+    const userArray = await getUserFromStorage('user');
 
-    // if (loginArray?.includes(loginValue)) {
-    //   Notifier.showNotification({
-    //     title: 'Wrong login',
-    //     description: 'check your login please',
-    //     duration: 0,
-    //     showAnimationDuration: 800,
-    //     hideOnPress: true,
-    //   });
+    console.log(userArray);
 
-    //   return;
-    // }
+    if (!userArray) {
+      Notifier.showNotification({
+        title: 'No users',
+        description: 'sign up please',
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
 
-    // if (password !== passwordValue) {
-    //   Notifier.showNotification({
-    //     title: 'Wrong password',
-    //     description: 'check your password please',
-    //     duration: 0,
-    //     showAnimationDuration: 800,
-    //     hideOnPress: true,
-    //   });
+      return;
+    }
 
-    //   return;
-    // }
+    const isLoginRight = userArray.users.some(
+      item => item.login === loginValue,
+    );
+
+    if (!isLoginRight) {
+      Notifier.showNotification({
+        title: 'Wrong login',
+        description: 'check your login please',
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
+
+      return;
+    }
+
+    const isPasswordRight = userArray.users.some(
+      item => item.password === passwordValue,
+    );
+
+    if (!isPasswordRight) {
+      Notifier.showNotification({
+        title: 'Wrong password',
+        description: 'check your password please',
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
+
+      return;
+    }
 
     AsyncStorage.setItem('token', 'token');
 
-    // setUser(login);
+    setUser(loginValue);
   };
 
   const onNavigateSignUp = () => {

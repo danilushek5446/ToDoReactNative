@@ -18,7 +18,7 @@ import {
   editToDo,
   removeToDo,
   setEditable,
-} from '../../store/todoSlice/todoSlice';
+} from '../../store/todoSlice/';
 
 import {TodoItemType} from '../../types/todoTypes';
 

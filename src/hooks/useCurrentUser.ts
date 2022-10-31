@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
-import {changeUser} from 'src/store/userSlice/userSlice';
+import {changeUser} from 'src/store/userSlice/';
 import {UserInitialType} from 'src/types/userTypes';
 
 const useCurrentUser = () => {

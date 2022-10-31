@@ -2,10 +2,10 @@ import React, {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 
-import ToDoForm from 'src/components/TodoForm/TodoForm';
+import ToDoForm from 'src/components/TodoForm/';
 
 import {useAppDispatch} from 'src/store/hooks';
-import {changeFilter} from 'src/store/todoSlice/todoSlice';
+import {changeFilter} from 'src/store/todoSlice/';
 import {homeScreenStyles} from './HomeScreenStyles';
 
 type PropType = {

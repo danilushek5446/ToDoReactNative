@@ -2,8 +2,8 @@ import React, {FC} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
-import ProfileScreen from 'src/screens/ProfileScreen/ProfileScreen';
+import HomeScreen from 'src/screens/HomeScreen/';
+import ProfileScreen from 'src/screens/ProfileScreen/';
 import HomeLogo from 'src/assets/Home_free_icon.svg';
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
 import {rootStackStyles} from './RootStackStyles';
@@ -31,7 +31,7 @@ const RootStack: FC = () => {
       <Tab.Screen
         name="Completed"
         options={{
-          title: 'Completed',
+          title: 'Done',
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name="bookmark-check"

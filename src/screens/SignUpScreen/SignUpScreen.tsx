@@ -1,12 +1,18 @@
 import React, {FC, useState} from 'react';
 import {Button, Text, TextInput, View} from 'react-native';
-
 import {signUpScreenStyles} from './SignUpScreenStyles';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import {Notifier} from 'react-native-notifier';
+
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
-import useCurrentUser from 'src/hooks/useCurrentUser';
-import {setToken, setStateToStorage} from 'src/utils/storageWorker';
+import useCurrentUser from 'src/hooks/';
+import {
+  getUserFromStorage,
+  setToken,
+  setUserToStorage,
+} from 'src/utils/storageWorker';
 
 const SignUpScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
@@ -20,12 +26,26 @@ const SignUpScreen: FC = () => {
       NativeStackNavigationProp<NavigatorRootStackParamList, any>
     >();
 
-  const onPress = () => {
+  const onPress = async () => {
     if (!loginValue || !passwordValue) {
       return;
     }
 
-    setStateToStorage('user', {login: loginValue, password: passwordValue});
+    const usersArray = await getUserFromStorage('user');
+
+    if (usersArray?.users.some(item => item.login === loginValue)) {
+      Notifier.showNotification({
+        title: 'User with this login is allready exists',
+        description: 'Change your login please',
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
+
+      return;
+    }
+
+    setUserToStorage('user', {login: loginValue, password: passwordValue});
     setToken('token', 'token');
 
     setUser(loginValue);
