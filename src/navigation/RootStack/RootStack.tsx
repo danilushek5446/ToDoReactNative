@@ -7,8 +7,27 @@ import ProfileScreen from 'src/screens/ProfileScreen/';
 import HomeLogo from 'src/assets/Home_free_icon.svg';
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
 import {rootStackStyles} from './RootStackStyles';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MyTabBar from '../MyTabBar/MyTabBar';
 
 const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
+
+const myTab = createBottomTabNavigator<NavigatorRootStackParamList>();
+
+export const testNavigator: FC = () => {
+  return (
+    <myTab.Navigator
+      tabBar={props => (
+        <MyTabBar
+          navigation={props.navigation}
+          state={props.state}
+          descriptors={props.descriptors}
+        />
+      )}>
+      <myTab.Screen name="All" component={HomeScreen} />
+    </myTab.Navigator>
+  );
+};
 
 const RootStack: FC = () => {
   return (
