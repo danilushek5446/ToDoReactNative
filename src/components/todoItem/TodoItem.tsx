@@ -1,8 +1,13 @@
 import React, {FC} from 'react';
-import {Image, Text, TouchableHighlight, View} from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {todoItemStyles} from './todoItemStyles';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type PropType = {
   task: string;
@@ -21,22 +26,22 @@ const TodoItem: FC<PropType> = ({
   toggleCheck,
   removeTask,
 }) => {
-  const textDecorationLine = complete ? 'line-through' : 'none';
-  const backgroundColor = complete ? 'palegreen' : 'white';
-
   return (
     <View style={todoItemStyles.input}>
       <View style={todoItemStyles.checkboxContainer}>
-        <MaterialCommunityIcons
-          style={todoItemStyles.checkbox}
-          name={
-            complete ? 'check-circle-outline' : 'checkbox-blank-circle-outline'
-          }
-          size={20}
-          onPress={() => toggleCheck(id)}
-        />
+        <TouchableOpacity onPress={() => toggleCheck(id)}>
+          <View
+            style={
+              complete
+                ? todoItemStyles.checkedCheckbox
+                : todoItemStyles.activeCheckbox
+            }
+          />
+        </TouchableOpacity>
         <Text
-          style={{backgroundColor, textDecorationLine, fontSize: 18}}
+          style={
+            complete ? todoItemStyles.textCheked : todoItemStyles.textActive
+          }
           onLongPress={() => toggleEditable(id)}
           onPressOut={() => toggleCheck(id)}>
           {task}

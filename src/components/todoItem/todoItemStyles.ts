@@ -28,4 +28,30 @@ export const todoItemStyles = StyleSheet.create({
   checkbox: {
     marginRight: 10,
   },
+  textCheked: {
+    fontSize: 18,
+    color: 'black',
+    backgroundColor: 'palegreen',
+    textDecorationLine: 'line-through',
+  },
+  textActive: {
+    fontSize: 18,
+    color: 'black',
+    backgroundColor: 'white',
+    textDecorationLine: 'none',
+  },
+  activeCheckbox: {
+    backgroundColor: '#DCDCDC',
+    borderRadius: 10,
+    width: 25,
+    height: 25,
+    marginRight: 10,
+  },
+  checkedCheckbox: {
+    backgroundColor: 'palegreen',
+    borderRadius: 10,
+    width: 25,
+    height: 25,
+    marginRight: 10,
+  },
 });
