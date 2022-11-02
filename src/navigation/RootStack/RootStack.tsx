@@ -4,11 +4,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeScreen from 'src/screens/HomeScreen/';
 import ProfileScreen from 'src/screens/ProfileScreen/';
 import HomeLogo from 'src/assets/Home_free_icon.svg';
-import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
+import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
-const myTab = createBottomTabNavigator<NavigatorRootStackParamList>();
+const myTab = createBottomTabNavigator<NavigatorRootStackParamListType>();
 
 const RootStack: FC = () => {
   return (

@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 
 import SignInScreen from 'src/screens/SignInScreen/';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
+import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
 import SignUpScreen from 'src/screens/SignUpScreen/';
 
-const stack = createNativeStackNavigator<NavigatorRootStackParamList>();
+const stack = createNativeStackNavigator<NavigatorRootStackParamListType>();
 
 const AuthNavigation: FC = () => {
   return (

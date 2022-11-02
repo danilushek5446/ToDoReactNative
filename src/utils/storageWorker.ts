@@ -32,6 +32,16 @@ export const setUserToStorage = async (key: string, user: UserStorageType) => {
   AsyncStorage.setItem(key, JSON.stringify(itemFromStorage));
 };
 
-export const setToken = async (key: string, value: string) => {
-  AsyncStorage.setItem(key, value);
+export const setToken = async () => {
+  AsyncStorage.setItem('token', 'token');
+};
+
+export const getToken = async () => {
+  const token = await AsyncStorage.getItem('token');
+
+  return token;
+};
+
+export const removeItemFromStorage = async (key: string) => {
+  AsyncStorage.removeItem(key);
 };

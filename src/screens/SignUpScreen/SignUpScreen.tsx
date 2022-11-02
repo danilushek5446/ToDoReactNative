@@ -6,8 +6,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {Notifier} from 'react-native-notifier';
 
-import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
-import useCurrentUser from 'src/hooks/';
+import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
+import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
   getUserFromStorage,
   setToken,
@@ -18,12 +18,11 @@ const SignUpScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, setUser] = useCurrentUser();
+  const {setUser} = useCurrentUser();
 
   const navigate =
     useNavigation<
-      NativeStackNavigationProp<NavigatorRootStackParamList, any>
+      NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignUp'>
     >();
 
   const onPress = async () => {
@@ -46,7 +45,8 @@ const SignUpScreen: FC = () => {
     }
 
     setUserToStorage('user', {login: loginValue, password: passwordValue});
-    setToken('token', 'token');
+
+    setToken();
 
     setUser(loginValue);
   };

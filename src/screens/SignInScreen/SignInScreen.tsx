@@ -5,13 +5,11 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Notifier} from 'react-native-notifier';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {signInScreenStyles} from './SignInScreenStyles';
 
-import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
-import useCurrentUser from 'src/hooks/';
-import {getUserFromStorage} from 'src/utils/storageWorker';
+import useCurrentUser from 'src/hooks/useCurrentUser';
+import {getUserFromStorage, setToken} from 'src/utils/storageWorker';
+import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
 
 const SignInScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
@@ -19,11 +17,9 @@ const SignInScreen: FC = () => {
 
   const navigate =
     useNavigation<
-      NativeStackNavigationProp<NavigatorRootStackParamList, any>
+      NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignIn'>
     >();
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [user, setUser] = useCurrentUser();
+  const {setUser} = useCurrentUser();
 
   const onSubmit = async () => {
     if (!loginValue || !passwordValue) {
@@ -78,7 +74,7 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    AsyncStorage.setItem('token', 'token');
+    setToken();
 
     setUser(loginValue);
   };

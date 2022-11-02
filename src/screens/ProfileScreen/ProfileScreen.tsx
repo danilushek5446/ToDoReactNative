@@ -1,15 +1,15 @@
 import React, {FC} from 'react';
 import {Button, Text, View} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {profileScreenStyles} from './ProfileScreenStyles';
-import useCurrentUser from 'src/hooks/';
+import useCurrentUser from 'src/hooks/useCurrentUser';
+import {removeItemFromStorage} from 'src/utils/storageWorker';
 
 const ProfileScreen: FC = () => {
-  const [user, setUser] = useCurrentUser();
+  const {user, setUser} = useCurrentUser();
 
   const onPress = () => {
-    AsyncStorage.removeItem('token');
+    removeItemFromStorage('token');
 
     setUser(null);
   };

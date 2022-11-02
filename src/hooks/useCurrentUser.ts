@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from 'src/store/hooks';
 import {changeUser} from 'src/store/userSlice/';
-import {UserInitialType} from 'src/types/userTypes';
+// import {UserInitialType} from 'src/types/userTypes';
 
 const useCurrentUser = () => {
   const user = useAppSelector(state => state.user);
@@ -10,10 +10,7 @@ const useCurrentUser = () => {
     dispatch(changeUser(username));
   };
 
-  const userCurrentArray: [UserInitialType, (username: string | null) => void] =
-    [user, setUser];
-
-  return userCurrentArray;
+  return {user, setUser};
 };
 
 export default useCurrentUser;
