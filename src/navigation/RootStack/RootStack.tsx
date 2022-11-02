@@ -1,22 +1,19 @@
 import React, {FC} from 'react';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from 'src/screens/HomeScreen/';
 import ProfileScreen from 'src/screens/ProfileScreen/';
 import HomeLogo from 'src/assets/Home_free_icon.svg';
 import {NavigatorRootStackParamList} from 'src/types/navigationTypes';
-import {rootStackStyles} from './RootStackStyles';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
-const Tab = createMaterialBottomTabNavigator<NavigatorRootStackParamList>();
-
 const myTab = createBottomTabNavigator<NavigatorRootStackParamList>();
 
-export const testNavigator: FC = () => {
+const RootStack: FC = () => {
   return (
     <myTab.Navigator
+      screenOptions={{tabBarHideOnKeyboard: true}}
       tabBar={props => (
         <MyTabBar
           navigation={props.navigation}
@@ -24,22 +21,11 @@ export const testNavigator: FC = () => {
           descriptors={props.descriptors}
         />
       )}>
-      <myTab.Screen name="All" component={HomeScreen} />
-    </myTab.Navigator>
-  );
-};
-
-const RootStack: FC = () => {
-  return (
-    <Tab.Navigator
-      style={rootStackStyles.navigatorStyle}
-      activeColor="white"
-      inactiveColor="#A8A8A8"
-      barStyle={rootStackStyles.barStyle}>
-      <Tab.Screen
+      <myTab.Screen
         name="All"
         options={{
           title: 'All',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({color}) => (
             <HomeLogo width={23} height={23} fill={color} />
           ),
@@ -47,10 +33,11 @@ const RootStack: FC = () => {
         component={HomeScreen}
         initialParams={{name: 'All'}}
       />
-      <Tab.Screen
+      <myTab.Screen
         name="Completed"
         options={{
           title: 'Done',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name="bookmark-check"
@@ -62,10 +49,11 @@ const RootStack: FC = () => {
         component={HomeScreen}
         initialParams={{name: 'Completed'}}
       />
-      <Tab.Screen
+      <myTab.Screen
         name="Active"
         options={{
           title: 'Active',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name="bookmark-minus"
@@ -77,17 +65,18 @@ const RootStack: FC = () => {
         component={HomeScreen}
         initialParams={{name: 'Active'}}
       />
-      <Tab.Screen
+      <myTab.Screen
         name="Profile"
         options={{
           title: 'Profile',
+          tabBarHideOnKeyboard: true,
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="account" color={color} size={23} />
           ),
         }}
         children={() => <ProfileScreen />}
       />
-    </Tab.Navigator>
+    </myTab.Navigator>
   );
 };
 

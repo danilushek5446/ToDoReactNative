@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
@@ -8,7 +9,9 @@ import {
   TabNavigationState,
 } from '@react-navigation/native';
 import {FC} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
+
+import {MyTabBarStyles} from './MyTabBarStyles';
 
 type PropsType = {
   state: TabNavigationState<ParamListBase>;
@@ -18,16 +21,9 @@ type PropsType = {
 
 const MyTabBar: FC<PropsType> = ({state, descriptors, navigation}) => {
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={MyTabBarStyles.barStyle}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
 
         const isFocused = state.index === index;
 
@@ -39,20 +35,28 @@ const MyTabBar: FC<PropsType> = ({state, descriptors, navigation}) => {
           });
 
           if (!isFocused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            //navigation.navigate({name: route.name, merge: true});
+            navigation.navigate(`${route.name}`, route.params);
           }
         };
-
         return (
           <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            style={{flex: 1}}>
-            <Text style={{color: isFocused ? '#673ab7' : '#222'}}>{}</Text>
+            key={index}
+            style={
+              isFocused
+                ? MyTabBarStyles.tabButtonActive
+                : MyTabBarStyles.tabButtonNotActive
+            }
+            onPress={onPress}>
+            {options.tabBarIcon &&
+              options.tabBarIcon({
+                color: `${
+                  isFocused
+                    ? MyTabBarStyles.activeColor.color
+                    : MyTabBarStyles.notActive.color
+                }`,
+                focused: isFocused,
+                size: 23,
+              })}
           </TouchableOpacity>
         );
       })}
