@@ -1,12 +1,13 @@
-import React, {FC} from 'react';
-import {Button, Text, View} from 'react-native';
+import type { FC } from 'react';
+import React from 'react';
+import { Button, Text, View } from 'react-native';
 
-import {profileScreenStyles} from './ProfileScreenStyles';
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import {removeItemFromStorage} from 'src/utils/storageWorker';
+import { removeItemFromStorage } from 'src/utils/storageWorker';
+import { profileScreenStyles } from './ProfileScreenStyles';
 
 const ProfileScreen: FC = () => {
-  const {user, setUser} = useCurrentUser();
+  const { user, setUser } = useCurrentUser();
 
   const onPress = () => {
     removeItemFromStorage('token');

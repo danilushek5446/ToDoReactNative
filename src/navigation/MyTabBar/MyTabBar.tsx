@@ -1,17 +1,17 @@
 /* eslint-disable react/react-in-jsx-scope */
-import {
+import type {
   BottomTabDescriptorMap,
   BottomTabNavigationEventMap,
 } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
-import {
+import type {
   NavigationHelpers,
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import {FC} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import type { FC } from 'react';
+import { View, TouchableOpacity } from 'react-native';
 
-import {MyTabBarStyles} from './MyTabBarStyles';
+import { MyTabBarStyles } from './MyTabBarStyles';
 
 type PropsType = {
   state: TabNavigationState<ParamListBase>;
@@ -19,11 +19,11 @@ type PropsType = {
   navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
 };
 
-const MyTabBar: FC<PropsType> = ({state, descriptors, navigation}) => {
+const MyTabBar: FC<PropsType> = ({ state, descriptors, navigation }) => {
   return (
     <View style={MyTabBarStyles.barStyle}>
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
 
         const isFocused = state.index === index;
 
@@ -46,7 +46,8 @@ const MyTabBar: FC<PropsType> = ({state, descriptors, navigation}) => {
                 ? MyTabBarStyles.tabButtonActive
                 : MyTabBarStyles.tabButtonNotActive
             }
-            onPress={onPress}>
+            onPress={onPress}
+>
             {options.tabBarIcon &&
               options.tabBarIcon({
                 color: `${

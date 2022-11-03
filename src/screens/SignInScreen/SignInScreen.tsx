@@ -1,15 +1,15 @@
-import React, {FC, useState} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useNavigation} from '@react-navigation/native';
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import { Button, Text, TextInput, View } from 'react-native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
-import {Notifier} from 'react-native-notifier';
-
-import {signInScreenStyles} from './SignInScreenStyles';
+import { Notifier } from 'react-native-notifier';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import {getUserFromStorage, setToken} from 'src/utils/storageWorker';
-import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
+import { getUserFromStorage, setToken } from 'src/utils/storageWorker';
+import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
+import { signInScreenStyles } from './SignInScreenStyles';
 
 const SignInScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
@@ -19,7 +19,7 @@ const SignInScreen: FC = () => {
     useNavigation<
       NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignIn'>
     >();
-  const {setUser} = useCurrentUser();
+  const { setUser } = useCurrentUser();
 
   const onSubmit = async () => {
     if (!loginValue || !passwordValue) {
@@ -27,8 +27,6 @@ const SignInScreen: FC = () => {
     }
 
     const userArray = await getUserFromStorage('user');
-
-    console.log(userArray);
 
     if (!userArray) {
       Notifier.showNotification({
@@ -43,7 +41,7 @@ const SignInScreen: FC = () => {
     }
 
     const isLoginRight = userArray.users.some(
-      item => item.login === loginValue,
+      (item) => item.login === loginValue,
     );
 
     if (!isLoginRight) {
@@ -59,7 +57,7 @@ const SignInScreen: FC = () => {
     }
 
     const isPasswordRight = userArray.users.some(
-      item => item.password === passwordValue,
+      (item) => item.password === passwordValue,
     );
 
     if (!isPasswordRight) {

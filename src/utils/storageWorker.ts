@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {UserArrayStorageType, UserStorageType} from 'src/types/userTypes';
+import type { UserArrayStorageType, UserStorageType } from 'src/types/userTypes';
 
 export const getUserFromStorage = async (key: string) => {
   const itemFromStorage = await AsyncStorage.getItem(key);
@@ -18,7 +18,7 @@ export const setUserToStorage = async (key: string, user: UserStorageType) => {
   const itemFromStorage = await getUserFromStorage(key);
 
   if (!itemFromStorage) {
-    const userArray: UserArrayStorageType = {users: []};
+    const userArray: UserArrayStorageType = { users: [] };
 
     userArray.users.push(user);
 

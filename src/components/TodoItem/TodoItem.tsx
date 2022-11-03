@@ -1,4 +1,5 @@
-import React, {FC} from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import {
   Image,
   Text,
@@ -7,7 +8,8 @@ import {
   View,
 } from 'react-native';
 
-import {todoItemStyles} from './todoItemStyles';
+import images from 'src/utils/images';
+import { todoItemStyles } from './todoItemStyles';
 
 type PropType = {
   task: string;
@@ -43,7 +45,8 @@ const TodoItem: FC<PropType> = ({
             complete ? todoItemStyles.textCheked : todoItemStyles.textActive
           }
           onLongPress={() => toggleEditable(id)}
-          onPressOut={() => toggleCheck(id)}>
+          onPressOut={() => toggleCheck(id)}
+>
           {task}
         </Text>
       </View>
@@ -51,7 +54,7 @@ const TodoItem: FC<PropType> = ({
         <View onPointerUp={() => removeTask(id)} style={todoItemStyles.button}>
           <Image
             style={todoItemStyles.button}
-            source={require('../../assets/3481306.png')}
+            source={images.trash}
           />
         </View>
       </TouchableHighlight>

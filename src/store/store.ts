@@ -1,7 +1,7 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-import todoSlice from './todoSlice/';
-import userSlice from './userSlice/';
+import todoSlice from './todoSlice';
+import userSlice from './userSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,7 +10,7 @@ const store = configureStore({
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type appDispatch = typeof store.dispatch;
+export type RootStateType = ReturnType<typeof store.getState>;
+export type AppDispatchType = typeof store.dispatch;
 
 export default store;

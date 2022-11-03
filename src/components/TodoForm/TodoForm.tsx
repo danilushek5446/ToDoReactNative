@@ -1,31 +1,33 @@
-import React, {FC, useState} from 'react';
-import {
-  FlatList,
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import type {
   ListRenderItem,
   NativeSyntheticEvent,
+  TextInputSubmitEditingEventData } from 'react-native';
+import {
+  FlatList,
   SafeAreaView,
   Text,
   TextInput,
-  TextInputSubmitEditingEventData,
   View,
 } from 'react-native';
 
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {selectTodoByFilter} from '../../store/selectors';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectTodoByFilter } from '../../store/selectors';
 import {
   addToDo,
   changeCompletion,
   editToDo,
   removeToDo,
   setEditable,
-} from '../../store/todoSlice/';
+} from '../../store/todoSlice';
 
-import {TodoItemType} from '../../types/todoTypes';
+import type { TodoItemType } from '../../types/todoTypes';
 
 import TodoItem from '../TodoItem/TodoItem';
 import TodoItemEdit from '../TodoItem/TodoItemEdit';
 
-import {formStyles} from './TodoFormStyles';
+import { formStyles } from './TodoFormStyles';
 
 const ToDoForm: FC = () => {
   const [inputValue, setIputValue] = useState('');
@@ -58,11 +60,10 @@ const ToDoForm: FC = () => {
   };
 
   const changeTodo = (id: number, taskText: string) => {
-    dispatch(editToDo({id, value: taskText}));
+    dispatch(editToDo({ id, value: taskText }));
   };
 
-  const renderItem: ListRenderItem<TodoItemType> = item =>
-    !item.item.edit ? (
+  const renderItem: ListRenderItem<TodoItemType> = (item) => (!item.item.edit ? (
       <TodoItem
         task={item.item.task}
         complete={item.item.complete}
@@ -71,14 +72,14 @@ const ToDoForm: FC = () => {
         removeTask={removeTask}
         toggleEditable={toggleEditable}
       />
-    ) : (
+  ) : (
       <TodoItemEdit
         task={item.item.task}
         id={item.item.id}
         toggleEditable={toggleEditable}
         changeTodo={changeTodo}
       />
-    );
+  ));
 
   return (
     <View>
@@ -96,7 +97,7 @@ const ToDoForm: FC = () => {
           style={formStyles.flatList}
           data={allTodos}
           renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           extraData={allTodos}
         />
       </SafeAreaView>

@@ -1,5 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {StateType, TodoItemType, ChangeTodoType} from '../../types/todoTypes';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { StateType, TodoItemType, ChangeTodoType } from '../../types/todoTypes';
 
 export const initialState: StateType = {
   todoList: [],
@@ -22,37 +23,37 @@ export const todoSlice = createSlice({
 
     removeToDo: (state, action: PayloadAction<number>) => {
       state.todoList = state.todoList.filter(
-        todo => todo.id !== action.payload,
+        (todo) => todo.id !== action.payload,
       );
     },
 
     changeCompletion: (state, action: PayloadAction<number>) => {
       const index = state.todoList.findIndex(
-        todo => todo.id === action.payload,
+        (todo) => todo.id === action.payload,
       );
       state.todoList[index].complete = !state.todoList[index].complete;
     },
 
-    deleteAllCompleted: state => {
-      state.todoList = state.todoList.filter(todo => !todo.complete);
+    deleteAllCompleted: (state) => {
+      state.todoList = state.todoList.filter((todo) => !todo.complete);
     },
 
     checkAll: (state, action: PayloadAction<boolean>) => {
-      state.todoList.forEach(todo => {
+      state.todoList.forEach((todo) => {
         todo.complete = action.payload;
       });
     },
 
     setEditable: (state, action: PayloadAction<number>) => {
       const index = state.todoList.findIndex(
-        todo => todo.id === action.payload,
+        (todo) => todo.id === action.payload,
       );
       state.todoList[index].edit = !state.todoList[index].edit;
     },
 
     editToDo: (state, action: PayloadAction<ChangeTodoType>) => {
       const index: number = state.todoList.findIndex(
-        todo => todo.id === action.payload.id,
+        (todo) => todo.id === action.payload.id,
       );
       state.todoList[index].task = action.payload.value;
       state.todoList[index].edit = false;

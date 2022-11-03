@@ -2,3 +2,8 @@ node_modules/*
 build
 lock_node_version.js
 craco.config.js
+.eslintrc.js
+images.ts
+metro.config.js
+App-test.tsx
+babel.config.js

@@ -8,5 +8,5 @@
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
     "baseUrl": ".",
   },
-  "include": ["src", "declarations.d.ts"]
+  "include": ["src", "declarations.d.ts", "App.tsx", "index.js"]
 }

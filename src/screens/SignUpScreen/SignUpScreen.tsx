@@ -1,24 +1,25 @@
-import React, {FC, useState} from 'react';
-import {Button, Text, TextInput, View} from 'react-native';
-import {signUpScreenStyles} from './SignUpScreenStyles';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import { Button, Text, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import {Notifier} from 'react-native-notifier';
+import { Notifier } from 'react-native-notifier';
 
-import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
+import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
   getUserFromStorage,
   setToken,
   setUserToStorage,
 } from 'src/utils/storageWorker';
+import { signUpScreenStyles } from './SignUpScreenStyles';
 
 const SignUpScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const {setUser} = useCurrentUser();
+  const { setUser } = useCurrentUser();
 
   const navigate =
     useNavigation<
@@ -32,7 +33,7 @@ const SignUpScreen: FC = () => {
 
     const usersArray = await getUserFromStorage('user');
 
-    if (usersArray?.users.some(item => item.login === loginValue)) {
+    if (usersArray?.users.some((item) => item.login === loginValue)) {
       Notifier.showNotification({
         title: 'User with this login is allready exists',
         description: 'Change your login please',
@@ -44,7 +45,7 @@ const SignUpScreen: FC = () => {
       return;
     }
 
-    setUserToStorage('user', {login: loginValue, password: passwordValue});
+    setUserToStorage('user', { login: loginValue, password: passwordValue });
 
     setToken();
 

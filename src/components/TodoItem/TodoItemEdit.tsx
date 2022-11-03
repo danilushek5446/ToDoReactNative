@@ -1,6 +1,7 @@
-import React, {FC, useState} from 'react';
-import {TextInput, View} from 'react-native';
-import {todoItemStyles} from './todoItemStyles';
+import type { FC } from 'react';
+import React, { useState } from 'react';
+import { TextInput, View } from 'react-native';
+import { todoItemStyles } from './todoItemStyles';
 
 type PropType = {
   task: string;
@@ -9,7 +10,7 @@ type PropType = {
   changeTodo(id: number, taskText: string): void;
 };
 
-const TodoItemEdit: FC<PropType> = ({id, task, toggleEditable, changeTodo}) => {
+const TodoItemEdit: FC<PropType> = ({ id, task, toggleEditable, changeTodo }) => {
   const [inputValue, setIputValue] = useState(task);
 
   return (

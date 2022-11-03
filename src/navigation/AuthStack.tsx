@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import type { FC } from 'react';
+import React from 'react';
 
 import SignInScreen from 'src/screens/SignInScreen/';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigatorRootStackParamListType} from 'src/types/navigationTypes';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import SignUpScreen from 'src/screens/SignUpScreen/';
 
 const stack = createNativeStackNavigator<NavigatorRootStackParamListType>();
