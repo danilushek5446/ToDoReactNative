@@ -9,12 +9,17 @@ import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
+type PropType = {
+  initialRoute: keyof NavigatorRootStackParamListType;
+};
+
 const myTab = createBottomTabNavigator<NavigatorRootStackParamListType>();
 
-const RootStack: FC = () => {
+const RootStack: FC<PropType> = ({ initialRoute }) => {
   return (
     <myTab.Navigator
       screenOptions={{ tabBarHideOnKeyboard: true }}
+      initialRouteName={initialRoute}
       tabBar={(props) => (
         <MyTabBar
           navigation={props.navigation}

@@ -72,7 +72,7 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    setToken();
+    setToken(loginValue);
 
     setUser(loginValue);
   };

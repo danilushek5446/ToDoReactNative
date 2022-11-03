@@ -47,7 +47,7 @@ const SignUpScreen: FC = () => {
 
     setUserToStorage('user', { login: loginValue, password: passwordValue });
 
-    setToken();
+    setToken(loginValue);
 
     setUser(loginValue);
   };

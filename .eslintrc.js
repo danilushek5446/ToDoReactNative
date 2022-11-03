@@ -102,7 +102,9 @@ module.exports = {
   overrides: [
     {
       files: ['*.tsx'],
-      rules: {},
+      rules: {
+        "react/prop-types": 0
+      },
     },
   ],
 };

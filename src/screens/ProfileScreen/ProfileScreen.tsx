@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Text, View } from 'react-native';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import { removeItemFromStorage } from 'src/utils/storageWorker';
+import { getToken, removeItemFromStorage } from 'src/utils/storageWorker';
 import { profileScreenStyles } from './ProfileScreenStyles';
 
 const ProfileScreen: FC = () => {
@@ -14,6 +14,14 @@ const ProfileScreen: FC = () => {
 
     setUser(null);
   };
+
+  useEffect(() => {
+    (async () => {
+      const username = await getToken();
+      setUser(username);
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={profileScreenStyles.screenContainer}>
