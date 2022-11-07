@@ -24,23 +24,24 @@ export const Navigation: FC = () => {
   const { user } = useCurrentUser();
   const [initialRoute, setInitialRoute] = useState<keyof NavigatorRootStackParamListType>('All');
 
+  const setInitialRouteState = () => {
+    setInitialRoute('Profile');
+  };
+
   useEffect(() => {
     const init = async () => {
-      setIsLoggin(false);
       const token = await getToken();
+
       if (token) {
         setIsLoggin(true);
+
+        return;
       }
 
-      messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-        const data: DataType | undefined = remoteMessage?.data;
-        // eslint-disable-next-line no-console
-        console.log(data);
-        if (data?.type === 'Profile') {
-          setInitialRoute('Profile');
-          // eslint-disable-next-line no-console
-        }
-      });
+      setIsLoggin(false);
+      // const fcmToken = await messaging().getToken();
+      // // eslint-disable-next-line no-console
+      // console.log(fcmToken);
     };
 
     init().finally(async () => {
@@ -49,56 +50,36 @@ export const Navigation: FC = () => {
   }, [user]);
 
   useEffect(() => {
-    messaging().getInitialNotification().then((remoteMessage) => {
-      const data: DataType | undefined = remoteMessage?.data;
-      if (data?.type === 'Profile') {
-        setInitialRoute('Profile');
-        // eslint-disable-next-line no-console
-      }
-    });
-
     const subscribe = messaging().onMessage(async (remoteMessage) => {
       const messageBody = remoteMessage?.notification?.body;
       const messageTitle = remoteMessage?.notification?.title;
       const data: DataType | undefined = remoteMessage?.data;
-      // eslint-disable-next-line no-console
-      console.log(data);
+
       if (data?.type === 'Profile') {
-        setInitialRoute('Profile');
-        // eslint-disable-next-line no-console
+        Alert.alert(messageTitle || '', messageBody, [{ text: 'accept', onPress: setInitialRouteState }, { text: 'decline', style: 'cancel' }]);
+        return;
       }
 
       Alert.alert(messageTitle || '', messageBody);
     });
     return subscribe;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    messaging().getInitialNotification().then((remoteMessage) => {
-      const data: DataType | undefined = remoteMessage?.data;
-      if (data?.type === 'Profile') {
-        setInitialRoute('Profile');
-        // eslint-disable-next-line no-console
-      }
-    });
     const subscribe = messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       const data: DataType | undefined = remoteMessage?.data;
-      // eslint-disable-next-line no-console
-      console.log(data);
+
       if (data?.type === 'Profile') {
         setInitialRoute('Profile');
-        // eslint-disable-next-line no-console
       }
     });
     return subscribe;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggin ? (
-          <Stack.Screen name="Root" children={() => <RootStack initialRoute={initialRoute} />} />
+          <Stack.Screen name="Root" children={() => <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute} />} />
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigation} />
         )}

@@ -18,6 +18,7 @@ const ProfileScreen: FC = () => {
   useEffect(() => {
     (async () => {
       const username = await getToken();
+
       setUser(username);
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps

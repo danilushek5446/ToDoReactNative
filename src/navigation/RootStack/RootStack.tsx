@@ -1,25 +1,40 @@
 import type { FC } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from 'src/screens/HomeScreen/';
 import ProfileScreen from 'src/screens/ProfileScreen/';
 import images from 'src/utils/images';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
 type PropType = {
   initialRoute: keyof NavigatorRootStackParamListType;
+  setInitialRoute: React.Dispatch<React.SetStateAction<keyof NavigatorRootStackParamListType>>;
 };
 
 const myTab = createBottomTabNavigator<NavigatorRootStackParamListType>();
 
-const RootStack: FC<PropType> = ({ initialRoute }) => {
+const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
+  const navigate =
+    useNavigation<
+      NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignIn'>
+    >();
+
+  useEffect(() => {
+    if (initialRoute === 'Profile') {
+      navigate.navigate('Profile');
+
+      setInitialRoute('All');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialRoute]);
   return (
     <myTab.Navigator
       screenOptions={{ tabBarHideOnKeyboard: true }}
-      initialRouteName={initialRoute}
       tabBar={(props) => (
         <MyTabBar
           navigation={props.navigation}
@@ -27,7 +42,7 @@ const RootStack: FC<PropType> = ({ initialRoute }) => {
           descriptors={props.descriptors}
         />
       )}
->
+    >
       <myTab.Screen
         name="All"
         options={{

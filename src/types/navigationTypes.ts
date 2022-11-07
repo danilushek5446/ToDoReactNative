@@ -11,3 +11,8 @@ export type NavigatorMainStackType = {
   Auth: undefined;
   Root: undefined;
 };
+
+export type InitialRouteType = {
+  screen: keyof NavigatorRootStackParamListType;
+  state: string;
+};
