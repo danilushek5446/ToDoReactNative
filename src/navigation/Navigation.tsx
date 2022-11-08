@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import messaging from '@react-native-firebase/messaging';
@@ -92,7 +91,7 @@ export const Navigation: FC = () => {
       />)}
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggin ? (
-          <Stack.Screen name="Root" children={() => <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute} />} />
+          <Stack.Screen name="Root" component={() => <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute} />} />
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigation} />
         )}
