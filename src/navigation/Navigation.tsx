@@ -5,24 +5,14 @@ import messaging from '@react-native-firebase/messaging';
 import RNBootSplash from 'react-native-bootsplash';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Alert } from 'react-native';
 
 import { getToken } from 'src/utils/storageWorker';
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import Modal from 'src/components/ModalWindow/ModalWindow';
+import type { DataType, ModalType } from 'src/types/modalTypes';
 import AuthNavigation from './AuthStack';
 import RootStack from './RootStack';
-
-type DataType = {
-  type?: string;
-};
-
-type ModalType = {
-  messageBody?: string;
-  messageTitle?: string;
-  data?: DataType;
-};
 
 const Stack = createNativeStackNavigator<NavigatorMainStackType>();
 
@@ -32,10 +22,6 @@ export const Navigation: FC = () => {
   const [initialRoute, setInitialRoute] = useState<keyof NavigatorRootStackParamListType>('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalType>({});
-
-  const setInitialRouteState = () => {
-    setInitialRoute('Profile');
-  };
 
   useEffect(() => {
     const init = async () => {
@@ -67,14 +53,10 @@ export const Navigation: FC = () => {
       setModalInfo({ messageBody, messageTitle, data });
 
       if (data?.type === 'Profile') {
-        // eslint-disable-next-line max-len
-        // Alert.alert(messageTitle || '', messageBody, [{ text: 'accept', onPress: setInitialRouteState }, { text: 'decline', style: 'cancel' }]);
-
         setIsModalOpen(true);
         return;
       }
 
-      // Alert.alert(messageTitle || '', messageBody);
       setIsModalOpen(true);
     });
     return subscribe;
@@ -84,11 +66,10 @@ export const Navigation: FC = () => {
     messaging().getInitialNotification()
       .then((remoteMessage) => {
         const data: DataType | undefined = remoteMessage?.data;
-        console.log(213);
 
-        // if (data?.type === 'Profile') {
-        //   setInitialRoute('Profile');
-        // }
+        if (data?.type === 'Profile') {
+          setInitialRoute('Profile');
+        }
       });
 
     const subscribe = messaging().setBackgroundMessageHandler(async (remoteMessage) => {

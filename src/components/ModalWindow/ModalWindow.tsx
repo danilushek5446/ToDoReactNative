@@ -1,20 +1,10 @@
 import type { FC } from 'react';
 import React from 'react';
-import { Text, Alert, Button, Modal, Pressable, Touchable, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, Alert, Modal, Pressable, View } from 'react-native';
+import type { ModalType } from 'src/types/modalTypes';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import styles from './ModalWindowStyles';
-
-type DataType = {
-  type?: string;
-};
-
-type ModalType = {
-  messageBody?: string;
-  messageTitle?: string;
-  data?: DataType;
-};
 
 type PropType = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,9 +36,9 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
           </View>
           {modalInfo.data?.type === 'Profile'
             ? (
-              <>
+              <View style={styles.buttonscontainer}>
                 <Pressable
-                  style={[styles.button, styles.buttonClose]}
+                  style={[styles.button, styles.buttonOpen]}
                   onPress={onAccept}
                 >
                   <Text>Accept</Text>
@@ -59,7 +49,7 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
                 >
                   <Text>Decline</Text>
                 </Pressable>
-              </>
+              </View>
             )
             : (
             <Pressable
