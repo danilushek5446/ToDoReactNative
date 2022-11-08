@@ -25,7 +25,6 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   rules: {
-    'react-hooks/exhaustive-deps': 'error',
     'react/jsx-boolean-value': 'error',
     'react/jsx-no-useless-fragment': 'error',
     'react/jsx-wrap-multilines': ['error', {
@@ -56,7 +55,7 @@ module.exports = {
     'eol-last': ['error', 'always'],
     'no-plusplus': 'off',
     'operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
-    'no-console': ['error', { allow: ['warn', 'error'] }],
+    // 'no-console': ['error', { allow: ['warn', 'error'] }],
     'prefer-destructuring': 'off',
     'arrow-parens': ['error', 'always'],
     'arrow-body-style': 'off',
@@ -67,6 +66,7 @@ module.exports = {
     'no-restricted-syntax': 'off',
     camelcase: 'off',
     'no-continue': 'off',
+    "react/forbid-prop-types": 0,
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
     'react/display-name': 'off',
@@ -103,7 +103,6 @@ module.exports = {
     {
       files: ['*.tsx'],
       rules: {
-        "react/prop-types": 0
       },
     },
   ],

@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 
 import type { TodoItemType } from 'src/types/todoTypes';
-import type { RootState } from './store';
+import type { RootStateType } from './store';
 
-export const selectAllTodos = (state: RootState) => state.todo.todoList;
-export const selectActiveFilter = (state: RootState) => state.todo.filter;
+export const selectAllTodos = (state: RootStateType) => state.todo.todoList;
+export const selectActiveFilter = (state: RootStateType) => state.todo.filter;
 
 export const selectTodoByFilter = createSelector(
   [selectAllTodos, selectActiveFilter],

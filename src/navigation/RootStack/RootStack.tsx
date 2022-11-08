@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from 'src/screens/HomeScreen/';
 import ProfileScreen from 'src/screens/ProfileScreen/';
-import images from 'src/utils/images';
+import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
@@ -30,7 +30,6 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
 
       setInitialRoute('All');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialRoute]);
   return (
     <myTab.Navigator
@@ -49,7 +48,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
           title: 'All',
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
-            <images.home width={23} height={23} fill={color} />
+            <Home width={23} height={23} fill={color} />
           ),
         }}
         component={HomeScreen}

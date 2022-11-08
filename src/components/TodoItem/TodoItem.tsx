@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import images from 'src/utils/images';
+import images from 'src/constants/images';
 import { todoItemStyles } from './todoItemStyles';
 
 type PropType = {

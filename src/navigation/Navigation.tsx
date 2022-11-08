@@ -10,11 +10,18 @@ import { Alert } from 'react-native';
 import { getToken } from 'src/utils/storageWorker';
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
+import Modal from 'src/components/ModalWindow/ModalWindow';
 import AuthNavigation from './AuthStack';
 import RootStack from './RootStack';
 
 type DataType = {
   type?: string;
+};
+
+type ModalType = {
+  messageBody?: string;
+  messageTitle?: string;
+  data?: DataType;
 };
 
 const Stack = createNativeStackNavigator<NavigatorMainStackType>();
@@ -23,6 +30,8 @@ export const Navigation: FC = () => {
   const [isLoggin, setIsLoggin] = useState(false);
   const { user } = useCurrentUser();
   const [initialRoute, setInitialRoute] = useState<keyof NavigatorRootStackParamListType>('All');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalInfo, setModalInfo] = useState<ModalType>({});
 
   const setInitialRouteState = () => {
     setInitialRoute('Profile');
@@ -32,6 +41,9 @@ export const Navigation: FC = () => {
     const init = async () => {
       const token = await getToken();
 
+      // const fcmToken = await messaging().getToken();
+      // console.log(fcmToken);
+
       if (token) {
         setIsLoggin(true);
 
@@ -39,9 +51,6 @@ export const Navigation: FC = () => {
       }
 
       setIsLoggin(false);
-      // const fcmToken = await messaging().getToken();
-      // // eslint-disable-next-line no-console
-      // console.log(fcmToken);
     };
 
     init().finally(async () => {
@@ -55,17 +64,33 @@ export const Navigation: FC = () => {
       const messageTitle = remoteMessage?.notification?.title;
       const data: DataType | undefined = remoteMessage?.data;
 
+      setModalInfo({ messageBody, messageTitle, data });
+
       if (data?.type === 'Profile') {
-        Alert.alert(messageTitle || '', messageBody, [{ text: 'accept', onPress: setInitialRouteState }, { text: 'decline', style: 'cancel' }]);
+        // eslint-disable-next-line max-len
+        // Alert.alert(messageTitle || '', messageBody, [{ text: 'accept', onPress: setInitialRouteState }, { text: 'decline', style: 'cancel' }]);
+
+        setIsModalOpen(true);
         return;
       }
 
-      Alert.alert(messageTitle || '', messageBody);
+      // Alert.alert(messageTitle || '', messageBody);
+      setIsModalOpen(true);
     });
     return subscribe;
   }, []);
 
   useEffect(() => {
+    messaging().getInitialNotification()
+      .then((remoteMessage) => {
+        const data: DataType | undefined = remoteMessage?.data;
+        console.log(213);
+
+        // if (data?.type === 'Profile') {
+        //   setInitialRoute('Profile');
+        // }
+      });
+
     const subscribe = messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       const data: DataType | undefined = remoteMessage?.data;
 
@@ -75,8 +100,15 @@ export const Navigation: FC = () => {
     });
     return subscribe;
   }, []);
+
   return (
     <NavigationContainer>
+      {isModalOpen &&
+      (<Modal
+        setIsOpen={setIsModalOpen}
+        setInitialRoute={setInitialRoute}
+        modalInfo={modalInfo}
+      />)}
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggin ? (
           <Stack.Screen name="Root" children={() => <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute} />} />

@@ -18,7 +18,6 @@ const HomeScreen: FC<PropType> = ({ route }) => {
 
   useEffect(() => {
     dispatch(changeFilter(route?.params.name || 'All'));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
 
   return (
