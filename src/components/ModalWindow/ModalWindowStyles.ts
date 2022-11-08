@@ -24,8 +24,10 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 20,
+    width: 60,
     padding: 5,
     elevation: 2,
+    alignItems: 'center',
   },
   buttonOpen: {
     backgroundColor: '#43E88E',
