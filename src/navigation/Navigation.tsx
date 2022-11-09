@@ -26,8 +26,8 @@ export const Navigation: FC = () => {
     const init = async () => {
       const token = await getToken();
 
-      // const fcmToken = await messaging().getToken();
-      // console.log(fcmToken);
+      const fcmToken = await messaging().getToken();
+      console.log(fcmToken);
 
       if (token) {
         setIsLoggin(true);
@@ -81,6 +81,10 @@ export const Navigation: FC = () => {
     return subscribe;
   }, []);
 
+  const Root = () => {
+    return <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute}/>;
+  };
+
   return (
     <NavigationContainer>
       {isModalOpen &&
@@ -91,7 +95,7 @@ export const Navigation: FC = () => {
       />)}
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isLoggin ? (
-          <Stack.Screen name="Root" component={() => <RootStack initialRoute={initialRoute} setInitialRoute={setInitialRoute} />} />
+          <Stack.Screen name="Root" component={Root} />
         ) : (
           <Stack.Screen name="Auth" component={AuthNavigation} />
         )}
