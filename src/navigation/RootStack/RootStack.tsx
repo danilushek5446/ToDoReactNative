@@ -1,7 +1,7 @@
-import type { FC } from 'react';
+import { FC, useState } from 'react';
 import React, { useEffect } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -10,6 +10,8 @@ import ProfileScreen from 'src/screens/ProfileScreen/';
 import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import MyTabBar from '../MyTabBar/MyTabBar';
+import { useAppDispatch } from 'src/store/hooks';
+import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
 
 type PropType = {
   initialRoute: keyof NavigatorRootStackParamListType;
@@ -19,6 +21,8 @@ type PropType = {
 const myTab = createBottomTabNavigator<NavigatorRootStackParamListType>();
 
 const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
+  const dispatch = useAppDispatch();
+
   const navigate =
     useNavigation<
       NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignIn'>
@@ -27,7 +31,8 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
   useEffect(() => {
     if (initialRoute === 'Profile') {
       navigate.navigate('Profile');
-
+      //number of profile screen
+      dispatch(setActiveTubNumber(3));
       setInitialRoute('All');
     }
   }, [initialRoute]);

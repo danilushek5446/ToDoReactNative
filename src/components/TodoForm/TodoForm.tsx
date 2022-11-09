@@ -5,12 +5,17 @@ import type {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData } from 'react-native';
 import {
-  FlatList,
   SafeAreaView,
   Text,
   TextInput,
   View,
 } from 'react-native';
+
+import Animated, {
+  FadeIn,
+  FadeOut,
+  ZoomInUp,
+} from 'react-native-reanimated';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectTodoByFilter } from '../../store/selectors';
@@ -62,7 +67,6 @@ const ToDoForm: FC = () => {
   const changeTodo = (id: number, taskText: string) => {
     dispatch(editToDo({ id, value: taskText }));
   };
-
   const renderItem: ListRenderItem<TodoItemType> = (item) => (!item.item.edit ? (
       <TodoItem
         task={item.item.task}
@@ -82,7 +86,7 @@ const ToDoForm: FC = () => {
   ));
 
   return (
-    <View>
+    <Animated.View entering={ZoomInUp}>
       <View style={formStyles.titleInput}>
         <Text>todos</Text>
         <TextInput
@@ -93,7 +97,9 @@ const ToDoForm: FC = () => {
         />
       </View>
       <SafeAreaView style={formStyles.itemList}>
-        <FlatList
+        <Animated.FlatList
+          entering={FadeIn}
+          exiting={FadeOut}
           style={formStyles.flatList}
           data={allTodos}
           renderItem={renderItem}
@@ -101,7 +107,7 @@ const ToDoForm: FC = () => {
           extraData={allTodos}
         />
       </SafeAreaView>
-    </View>
+    </Animated.View>
   );
 };
 

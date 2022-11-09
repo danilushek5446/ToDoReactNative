@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, SetStateAction } from 'react';
 import React, { useEffect } from 'react';
 import { Button, Text, View } from 'react-native';
 

@@ -8,6 +8,11 @@ import {
   View,
 } from 'react-native';
 
+import Animated, {
+  FadeInUp,
+  FadeOut,
+} from 'react-native-reanimated';
+
 import images from 'src/constants/images';
 import { todoItemStyles } from './todoItemStyles';
 
@@ -29,7 +34,11 @@ const TodoItem: FC<PropType> = ({
   removeTask,
 }) => {
   return (
-    <View style={todoItemStyles.input}>
+    <Animated.View
+      style={todoItemStyles.input}
+      entering={FadeInUp}
+      exiting={FadeOut}
+    >
       <View style={todoItemStyles.checkboxContainer}>
         <TouchableOpacity onPress={() => toggleCheck(id)}>
           <View
@@ -58,7 +67,7 @@ const TodoItem: FC<PropType> = ({
           />
         </View>
       </TouchableHighlight>
-    </View>
+    </Animated.View>
   );
 };
 

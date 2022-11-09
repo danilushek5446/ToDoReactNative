@@ -14,7 +14,7 @@ export const todoItemStyles = StyleSheet.create({
     borderRadius: 20,
     border: 'none',
     outline: 'none',
-    fontSize: 40,
+    fontSize: 20,
   },
   button: {
     width: 25,

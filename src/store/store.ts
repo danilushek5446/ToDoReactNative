@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import activeTubNumberSlice from './activeTubNumberSlice/activeTubNumberSlice';
 
 import todoSlice from './todoSlice';
 import userSlice from './userSlice';
@@ -7,6 +8,7 @@ const store = configureStore({
   reducer: {
     todo: todoSlice,
     user: userSlice,
+    activeTubNumber: activeTubNumberSlice
   },
 });
 
