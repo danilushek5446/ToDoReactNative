@@ -11,6 +11,7 @@ import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import { useAppDispatch } from 'src/store/hooks';
 import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
+import Myi18n from 'src/utils/Myi18n';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
 type PropType = {
@@ -51,7 +52,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="All"
         options={{
-          title: 'All',
+          title: Myi18n.t('All'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <Home width={23} height={23} fill={color} />
@@ -63,7 +64,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Completed"
         options={{
-          title: 'Done',
+          title: Myi18n.t('Done'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -79,7 +80,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Active"
         options={{
-          title: 'Active',
+          title: Myi18n.t('Active'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -95,7 +96,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Profile"
         options={{
-          title: 'Profile',
+          title: Myi18n.t('Profile'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={23} />

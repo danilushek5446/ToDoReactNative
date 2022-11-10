@@ -1,9 +1,10 @@
 import type { FC } from 'react';
 import React from 'react';
-import { Text, Alert, Modal, Pressable, View } from 'react-native';
+import { Alert, Modal, Pressable, View } from 'react-native';
 import type { ModalType } from 'src/types/modalTypes';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
+import MyText from '../MyText/MyText';
 import styles from './ModalWindowStyles';
 
 type PropType = {
@@ -29,10 +30,10 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View style={styles.modalText}>
-            <Text>{modalInfo.messageTitle}</Text>
+            <MyText textValue={modalInfo.messageTitle || ''} />
           </View>
           <View style={styles.modalText}>
-            <Text>{modalInfo.messageBody}</Text>
+            <MyText textValue={modalInfo.messageBody || ''} />
           </View>
           {modalInfo.data?.type === 'Profile'
             ? (
@@ -41,23 +42,23 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
                   style={[styles.button, styles.buttonOpen]}
                   onPress={onAccept}
                 >
-                  <Text>Accept</Text>
+                  <MyText textValue="Accept" />
                 </Pressable>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => setIsOpen(false)}
                 >
-                  <Text>Decline</Text>
+                  <MyText textValue="Decline" />
                 </Pressable>
               </View>
             )
             : (
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setIsOpen(false)}
-            >
-              <Text>Ok</Text>
-            </Pressable>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setIsOpen(false)}
+              >
+                <MyText textValue="Ok" />
+              </Pressable>
             )
           }
         </View>

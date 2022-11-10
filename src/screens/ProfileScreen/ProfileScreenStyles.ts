@@ -17,8 +17,8 @@ export const profileScreenStyles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-
   text: {
+    fontFamily: 'EncodeSans-Regular',
     color: 'black',
   },
 });

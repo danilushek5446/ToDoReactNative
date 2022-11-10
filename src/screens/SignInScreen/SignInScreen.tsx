@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,6 +9,8 @@ import { Notifier } from 'react-native-notifier';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import { getUserFromStorage, setToken } from 'src/utils/storageWorker';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
+import MyText from 'src/components/MyText/MyText';
+import MyButton from 'src/components/MyButton/MyButton';
 import { signInScreenStyles } from './SignInScreenStyles';
 
 const SignInScreen: FC = () => {
@@ -84,12 +86,12 @@ const SignInScreen: FC = () => {
   return (
     <View style={signInScreenStyles.container}>
       <View style={signInScreenStyles.navigateButton}>
-        <Button onPress={onNavigateSignUp} title="Sign Up" />
+        <MyButton onPress={onNavigateSignUp} textValue="Sign up" />
       </View>
       <View style={signInScreenStyles.screenContainer}>
-        <Text style={signInScreenStyles.text}>Sign in</Text>
+        <MyText textValue="Sign in" />
         <View style={signInScreenStyles.inputPadding}>
-          <Text style={signInScreenStyles.text}>login</Text>
+          <MyText textValue="login" />
           <TextInput
             style={signInScreenStyles.inputStyles}
             value={loginValue}
@@ -97,7 +99,7 @@ const SignInScreen: FC = () => {
           />
         </View>
         <View style={signInScreenStyles.inputPadding}>
-          <Text style={signInScreenStyles.text}>password</Text>
+          <MyText textValue="password" />
           <TextInput
             style={signInScreenStyles.inputStyles}
             value={passwordValue}
@@ -106,7 +108,7 @@ const SignInScreen: FC = () => {
           />
         </View>
         <View style={signInScreenStyles.inputPadding}>
-          <Button title="submit" onPress={onSubmit} />
+          <MyButton onPress={onSubmit} textValue="Submit" />
         </View>
       </View>
     </View>

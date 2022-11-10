@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -13,6 +13,8 @@ import {
   setToken,
   setUserToStorage,
 } from 'src/utils/storageWorker';
+import MyText from 'src/components/MyText/MyText';
+import MyButton from 'src/components/MyButton/MyButton';
 import { signUpScreenStyles } from './SignUpScreenStyles';
 
 const SignUpScreen: FC = () => {
@@ -52,19 +54,19 @@ const SignUpScreen: FC = () => {
     setUser(loginValue);
   };
 
-  const onNavigateSignUp = () => {
+  const onNavigateSignin = () => {
     navigate.navigate('SignIn');
   };
 
   return (
     <View style={signUpScreenStyles.container}>
       <View style={signUpScreenStyles.navigateButton}>
-        <Button onPress={onNavigateSignUp} title="Sign In" />
+        <MyButton onPress={onNavigateSignin} textValue="Sign in" />
       </View>
       <View style={signUpScreenStyles.screenContainer}>
-        <Text>Sign up</Text>
+        <MyText textValue="Sign up" />
         <View style={signUpScreenStyles.inputPadding}>
-          <Text>login</Text>
+          <MyText textValue="login" />
           <TextInput
             style={signUpScreenStyles.inputStyles}
             value={loginValue}
@@ -72,7 +74,7 @@ const SignUpScreen: FC = () => {
           />
         </View>
         <View style={signUpScreenStyles.inputPadding}>
-          <Text>password</Text>
+          <MyText textValue="password" />
           <TextInput
             style={signUpScreenStyles.inputStyles}
             value={passwordValue}
@@ -81,7 +83,7 @@ const SignUpScreen: FC = () => {
           />
         </View>
         <View style={signUpScreenStyles.inputPadding}>
-          <Button title="submit" onPress={onPress} />
+          <MyButton onPress={onPress} textValue="Submit" />
         </View>
       </View>
     </View>

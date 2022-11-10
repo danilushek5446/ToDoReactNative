@@ -30,12 +30,14 @@ export const todoItemStyles = StyleSheet.create({
     marginRight: 10,
   },
   textCheked: {
+    fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
     color: 'black',
     backgroundColor: 'palegreen',
     textDecorationLine: 'line-through',
   },
   textActive: {
+    fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
     color: 'black',
     backgroundColor: 'white',

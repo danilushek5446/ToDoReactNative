@@ -37,7 +37,4 @@ export const formStyles = StyleSheet.create({
     height: 50,
   },
 
-  text: {
-    color: 'black',
-  },
 });

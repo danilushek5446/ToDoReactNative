@@ -6,7 +6,6 @@ import type {
   TextInputSubmitEditingEventData } from 'react-native';
 import {
   SafeAreaView,
-  Text,
   TextInput,
   View,
 } from 'react-native';
@@ -28,6 +27,7 @@ import {
 } from '../../store/todoSlice';
 
 import type { TodoItemType } from '../../types/todoTypes';
+import MyText from '../MyText/MyText';
 
 import TodoItem from '../TodoItem/TodoItem';
 import TodoItemEdit from '../TodoItem/TodoItemEdit';
@@ -88,7 +88,7 @@ const ToDoForm: FC = () => {
   return (
     <Animated.View entering={ZoomInUp}>
       <View style={formStyles.titleInput}>
-        <Text style={formStyles.text}>todos</Text>
+        <MyText textValue="todos" />
         <TextInput
           value={inputValue}
           style={formStyles.input}

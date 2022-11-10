@@ -24,7 +24,7 @@ export const signUpScreenStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   navigateButton: {
-    width: 70,
+    maxWidth: 120,
     alignSelf: 'flex-end',
     margin: 15,
   },
