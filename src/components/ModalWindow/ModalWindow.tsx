@@ -4,7 +4,7 @@ import { Alert, Modal, Pressable, View } from 'react-native';
 import type { ModalType } from 'src/types/modalTypes';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import MyText from '../MyText/MyText';
+import MyText from '../MyText';
 import styles from './ModalWindowStyles';
 
 type PropType = {

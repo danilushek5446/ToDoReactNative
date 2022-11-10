@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
-import MyText from '../MyText/MyText';
+import MyText from '../MyText';
 import MyButtonStyles from './MyButtonStyles';
 
 type PropType = {

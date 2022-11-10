@@ -16,21 +16,20 @@ import Animated, {
   ZoomInUp,
 } from 'react-native-reanimated';
 
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectTodoByFilter } from '../../store/selectors';
+import MyText from 'src/components/MyText';
+import TodoItem from 'src/components/TodoItem/TodoItem';
+import TodoItemEdit from 'src/components/TodoItem/TodoItemEdit';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { selectTodoByFilter } from 'src/store/selectors';
 import {
   addToDo,
   changeCompletion,
   editToDo,
   removeToDo,
   setEditable,
-} from '../../store/todoSlice';
+} from 'src/store/todoSlice';
 
-import type { TodoItemType } from '../../types/todoTypes';
-import MyText from '../MyText/MyText';
-
-import TodoItem from '../TodoItem/TodoItem';
-import TodoItemEdit from '../TodoItem/TodoItemEdit';
+import type { TodoItemType } from 'src/types/todoTypes';
 
 import { formStyles } from './TodoFormStyles';
 
