@@ -8,7 +8,7 @@ const store = configureStore({
   reducer: {
     todo: todoSlice,
     user: userSlice,
-    activeTubNumber: activeTubNumberSlice
+    activeTubNumber: activeTubNumberSlice,
   },
 });
 
