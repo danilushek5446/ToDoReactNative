@@ -26,8 +26,8 @@ const ProfileScreen: FC = () => {
   return (
     <View style={profileScreenStyles.screenContainer}>
       <View style={profileScreenStyles.loginContainer}>
-        <Text>login: </Text>
-        <Text>{user.username}</Text>
+        <Text style={profileScreenStyles.text}>login: </Text>
+        <Text style={profileScreenStyles.text}>{user.username}</Text>
       </View>
       <View style={profileScreenStyles.inputPadding}>
         <Button onPress={onPress} title="log out" />

@@ -1,9 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { StateType, TodoItemType, ChangeTodoType } from '../../types/todoTypes';
 
 export const initialState = {
-  activeTab: 1,
+  activeTab: 0,
 };
 
 export const activeTubNumber = createSlice({
@@ -18,7 +17,7 @@ export const activeTubNumber = createSlice({
 });
 
 export const {
-  setActiveTubNumber
+  setActiveTubNumber,
 } = activeTubNumber.actions;
 
 export default activeTubNumber.reducer;

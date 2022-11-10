@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
-import React, { useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useState, useEffect } from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -9,9 +9,9 @@ import HomeScreen from 'src/screens/HomeScreen/';
 import ProfileScreen from 'src/screens/ProfileScreen/';
 import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import MyTabBar from '../MyTabBar/MyTabBar';
 import { useAppDispatch } from 'src/store/hooks';
 import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
+import MyTabBar from '../MyTabBar/MyTabBar';
 
 type PropType = {
   initialRoute: keyof NavigatorRootStackParamListType;
@@ -31,7 +31,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
   useEffect(() => {
     if (initialRoute === 'Profile') {
       navigate.navigate('Profile');
-      //number of profile screen
+      // number of profile screen
       dispatch(setActiveTubNumber(3));
       setInitialRoute('All');
     }
@@ -39,6 +39,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
   return (
     <myTab.Navigator
       screenOptions={{ tabBarHideOnKeyboard: true }}
+      sceneContainerStyle={{ flex: 1, backgroundColor: 'red' }}
       tabBar={(props) => (
         <MyTabBar
           navigation={props.navigation}

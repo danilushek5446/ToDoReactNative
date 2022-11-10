@@ -8,11 +8,17 @@ export const profileScreenStyles = StyleSheet.create({
     backgroundColor: '#DCDCDC',
     flexDirection: 'column',
   },
+
   inputPadding: {
     paddingTop: 20,
   },
+
   loginContainer: {
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+
+  text: {
+    color: 'black',
   },
 });

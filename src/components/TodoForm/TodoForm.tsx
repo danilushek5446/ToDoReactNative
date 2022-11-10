@@ -88,7 +88,7 @@ const ToDoForm: FC = () => {
   return (
     <Animated.View entering={ZoomInUp}>
       <View style={formStyles.titleInput}>
-        <Text>todos</Text>
+        <Text style={formStyles.text}>todos</Text>
         <TextInput
           value={inputValue}
           style={formStyles.input}

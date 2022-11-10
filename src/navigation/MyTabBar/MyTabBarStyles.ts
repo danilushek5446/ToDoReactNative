@@ -4,15 +4,17 @@ export const MyTabBarStyles = StyleSheet.create({
   barStyle: {
     backgroundColor: '#282828',
     borderRadius: 40,
-    overflow: 'hidden',
-    width: 240,
-    height: 40,
-    justifyContent: 'space-between',
+    // overflow: 'hidden',
     alignItems: 'center',
     alignSelf: 'center',
     flexDirection: 'row',
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 20,
+    // width: '80%',
+    marginLeft: '10%',
+    marginRight: '10%',
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   navigatorStyle: {
     backgroundColor: '#DCDCDC',
@@ -43,5 +45,5 @@ export const MyTabBarStyles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     borderRadius: 30,
-  }
+  },
 });

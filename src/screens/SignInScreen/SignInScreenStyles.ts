@@ -21,6 +21,7 @@ export const signInScreenStyles = StyleSheet.create({
   inputStyles: {
     width: 200,
     height: 40,
+    color: 'black',
     backgroundColor: 'white',
   },
   container: {
@@ -31,5 +32,8 @@ export const signInScreenStyles = StyleSheet.create({
     width: 70,
     alignSelf: 'flex-end',
     margin: 15,
+  },
+  text: {
+    color: 'black',
   },
 });

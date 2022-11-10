@@ -87,9 +87,9 @@ const SignInScreen: FC = () => {
         <Button onPress={onNavigateSignUp} title="Sign Up" />
       </View>
       <View style={signInScreenStyles.screenContainer}>
-        <Text>Sign in</Text>
+        <Text style={signInScreenStyles.text}>Sign in</Text>
         <View style={signInScreenStyles.inputPadding}>
-          <Text>login</Text>
+          <Text style={signInScreenStyles.text}>login</Text>
           <TextInput
             style={signInScreenStyles.inputStyles}
             value={loginValue}
@@ -97,7 +97,7 @@ const SignInScreen: FC = () => {
           />
         </View>
         <View style={signInScreenStyles.inputPadding}>
-          <Text>password</Text>
+          <Text style={signInScreenStyles.text}>password</Text>
           <TextInput
             style={signInScreenStyles.inputStyles}
             value={passwordValue}

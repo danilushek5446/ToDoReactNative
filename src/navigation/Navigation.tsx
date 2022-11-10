@@ -93,7 +93,7 @@ export const Navigation: FC = () => {
           setInitialRoute={setInitialRoute}
           modalInfo={modalInfo}
         />)}
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#DCDCDC' } }}>
         {isLoggin ? (
           <Stack.Screen name="Root" component={Root} />
         ) : (

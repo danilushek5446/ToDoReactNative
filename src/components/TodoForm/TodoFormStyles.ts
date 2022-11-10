@@ -11,6 +11,7 @@ export const formStyles = StyleSheet.create({
     borderRadius: 20,
     border: 'none',
     outline: 'none',
+    color: 'black',
   },
 
   itemList: {
@@ -34,5 +35,9 @@ export const formStyles = StyleSheet.create({
   title: {
     width: 50,
     height: 50,
+  },
+
+  text: {
+    color: 'black',
   },
 });
