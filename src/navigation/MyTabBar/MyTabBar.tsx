@@ -7,15 +7,14 @@ import type {
   ParamListBase,
   TabNavigationState,
 } from '@react-navigation/native';
-import { FC, SetStateAction, useEffect, useState } from 'react';
-import React from 'react';
-import { View, TouchableOpacity, GestureResponderEvent } from 'react-native';
-import { GestureEvent, TapGestureHandler, TapGestureHandlerEventPayload } from 'react-native-gesture-handler';
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withDelay, withSequence, withSpring } from 'react-native-reanimated';
+import type { FC } from 'react';
+import React, { useMemo, useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from 'react-native-reanimated';
 
-import { MyTabBarStyles } from './MyTabBarStyles';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
+import { MyTabBarStyles } from './MyTabBarStyles';
 
 type PropsType = {
   state: TabNavigationState<ParamListBase>;
@@ -32,6 +31,10 @@ const MyTabBar: FC<PropsType> = ({ state, descriptors, navigation }) => {
   const width = useSharedValue(30);
   const height = useSharedValue(30);
 
+  const distanceBetweenTubs = useMemo(() => {
+    return MyTabBarStyles.barStyle.width / state.routes.length;
+  }, [state.routes.length]);
+
   const animatedStyles = useAnimatedStyle(() => {
     return {
       left: offset.value,
@@ -40,41 +43,19 @@ const MyTabBar: FC<PropsType> = ({ state, descriptors, navigation }) => {
     };
   });
 
-  // const eventHandler = useAnimatedGestureHandler<GestureEvent<TapGestureHandlerEventPayload>>({
-  //   onStart: (event, ctx) => {
-  //     console.log('asd')
-  //     pressed.value = true;
-  //   },
-  //   onActive: (event, ctx) => {
-  //     console.log('asd')
-  //     x.value = startingPosition + event.x;
-  //     y.value = startingPosition + event.y;
-  //   },
-  //   onEnd: (event, ctx) => {
-  //     console.log('asd')
-  //     pressed.value = false;
-  //     x.value = withSpring(startingPosition);
-  //     y.value = withSpring(startingPosition);
-  //   },
-  // });
-
   useEffect(() => {
-    const distanceBetweenTubs = MyTabBarStyles.barStyle.width / state.routes.length;
-
     withSequence(
       width.value = 10,
       height.value = 5,
-      offset.value = withSpring(distanceBetweenTubs * activeTabNumber + leftPadding),
+      offset.value = withSpring(distanceBetweenTubs * activeTabNumber + leftPadding,
+        { overshootClamping: true }),
       width.value = withSpring(30),
       height.value = withSpring(30),
-    )
-  }, [activeTabNumber])
+    );
+  }, [activeTabNumber, distanceBetweenTubs]);
 
   return (
     <Animated.View style={MyTabBarStyles.barStyle}>
-      {/* <TapGestureHandler onGestureEvent={eventHandler}>
-        <Animated.View style={[MyTabBarStyles.animatedBackground, uas]} />
-      </TapGestureHandler> */}
       <Animated.View style={[MyTabBarStyles.animatedBackground, animatedStyles]} />
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -109,7 +90,7 @@ const MyTabBar: FC<PropsType> = ({ state, descriptors, navigation }) => {
                 color: `${isFocused
                   ? MyTabBarStyles.activeColor.color
                   : MyTabBarStyles.notActive.color
-                  }`,
+                }`,
                 focused: isFocused,
                 size: 23,
               })}
