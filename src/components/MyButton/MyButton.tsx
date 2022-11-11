@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
+import MyI18n from 'src/utils/MyI18n';
 
 import MyText from '../MyText';
 import MyButtonStyles from './MyButtonStyles';
@@ -8,13 +9,14 @@ import MyButtonStyles from './MyButtonStyles';
 type PropType = {
   textValue: string;
   onPress(): void;
+  size: string;
 };
 
-const MyButton: FC<PropType> = ({ textValue, onPress }) => {
+const MyButton: FC<PropType> = ({ textValue, onPress, size }) => {
   return (
     <View style={MyButtonStyles.buttonContainer}>
       <TouchableOpacity onPress={onPress}>
-        <MyText textValue={textValue} />
+        <Text style={size === 'big' ? MyButtonStyles.bigText : MyButtonStyles.smallText}>{MyI18n.t(textValue)}</Text>
       </TouchableOpacity>
     </View>
   );

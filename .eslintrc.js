@@ -26,7 +26,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   rules: {
     'react/jsx-boolean-value': 'error',
-    'react/jsx-no-useless-fragment': 'error',
     'react/jsx-wrap-multilines': ['error', {
       declaration: 'parens',
       assignment: 'parens',

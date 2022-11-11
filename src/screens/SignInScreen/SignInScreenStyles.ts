@@ -1,36 +1,41 @@
 import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export const signInScreenStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#DCDCDC',
+    backgroundColor: '#F0F0F0',
     flexDirection: 'column',
   },
   homeScreen: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#DCDCDC',
+    backgroundColor: '#F0F0F0',
     flexDirection: 'column',
   },
   inputPadding: {
-    paddingTop: 20,
+    margin: 24,
+    width: wp('80%'),
   },
   inputStyles: {
-    width: 200,
-    height: 40,
     color: 'black',
     backgroundColor: 'white',
+    borderRadius: 10,
   },
   container: {
-    backgroundColor: '#DCDCDC',
+    backgroundColor: '#F0F0F0',
     flex: 1,
   },
   navigateButton: {
     maxWidth: 120,
-    alignSelf: 'flex-end',
     margin: 15,
+  },
+  topButtonsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });

@@ -11,5 +11,9 @@
   "All": "Все",
   "Profile": "Профиль",
   "Done": "Завершенные",
-  "Active": "Активные"
+  "Active": "Активные",
+  "onBoardTitle": "Доводите дело до конца с TODOO",
+  "onBoardTextContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor duis sed duis suspendisse et. Non fames nibh non auctor malesuada ut consectetur. Ut quis id risus elit.",
+  "get started": "Начать",
+  "email": "Email Адрес"
 }

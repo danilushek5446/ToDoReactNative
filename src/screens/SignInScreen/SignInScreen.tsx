@@ -1,16 +1,18 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { TextInput, View } from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
 import { Notifier } from 'react-native-notifier';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import { getUserFromStorage, setToken } from 'src/utils/storageWorker';
+import { getUserFromStorage, setItemToStrorage } from 'src/utils/storageWorker';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import MyText from 'src/components/MyText/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
+import LanguagePicker from 'src/components/LanguagePicker/LanguagePicker';
+import images from 'src/constants/images';
 import { signInScreenStyles } from './SignInScreenStyles';
 
 const SignInScreen: FC = () => {
@@ -74,7 +76,7 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    setToken(loginValue);
+    setItemToStrorage('token', loginValue);
 
     setUser(loginValue);
   };
@@ -85,13 +87,19 @@ const SignInScreen: FC = () => {
 
   return (
     <View style={signInScreenStyles.container}>
-      <View style={signInScreenStyles.navigateButton}>
-        <MyButton onPress={onNavigateSignUp} textValue="Sign up" />
+      <View style={signInScreenStyles.topButtonsContainer}>
+        <View style={signInScreenStyles.navigateButton}>
+          <LanguagePicker />
+        </View>
+        <View style={signInScreenStyles.navigateButton}>
+          <MyButton onPress={onNavigateSignUp} textValue="Sign up" size="small" />
+        </View>
       </View>
       <View style={signInScreenStyles.screenContainer}>
+        <Image source={images.logo} />
         <MyText textValue="Sign in" />
         <View style={signInScreenStyles.inputPadding}>
-          <MyText textValue="login" />
+          <MyText textValue="email" />
           <TextInput
             style={signInScreenStyles.inputStyles}
             value={loginValue}
@@ -108,7 +116,7 @@ const SignInScreen: FC = () => {
           />
         </View>
         <View style={signInScreenStyles.inputPadding}>
-          <MyButton onPress={onSubmit} textValue="Submit" />
+          <MyButton onPress={onSubmit} textValue="Submit" size="small" />
         </View>
       </View>
     </View>
