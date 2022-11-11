@@ -11,7 +11,7 @@ import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import { useAppDispatch } from 'src/store/hooks';
 import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
-import Myi18n from 'src/utils/Myi18n';
+import MyI18n from 'src/utils/MyI18n';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
 type PropType = {
@@ -40,7 +40,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
   return (
     <myTab.Navigator
       screenOptions={{ tabBarHideOnKeyboard: true }}
-      sceneContainerStyle={{ flex: 1, backgroundColor: 'red' }}
+      sceneContainerStyle={{ flex: 1 }}
       tabBar={(props) => (
         <MyTabBar
           navigation={props.navigation}
@@ -52,7 +52,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="All"
         options={{
-          title: Myi18n.t('All'),
+          title: MyI18n.t('All'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <Home width={23} height={23} fill={color} />
@@ -64,7 +64,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Completed"
         options={{
-          title: Myi18n.t('Done'),
+          title: MyI18n.t('Done'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -80,7 +80,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Active"
         options={{
-          title: Myi18n.t('Active'),
+          title: MyI18n.t('Active'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -96,7 +96,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Profile"
         options={{
-          title: Myi18n.t('Profile'),
+          title: MyI18n.t('Profile'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={23} />

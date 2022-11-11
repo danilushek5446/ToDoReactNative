@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import activeTubNumberSlice from './activeTubNumberSlice/activeTubNumberSlice';
+import activeTubNumberSlice from './activeTubNumberSlice';
+import currentLanguageSlice from './currentLanguageSlice/currentLanguageSlice';
 
 import todoSlice from './todoSlice';
 import userSlice from './userSlice';
@@ -9,6 +10,7 @@ const store = configureStore({
     todo: todoSlice,
     user: userSlice,
     activeTubNumber: activeTubNumberSlice,
+    currentLanguage: currentLanguageSlice,
   },
 });
 
