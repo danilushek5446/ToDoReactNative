@@ -19,7 +19,7 @@ export const signInScreenStyles = StyleSheet.create({
     flexDirection: 'column',
   },
   inputPadding: {
-    margin: 15,
+    margin: 5,
     width: wp('85%'),
   },
   inputStyles: {

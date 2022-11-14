@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
@@ -18,11 +18,14 @@ import MyText from 'src/components/MyText/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
 import MyI18n from 'src/utils/MyI18n';
 import images from 'src/constants/images';
+import MyInput from 'src/components/MyInput/MyInput';
 import { SignUpScreenStyles } from './SignUpScreenStyles';
 
 const SignUpScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
+  const [nameValue, setNameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
 
   const { setUser } = useCurrentUser();
 
@@ -69,49 +72,48 @@ const SignUpScreen: FC = () => {
         </View>
       </View>
       <View style={SignUpScreenStyles.screenContainer}>
-        <Image source={images.logo} />
-        <MyText textValue="Sign in" />
-        <View style={SignUpScreenStyles.inputPadding}>
-          <View style={SignUpScreenStyles.titlePaddig}>
-            <MyText textValue="email" />
-          </View>
-          <TextInput
-            style={SignUpScreenStyles.inputStyles}
-            value={loginValue}
-            onChangeText={setLoginValue}
-            placeholder={MyI18n.t('Enter your email')}
-          />
-        </View>
-        <View style={SignUpScreenStyles.inputPadding}>
-          <View style={SignUpScreenStyles.titlePaddig}>
-            <MyText textValue="password" />
-          </View>
-          <View>
-            <TextInput
-              style={SignUpScreenStyles.inputStyles}
-              value={passwordValue}
-              onChangeText={setPasswordValue}
-              secureTextEntry
-              placeholder={MyI18n.t('Enter your password')}
-            />
-            <Image style={SignUpScreenStyles.passwordIcon} source={images.hide} />
-            <TouchableOpacity style={SignUpScreenStyles.forgotPassContainer}>
-              <Text style={SignUpScreenStyles.forgotPassText}>
-                {MyI18n.t('Forgot Password?')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={SignUpScreenStyles.inputPadding}>
-          <MyButton onPress={() => {}} textValue="Sign in" size="big" />
-          <View style={SignUpScreenStyles.signUpContainer}>
-            <MyText textValue="Don’t have an account?" />
-            <TouchableOpacity style={SignUpScreenStyles.signUpButton}>
-              <Text style={SignUpScreenStyles.forgotPassText}>
-                {MyI18n.t('Sign up')}
-              </Text>
-            </TouchableOpacity>
-          </View>
+        <MyText textValue="Welcome Onboard!" />
+        <MyText textValue="sign up text" />
+        <MyInput
+          textValue={nameValue}
+          setTextValue={setNameValue}
+          placeholderText="Enter your full name"
+          isSecureTextEntry={false}
+          titleText="name"
+        />
+        <MyInput
+          textValue={loginValue}
+          setTextValue={setLoginValue}
+          placeholderText="Enter your email"
+          isSecureTextEntry={false}
+          titleText="email"
+        />
+        <MyInput
+          textValue={passwordValue}
+          setTextValue={setPasswordValue}
+          placeholderText="Enter your password"
+          isSecureTextEntry
+          titleText="password"
+          image={images.hide}
+        />
+        <MyInput
+          textValue={confirmPasswordValue}
+          setTextValue={setConfirmPasswordValue}
+          placeholderText="re-enter your password"
+          isSecureTextEntry
+          titleText="Confirm Password"
+          image={images.hide}
+        />
+      </View>
+      <View style={SignUpScreenStyles.inputPadding}>
+        <MyButton onPress={onPress} textValue="Sign up" size="big" />
+        <View style={SignUpScreenStyles.signUpContainer}>
+          <MyText textValue="Allready have an account?" />
+          <TouchableOpacity onPress={onNavigateSignin} style={SignUpScreenStyles.signUpButton}>
+            <Text style={SignUpScreenStyles.forgotPassText}>
+              {MyI18n.t('Sign in')}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

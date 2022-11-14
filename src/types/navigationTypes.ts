@@ -5,6 +5,7 @@ export type NavigatorRootStackParamListType = {
   SignIn: undefined;
   SignUp: undefined;
   Profile: undefined;
+  forgotPas: undefined;
 };
 
 export type NavigatorMainStackType = {

@@ -13,6 +13,7 @@ import MyText from 'src/components/MyText/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
 import images from 'src/constants/images';
 import MyI18n from 'src/utils/MyI18n';
+import MyInput from 'src/components/MyInput/MyInput';
 import { signInScreenStyles } from './SignInScreenStyles';
 
 const SignInScreen: FC = () => {
@@ -90,6 +91,10 @@ const SignInScreen: FC = () => {
     navigate.navigate('SignUp');
   };
 
+  const onNavigateForgotPass = () => {
+    navigate.navigate('forgotPas');
+  };
+
   return (
     <View style={signInScreenStyles.container}>
       <View style={signInScreenStyles.topButtonsContainer}>
@@ -100,17 +105,13 @@ const SignInScreen: FC = () => {
       <View style={signInScreenStyles.screenContainer}>
         <Image source={images.logo} />
         <MyText textValue="Sign in" />
-        <View style={signInScreenStyles.inputPadding}>
-          <View style={signInScreenStyles.titlePaddig}>
-            <MyText textValue="email" />
-          </View>
-          <TextInput
-            style={signInScreenStyles.inputStyles}
-            value={loginValue}
-            onChangeText={setLoginValue}
-            placeholder={MyI18n.t('Enter your email')}
-          />
-        </View>
+        <MyInput
+          textValue={loginValue}
+          setTextValue={setLoginValue}
+          placeholderText="Enter your email"
+          isSecureTextEntry={false}
+          titleText="email"
+        />
         <View style={signInScreenStyles.inputPadding}>
           <View style={signInScreenStyles.titlePaddig}>
             <MyText textValue="password" />
@@ -124,7 +125,10 @@ const SignInScreen: FC = () => {
               placeholder={MyI18n.t('Enter your password')}
             />
             <Image style={signInScreenStyles.passwordIcon} source={images.hide} />
-            <TouchableOpacity style={signInScreenStyles.forgotPassContainer}>
+            <TouchableOpacity
+              style={signInScreenStyles.forgotPassContainer}
+              onPress={onNavigateForgotPass}
+            >
               <Text style={signInScreenStyles.forgotPassText}>
                 {MyI18n.t('Forgot Password?')}
               </Text>

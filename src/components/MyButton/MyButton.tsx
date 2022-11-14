@@ -3,7 +3,6 @@ import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import MyI18n from 'src/utils/MyI18n';
 
-import MyText from '../MyText';
 import MyButtonStyles from './MyButtonStyles';
 
 type PropType = {

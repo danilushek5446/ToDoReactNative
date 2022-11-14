@@ -20,5 +20,17 @@
   "Enter your password": "Enter your password",
   "Forgot Password?": "Forgot Password?",
   "Remember me": "Remember me",
-  "Don’t have an account?": "Don’t have an account?"
+  "Don’t have an account?": "Don’t have an account?",
+  "Welcome Onboard!": "Welcome Onboard!",
+  "sign up text": "Let’s help you keep up with your tasks.",
+  "name": "Name",
+  "Enter your full name": "Enter your full name",
+  "Confirm Password": "Confirm Password",
+  "re-enter your password": "re-enter your password",
+  "Allready have an account?": "Allready have an account?",
+  "Forgot Password text": "Don’t worry, we can help you get back on track with your account.",
+  "Confirm new Password": "Confirm new Password",
+  "re-enter new password": "re-enter new password",
+  "Create new password": "Create new password",
+  "Enter new password": "Enter new password"
 }

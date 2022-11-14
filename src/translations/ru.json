@@ -20,5 +20,17 @@
   "Enter your password": "Введите свой пароль",
   "Forgot Password?": "Забили пароль?",
   "Remember me": "Запомнить меня",
-  "Don’t have an account?": "Нет аккаунта?"
+  "Don’t have an account?": "Нет аккаунта?",
+  "Welcome Onboard!": "Добро пожаловать",
+  "sign up text": "Let’s help you keep up with your tasks.",
+  "name": "Имя",
+  "Enter your full name": "Введите ваше полное имя",
+  "re-enter your password": "Введите пароль заного",
+  "Confirm Password": "Подтвердите пароль",
+  "Allready have an account?": "Уже есть аккаунт?",
+  "Forgot Password text": "Не волнуйтесь мы поможем вам вернуть аккаунт",
+  "Confirm new Password": "Подтвердите новый пароль",
+  "re-enter new password": "Введите новый пароль заного",
+  "Create new password": "Создайте новый пароль",
+  "Enter new password": "Введите новый пароль"
 }

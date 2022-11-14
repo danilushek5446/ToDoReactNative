@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
-export const SignUpScreenStyles = StyleSheet.create({
+export const ForgotPassScreenStyles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     alignSelf: 'center',
@@ -21,7 +21,6 @@ export const SignUpScreenStyles = StyleSheet.create({
   inputPadding: {
     margin: 5,
     width: wp('85%'),
-    alignSelf: 'center',
   },
   inputStyles: {
     color: 'black',
@@ -30,7 +29,6 @@ export const SignUpScreenStyles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#F0F0F0',
-    justifyContent: 'space-between',
     flex: 1,
   },
   topButtonsContainer: {
@@ -80,5 +78,16 @@ export const SignUpScreenStyles = StyleSheet.create({
   },
   signUpButton: {
     paddingLeft: 3,
+  },
+  titleContainer: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#F0F0F0',
+    flexDirection: 'column',
+    maxWidth: wp('60%'),
+  },
+  forgotPasswordText: {
+    textAlign: 'center',
   },
 });
