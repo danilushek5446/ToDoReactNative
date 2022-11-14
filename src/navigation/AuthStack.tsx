@@ -11,7 +11,7 @@ const stack = createNativeStackNavigator<NavigatorRootStackParamListType>();
 
 const AuthNavigation: FC = () => {
   return (
-    <stack.Navigator>
+    <stack.Navigator screenOptions={{ headerShown: false }}>
       <stack.Screen
         name="SignIn"
         options={{ title: MyI18n.t('Sign in') }}

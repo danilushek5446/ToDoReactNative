@@ -3,4 +3,5 @@ export default {
   elipsis: require('src/assets/images/ellipse.png'),
   onBoardingPicture: require('src/assets/images/undraw_reminder_re_fe151.png'),
   logo: require('src/assets/images/logo.png'),
+  hide: require('src/assets/icons/Group.png'),
 };

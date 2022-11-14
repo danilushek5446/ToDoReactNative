@@ -15,5 +15,10 @@
   "onBoardTitle": "Доводите дело до конца с TODOO",
   "onBoardTextContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor duis sed duis suspendisse et. Non fames nibh non auctor malesuada ut consectetur. Ut quis id risus elit.",
   "get started": "Начать",
-  "email": "Email Адрес"
+  "email": "Email Адрес",
+  "Enter your email": "Введите свой Email",
+  "Enter your password": "Введите свой пароль",
+  "Forgot Password?": "Забили пароль?",
+  "Remember me": "Запомнить меня",
+  "Don’t have an account?": "Нет аккаунта?"
 }

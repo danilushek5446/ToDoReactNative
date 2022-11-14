@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: '#3FBFBF',
-    padding: 10,
+    padding: 18,
     elevation: 10,
     alignItems: 'center',
+    borderRadius: 10,
   },
   bigText: {
     color: '#FFFFFF',
