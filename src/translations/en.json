@@ -32,5 +32,20 @@
   "Confirm new Password": "Confirm new Password",
   "re-enter new password": "re-enter new password",
   "Create new password": "Create new password",
-  "Enter new password": "Enter new password"
+  "Enter new password": "Enter new password",
+  "Email field is empty": "Email field is empty",
+  "Password field is empty": "Password field is empty",
+  "Confirm password field is empty": "Confirm password field is empty",
+  "User with this email is allready exists": "User with this email is allready exists",
+  "Change your email": "Change your email or sign in",
+  "Passwords must be matched": "Passwords must be matched",
+  "Check your passwords": "Check your passwords", 
+  "User with this email is not exists": "User with this email is not exists",
+  "Check your email": "Check your email",
+  "Add a Profile Picture": "Add a Profile Picture",
+  "Hi there, ": "Hi there, ",
+  "Tasks List for tomorrow": "Tasks List for tomorrow",
+  "Set up your task lists for tomorrow": "Set up your task lists for tomorrow",
+  "Tasks Completed!": "Tasks Completed!",
+  "Active tasks": "Active tasks"
 }

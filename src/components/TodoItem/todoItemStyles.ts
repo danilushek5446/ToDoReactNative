@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const todoItemStyles = StyleSheet.create({
   input: {
-    width: 300,
-    height: 50,
+    width: wp('65%'),
+    height: 40,
     margin: 8,
     borderWidth: 0,
     padding: 10,

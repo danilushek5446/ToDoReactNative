@@ -5,7 +5,7 @@ import { View, Image, Text } from 'react-native';
 import MyButton from 'src/components/MyButton/MyButton';
 import MyText from 'src/components/MyText/MyText';
 import images from 'src/constants/images';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import { setItemToStrorage } from 'src/utils/storageWorker';
 
 import { onboardingScreenStyles } from './OnboardingScreenStyles';
@@ -27,10 +27,10 @@ const OnboardingScreen: FC<PropType> = ({ setOnboarding }) => {
       </View>
       <View style={onboardingScreenStyles.contentContainer}>
         <Image source={images.onBoardingPicture} />
-        <MyText textValue="onBoardTitle" />
+        <MyText textValue="onBoardTitle" isBold />
         <View style={onboardingScreenStyles.mainTextContainer}>
           <Text style={onboardingScreenStyles.mainText}>
-            {MyI18n.t('onBoardTextContent')}
+            {MyTranslator.t('onBoardTextContent')}
           </Text>
         </View>
       </View>

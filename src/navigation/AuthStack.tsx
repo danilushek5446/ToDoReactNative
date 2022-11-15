@@ -5,7 +5,7 @@ import SignInScreen from 'src/screens/SignInScreen/';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import SignUpScreen from 'src/screens/SignUpScreen/';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import ForgotPassScreen from 'src/screens/ForgotPassScreen/ForgotPassScreen';
 
 const stack = createNativeStackNavigator<NavigatorRootStackParamListType>();
@@ -15,17 +15,17 @@ const AuthNavigation: FC = () => {
     <stack.Navigator screenOptions={{ headerShown: false }}>
       <stack.Screen
         name="SignIn"
-        options={{ title: MyI18n.t('Sign in') }}
+        options={{ title: MyTranslator.t('Sign in') }}
         component={SignInScreen}
       />
       <stack.Screen
         name="SignUp"
-        options={{ title: MyI18n.t('Sign up') }}
+        options={{ title: MyTranslator.t('Sign up') }}
         component={SignUpScreen}
       />
       <stack.Screen
         name="forgotPas"
-        options={{ title: MyI18n.t('Forgot Password?') }}
+        options={{ title: MyTranslator.t('Forgot Password?') }}
         component={ForgotPassScreen}
       />
     </stack.Navigator>

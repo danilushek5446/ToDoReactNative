@@ -32,5 +32,20 @@
   "Confirm new Password": "Подтвердите новый пароль",
   "re-enter new password": "Введите новый пароль заного",
   "Create new password": "Создайте новый пароль",
-  "Enter new password": "Введите новый пароль"
+  "Enter new password": "Введите новый пароль",
+  "Email field is empty": "Поле для Email пустое",
+  "Password field is empty": "Поле для пароля пустое",
+  "Confirm password field is empty": "Поле для подтверждения пароля пустое", 
+  "User with this email is allready exists": "Пользователь с таким Email уже существует",
+  "Change your email": "Измените Email или войдите в аккаунт",
+  "Passwords must be matched": "Пароли должны совпадать",
+  "Check your passwords": "Проверьте пароли",
+  "User with this email is not exists": "Пользователя с таким Email не существует",
+  "Check your email": "Проверьте свой Email",
+  "Add a Profile Picture": "Добавь свою аватарку",
+  "Hi there, ": "Привет",
+  "Tasks List for tomorrow": "Список дела на завтра",
+  "Set up your task lists for tomorrow": "Создай себе список дел на завтра",
+  "Tasks Completed!": "Звавершенные задачи!",
+  "Active tasks": "Активные задачи"
 }

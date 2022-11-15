@@ -1,16 +1,19 @@
 import type { FC } from 'react';
 import React from 'react';
 import { Text } from 'react-native';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import styles from './MyTextStyles';
 
 type PropType = {
   textValue: string;
+  isBold: boolean;
 };
 
-const MyText: FC<PropType> = ({ textValue }) => {
+const MyText: FC<PropType> = ({ textValue, isBold }) => {
   return (
-    <Text style={styles.text}>{MyI18n.t(textValue)}</Text>
+    <Text style={isBold ? styles.textBold : styles.textRegular}>
+      {MyTranslator.t(textValue)}
+    </Text>
   );
 };
 

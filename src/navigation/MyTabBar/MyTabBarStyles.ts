@@ -4,13 +4,10 @@ export const MyTabBarStyles = StyleSheet.create({
   barStyle: {
     backgroundColor: '#282828',
     borderRadius: 40,
-    // overflow: 'hidden',
     alignItems: 'center',
     alignSelf: 'center',
     flexDirection: 'row',
-    // position: 'absolute',
     bottom: 20,
-    // width: '80%',
     marginLeft: '10%',
     marginRight: '10%',
     paddingTop: 10,

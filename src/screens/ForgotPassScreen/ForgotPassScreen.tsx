@@ -1,22 +1,18 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Image, KeyboardAvoidingView, Text, View } from 'react-native';
 
 import { Notifier } from 'react-native-notifier';
 
-import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
+  changeUserPasswordInStorage,
   getUserFromStorage,
   setItemToStrorage,
-  setUserToStorage,
 } from 'src/utils/storageWorker';
 import MyText from 'src/components/MyText/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import images from 'src/constants/images';
 import MyInput from 'src/components/MyInput/MyInput';
 import { ForgotPassScreenStyles } from './ForgotPassScreenStyles';
@@ -28,83 +24,123 @@ const ForgotPassScreen: FC = () => {
 
   const { setUser } = useCurrentUser();
 
-  const navigate =
-    useNavigation<
-      NativeStackNavigationProp<NavigatorRootStackParamListType, 'SignUp'>
-    >();
+  const onPress = async () => {
+    if (!loginValue) {
+      Notifier.showNotification({
+        title: MyTranslator.t('Email field is empty'),
+        description: MyTranslator.t('Enter your email'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
 
-  // const onPress = async () => {
-  //   if (!loginValue || !passwordValue) {
-  //     return;
-  //   }
+      return;
+    }
 
-  //   const usersArray = await getUserFromStorage('user');
+    if (!passwordValue) {
+      Notifier.showNotification({
+        title: MyTranslator.t('Password field is empty'),
+        description: MyTranslator.t('Enter your password'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
 
-  //   if (usersArray?.users.some((item) => item.login === loginValue)) {
-  //     Notifier.showNotification({
-  //       title: 'User with this login is allready exists',
-  //       description: 'Change your login please',
-  //       duration: 0,
-  //       showAnimationDuration: 800,
-  //       hideOnPress: true,
-  //     });
+      return;
+    }
 
-  //     return;
-  //   }
+    if (!confirmPasswordValue) {
+      Notifier.showNotification({
+        title: MyTranslator.t('Confirm password field is empty'),
+        description: MyTranslator.t('re-enter your password'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
 
-  //   setUserToStorage('user', { login: loginValue, password: passwordValue });
+      return;
+    }
 
-  //   setItemToStrorage('token', loginValue);
+    if (passwordValue !== confirmPasswordValue) {
+      Notifier.showNotification({
+        title: MyTranslator.t('Passwords must be matched'),
+        description: MyTranslator.t('Check your passwords'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
 
-  //   setUser(loginValue);
-  // };
+      return;
+    }
 
-  // const onNavigateSignin = () => {
-  //   navigate.navigate('SignIn');
-  // };
+    const usersArray = await getUserFromStorage('user');
+
+    if (!usersArray?.users.some((item) => item.login === loginValue)) {
+      Notifier.showNotification({
+        title: MyTranslator.t('User with this email is not exists'),
+        description: MyTranslator.t('Check your email'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
+
+      return;
+    }
+
+    changeUserPasswordInStorage('user', loginValue, passwordValue);
+
+    setItemToStrorage('token', loginValue);
+
+    setUser(loginValue);
+  };
 
   return (
-    <View style={ForgotPassScreenStyles.container}>
-      <View style={ForgotPassScreenStyles.topButtonsContainer}>
-        <View>
-          <Image source={images.elipsis} />
+    <KeyboardAvoidingView style={ForgotPassScreenStyles.screen}>
+      <View style={ForgotPassScreenStyles.elipsisContainer}>
+        <Image source={images.elipsis} />
+      </View>
+
+      <View style={ForgotPassScreenStyles.container}>
+        <View style={ForgotPassScreenStyles.logocontainer}>
+          <MyText textValue="Forgot Password?" isBold />
+          <Text style={ForgotPassScreenStyles.forgotPasswordText}>
+            {MyTranslator.t('Forgot Password text')}
+          </Text>
         </View>
-      </View>
-      <View style={ForgotPassScreenStyles.titleContainer}>
-        <MyText textValue="Forgot Password?" />
-        <Text style={ForgotPassScreenStyles.forgotPasswordText}>
-         {MyI18n.t('Forgot Password text')}
-        </Text>
-      </View>
-      <View style={ForgotPassScreenStyles.screenContainer}>
-        <MyInput
-          textValue={loginValue}
-          setTextValue={setLoginValue}
-          placeholderText="Enter your email"
-          isSecureTextEntry={false}
-          titleText="email"
-        />
-        <MyInput
-          textValue={passwordValue}
-          setTextValue={setPasswordValue}
-          placeholderText="Enter new password"
-          isSecureTextEntry
-          titleText="Create new password"
-          image={images.hide}
-        />
-        <MyInput
-          textValue={confirmPasswordValue}
-          setTextValue={setConfirmPasswordValue}
-          placeholderText="re-enter new password"
-          isSecureTextEntry
-          titleText="Confirm new Password"
-          image={images.hide}
-        />
+        <View style={ForgotPassScreenStyles.screenContainer}>
+          <MyInput
+            textValue={loginValue}
+            setTextValue={setLoginValue}
+            placeholderText="Enter your email"
+            isSecureTextEntry={false}
+            titleText="email"
+            isBold
+          />
+          <MyInput
+            textValue={passwordValue}
+            setTextValue={setPasswordValue}
+            placeholderText="Enter new password"
+            isSecureTextEntry
+            titleText="Create new password"
+            image={images.hide}
+            isBold
+          />
+          <MyInput
+            textValue={confirmPasswordValue}
+            setTextValue={setConfirmPasswordValue}
+            placeholderText="re-enter new password"
+            isSecureTextEntry
+            titleText="Confirm new Password"
+            image={images.hide}
+            isBold
+          />
+        </View>
+
         <View style={ForgotPassScreenStyles.inputPadding}>
-          <MyButton onPress={() => { }} textValue="Sign in" size="big" />
+            <MyButton onPress={onPress} textValue="Sign in" size="big" />
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

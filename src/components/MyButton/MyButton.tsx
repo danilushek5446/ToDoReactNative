@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 
 import MyButtonStyles from './MyButtonStyles';
 
@@ -15,7 +15,9 @@ const MyButton: FC<PropType> = ({ textValue, onPress, size }) => {
   return (
     <View style={MyButtonStyles.buttonContainer}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={size === 'big' ? MyButtonStyles.bigText : MyButtonStyles.smallText}>{MyI18n.t(textValue)}</Text>
+        <Text style={size === 'big' ? MyButtonStyles.bigText : MyButtonStyles.smallText}>
+          {MyTranslator.t(textValue)}
+        </Text>
       </TouchableOpacity>
     </View>
   );

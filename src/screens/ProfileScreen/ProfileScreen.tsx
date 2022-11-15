@@ -6,8 +6,8 @@ import LanguagePicker from 'src/components/LanguagePicker';
 import MyButton from 'src/components/MyButton/MyButton';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import { useAppSelector } from 'src/store/hooks';
-import MyI18n from 'src/utils/MyI18n';
-import { getToken, removeItemFromStorage } from 'src/utils/storageWorker';
+import MyTranslator from 'src/utils/MyTranslator';
+import { getItemFromStrorage, removeItemFromStorage } from 'src/utils/storageWorker';
 import { profileScreenStyles } from './ProfileScreenStyles';
 
 const ProfileScreen: FC = () => {
@@ -23,14 +23,14 @@ const ProfileScreen: FC = () => {
 
   useEffect(() => {
     (async () => {
-      const username = await getToken();
+      const username = await getItemFromStrorage('token');
 
       setUser(username);
     })();
   }, []);
 
   useEffect(() => {
-    MyI18n.locale = currentLanguage;
+    MyTranslator.locale = currentLanguage;
   }, [currentLanguage]);
 
   return (
@@ -40,11 +40,11 @@ const ProfileScreen: FC = () => {
       </View>
       <View style={profileScreenStyles.contentContainer}>
         <View style={profileScreenStyles.loginContainer}>
-          <Text style={profileScreenStyles.text}>{`${MyI18n.t('login')}: `}</Text>
+          <Text style={profileScreenStyles.text}>{`${MyTranslator.t('login')}: `}</Text>
           <Text style={profileScreenStyles.text}>{user.username || ''}</Text>
         </View>
         <View style={profileScreenStyles.inputPadding}>
-          <MyButton onPress={onPress} textValue="log out" />
+          <MyButton onPress={onPress} textValue="log out" size="small" />
         </View>
       </View>
     </View>

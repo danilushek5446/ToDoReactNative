@@ -11,7 +11,7 @@ import Home from 'src/assets/icons/Home_free_icon.svg';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import { useAppDispatch } from 'src/store/hooks';
 import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import MyTabBar from '../MyTabBar/MyTabBar';
 
 type PropType = {
@@ -39,7 +39,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
   }, [initialRoute]);
   return (
     <myTab.Navigator
-      screenOptions={{ tabBarHideOnKeyboard: true }}
+      screenOptions={{ tabBarHideOnKeyboard: true, headerShown: false }}
       sceneContainerStyle={{ flex: 1 }}
       tabBar={(props) => (
         <MyTabBar
@@ -52,7 +52,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="All"
         options={{
-          title: MyI18n.t('All'),
+          title: MyTranslator.t('All'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <Home width={23} height={23} fill={color} />
@@ -64,7 +64,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Completed"
         options={{
-          title: MyI18n.t('Done'),
+          title: MyTranslator.t('Done'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -80,7 +80,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Active"
         options={{
-          title: MyI18n.t('Active'),
+          title: MyTranslator.t('Active'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -96,7 +96,7 @@ const RootStack: FC<PropType> = ({ initialRoute, setInitialRoute }) => {
       <myTab.Screen
         name="Profile"
         options={{
-          title: MyI18n.t('Profile'),
+          title: MyTranslator.t('Profile'),
           tabBarHideOnKeyboard: true,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="account" color={color} size={23} />

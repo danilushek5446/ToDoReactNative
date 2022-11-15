@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
@@ -12,7 +12,7 @@ import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes'
 import MyText from 'src/components/MyText/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
 import images from 'src/constants/images';
-import MyI18n from 'src/utils/MyI18n';
+import MyTranslator from 'src/utils/MyTranslator';
 import MyInput from 'src/components/MyInput/MyInput';
 import { signInScreenStyles } from './SignInScreenStyles';
 
@@ -96,70 +96,77 @@ const SignInScreen: FC = () => {
   };
 
   return (
-    <View style={signInScreenStyles.container}>
-      <View style={signInScreenStyles.topButtonsContainer}>
-        <View>
-          <Image source={images.elipsis} />
-        </View>
+    <KeyboardAvoidingView style={signInScreenStyles.screen}>
+      <View style={signInScreenStyles.elipsisContainer}>
+        <Image source={images.elipsis} />
       </View>
-      <View style={signInScreenStyles.screenContainer}>
-        <Image source={images.logo} />
-        <MyText textValue="Sign in" />
-        <MyInput
-          textValue={loginValue}
-          setTextValue={setLoginValue}
-          placeholderText="Enter your email"
-          isSecureTextEntry={false}
-          titleText="email"
-        />
-        <View style={signInScreenStyles.inputPadding}>
-          <View style={signInScreenStyles.titlePaddig}>
-            <MyText textValue="password" />
+
+      <View style={signInScreenStyles.container}>
+        <View style={signInScreenStyles.logocontainer}>
+          <Image source={images.logo} />
+          <MyText textValue="Sign in" isBold />
+        </View>
+
+        <View style={signInScreenStyles.screenContainer}>
+          <MyInput
+            textValue={loginValue}
+            setTextValue={setLoginValue}
+            placeholderText="Enter your email"
+            isSecureTextEntry={false}
+            titleText="email"
+            isBold
+          />
+          <View style={signInScreenStyles.inputPadding}>
+            <View style={signInScreenStyles.titlePaddig}>
+              <MyText textValue="password" isBold />
+            </View>
+            <View>
+              <TextInput
+                style={signInScreenStyles.inputStyles}
+                value={passwordValue}
+                onChangeText={setPasswordValue}
+                secureTextEntry
+                placeholder={MyTranslator.t('Enter your password')}
+              />
+              <Image style={signInScreenStyles.passwordIcon} source={images.hide} />
+              <TouchableOpacity
+                style={signInScreenStyles.forgotPassContainer}
+                onPress={onNavigateForgotPass}
+              >
+                <Text style={signInScreenStyles.forgotPassText}>
+                  {MyTranslator.t('Forgot Password?')}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View>
-            <TextInput
-              style={signInScreenStyles.inputStyles}
-              value={passwordValue}
-              onChangeText={setPasswordValue}
-              secureTextEntry
-              placeholder={MyI18n.t('Enter your password')}
-            />
-            <Image style={signInScreenStyles.passwordIcon} source={images.hide} />
-            <TouchableOpacity
-              style={signInScreenStyles.forgotPassContainer}
-              onPress={onNavigateForgotPass}
-            >
-              <Text style={signInScreenStyles.forgotPassText}>
-                {MyI18n.t('Forgot Password?')}
-              </Text>
+          <View style={signInScreenStyles.rememberMeContainer}>
+            <TouchableOpacity onPressOut={toggleCheckBox}>
+              <View
+                style={
+                  isSavePass
+                    ? signInScreenStyles.checkedCheckbox
+                    : signInScreenStyles.activeCheckbox
+                }
+              />
             </TouchableOpacity>
+            <MyText textValue="Remember me" isBold={false} />
           </View>
         </View>
-        <View style={signInScreenStyles.rememberMeContainer}>
-          <TouchableOpacity onPressOut={toggleCheckBox}>
-            <View
-              style={
-                isSavePass
-                  ? signInScreenStyles.checkedCheckbox
-                  : signInScreenStyles.activeCheckbox
-              }
-            />
-          </TouchableOpacity>
-          <MyText textValue="Remember me" />
-        </View>
-        <View style={signInScreenStyles.inputPadding}>
+
+        <View>
           <MyButton onPress={onSubmit} textValue="Sign in" size="big" />
           <View style={signInScreenStyles.signUpContainer}>
-            <MyText textValue="Don’t have an account?" />
+            <MyText textValue="Don’t have an account?" isBold={false} />
             <TouchableOpacity style={signInScreenStyles.signUpButton} onPress={onNavigateSignUp}>
               <Text style={signInScreenStyles.forgotPassText}>
-                {MyI18n.t('Sign up')}
+                {MyTranslator.t('Sign up')}
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    </View>
+
+    </KeyboardAvoidingView>
   );
 };
 

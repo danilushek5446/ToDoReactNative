@@ -5,6 +5,7 @@ export type UserInitialType = {
 export type UserStorageType = {
   login: string;
   password: string;
+  name?: string;
 };
 
 export type UserArrayStorageType = {

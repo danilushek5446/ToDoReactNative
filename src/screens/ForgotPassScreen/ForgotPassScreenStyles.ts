@@ -1,25 +1,26 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const ForgotPassScreenStyles = StyleSheet.create({
-  screenContainer: {
+  screen: {
     flex: 1,
-    alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F0F0F0',
+    backgroundColor: '#00000000',
+    position: 'relative',
+  },
+  container: {
+    flex: 1,
+    maxWidth: wp('85%'),
+    backgroundColor: '#00000000',
     flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  screenContainer: {
+    alignItems: 'center',
+    backgroundColor: '#00000000',
     maxWidth: wp('85%'),
   },
-  homeScreen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#F0F0F0',
-    flexDirection: 'column',
-  },
   inputPadding: {
-    margin: 5,
     width: wp('85%'),
   },
   inputStyles: {
@@ -27,22 +28,13 @@ export const ForgotPassScreenStyles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
   },
-  container: {
-    backgroundColor: '#F0F0F0',
-    flex: 1,
-  },
-  topButtonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   titlePaddig: {
     paddingBottom: 10,
   },
   passwordIcon: {
     position: 'absolute',
     right: 20,
-    top: 18,
+    top: 20,
   },
   forgotPassContainer: {
     alignSelf: 'flex-end',
@@ -51,20 +43,6 @@ export const ForgotPassScreenStyles = StyleSheet.create({
   forgotPassText: {
     color: '#3FBFBF',
   },
-  activeCheckbox: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    width: 25,
-    height: 25,
-    marginRight: 10,
-  },
-  checkedCheckbox: {
-    backgroundColor: 'palegreen',
-    borderRadius: 10,
-    width: 25,
-    height: 25,
-    marginRight: 10,
-  },
   rememberMeContainer: {
     flexDirection: 'row',
     alignSelf: 'flex-start',
@@ -72,22 +50,26 @@ export const ForgotPassScreenStyles = StyleSheet.create({
   },
   signUpContainer: {
     flexDirection: 'row',
-    paddingBottom: 40,
     alignSelf: 'center',
     paddingTop: 10,
   },
   signUpButton: {
     paddingLeft: 3,
   },
-  titleContainer: {
-    alignSelf: 'center',
+  elipsisContainer: {
+    position: 'absolute',
+    zIndex: 0,
+    top: 0,
+    left: 0,
+  },
+  logocontainer: {
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F0F0F0',
-    flexDirection: 'column',
-    maxWidth: wp('60%'),
+    backgroundColor: '#00000000',
+    maxWidth: wp('85%'),
+    // paddingTop: hp('20%'),
   },
   forgotPasswordText: {
     textAlign: 'center',
+    maxWidth: wp('60%'),
   },
 });

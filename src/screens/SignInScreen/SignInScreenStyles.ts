@@ -1,22 +1,24 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const signInScreenStyles = StyleSheet.create({
-  screenContainer: {
+  screen: {
     flex: 1,
-    alignSelf: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F0F0F0',
-    flexDirection: 'column',
-    maxWidth: wp('85%'),
+    backgroundColor: '#00000000',
+    position: 'relative',
   },
-  homeScreen: {
+  container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#F0F0F0',
+    maxWidth: wp('85%'),
+    backgroundColor: '#00000000',
     flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  screenContainer: {
+    alignItems: 'center',
+    backgroundColor: '#00000000',
+    maxWidth: wp('85%'),
   },
   inputPadding: {
     margin: 5,
@@ -27,22 +29,13 @@ export const signInScreenStyles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
   },
-  container: {
-    backgroundColor: '#F0F0F0',
-    flex: 1,
-  },
-  topButtonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   titlePaddig: {
     paddingBottom: 10,
   },
   passwordIcon: {
     position: 'absolute',
     right: 20,
-    top: 18,
+    top: 20,
   },
   forgotPassContainer: {
     alignSelf: 'flex-end',
@@ -72,11 +65,22 @@ export const signInScreenStyles = StyleSheet.create({
   },
   signUpContainer: {
     flexDirection: 'row',
-    paddingBottom: 40,
     alignSelf: 'center',
     paddingTop: 10,
   },
   signUpButton: {
     paddingLeft: 3,
+  },
+  elipsisContainer: {
+    position: 'absolute',
+    zIndex: 0,
+    top: 0,
+    left: 0,
+  },
+  logocontainer: {
+    alignItems: 'center',
+    backgroundColor: '#00000000',
+    maxWidth: wp('85%'),
+    paddingTop: hp('10%'),
   },
 });

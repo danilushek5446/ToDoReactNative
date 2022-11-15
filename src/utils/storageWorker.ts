@@ -45,3 +45,15 @@ export const getItemFromStrorage = async (key: string) => {
 export const removeItemFromStorage = async (key: string) => {
   AsyncStorage.removeItem(key);
 };
+
+export const changeUserPasswordInStorage = async (key: string, login: string, password: string) => {
+  const userArray = await getUserFromStorage(key);
+
+  if (userArray) {
+    const index = userArray?.users.findIndex((item) => item.login === login);
+
+    userArray.users[index].password = password;
+
+    AsyncStorage.setItem(key, JSON.stringify(userArray));
+  }
+};
