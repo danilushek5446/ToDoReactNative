@@ -6,4 +6,5 @@ export default {
   logo: require('src/assets/images/logo.png'),
   hide: require('src/assets/icons/Group.png'),
   newUser: require('src/assets/images/newUser.png'),
+  addButton: require('src/assets/images/addButton.png'),
 };

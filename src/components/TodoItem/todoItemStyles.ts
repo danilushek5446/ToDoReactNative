@@ -12,11 +12,20 @@ export const todoItemStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 16,
     border: 'none',
     outline: 'none',
     fontSize: 20,
     color: 'black',
+
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4
   },
   button: {
     width: 25,

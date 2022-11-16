@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { LinearGradient } from 'react-native-svg';
 
 export const formStyles = StyleSheet.create({
   input: {
@@ -16,17 +17,10 @@ export const formStyles = StyleSheet.create({
   },
 
   itemList: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    backgroundColor: '#00000000',
+    borderRadius: 16,
     borderWidth: 0,
     border: 0,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 4,
-      height: 4,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
     height: hp('30%'),
     width: wp('75%'),
     padding: 10,
@@ -34,7 +28,7 @@ export const formStyles = StyleSheet.create({
 
   flatList: {
     flexGrow: 0,
-    borderRadius: 20,
+    borderRadius: 16,
   },
 
   titleInput: {
@@ -59,6 +53,16 @@ export const formStyles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#00000000',
+
+    shadowColor: 'red',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+
+    zIndex: 200,
   },
 
   elipsisContainer: {
@@ -85,6 +89,7 @@ export const formStyles = StyleSheet.create({
   userAvaterContainer: {
     paddingBottom: 13,
     paddingLeft: hp('3%'),
+    zIndex: 200,
   },
 
   textStyles: {
@@ -100,7 +105,15 @@ export const formStyles = StyleSheet.create({
   },
 
   taskTitlesContainer: {
-    paddingTop: 30,
+    paddingTop: 70,
     paddingBottom: 13,
+  },
+
+  addTodoButton: {
+    alignSelf: 'flex-end',
+    padding: 20,
+    width: 100,
+    height: 100,
+    zIndex: 200,
   },
 });

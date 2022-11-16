@@ -1,9 +1,7 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import * as RNLocalize from 'react-native-localize';
-import RNBootSplash from 'react-native-bootsplash';
 
-import useCurrentUser from 'src/hooks/useCurrentUser';
 import { Navigation } from 'src/navigation/Navigation';
 import OnboardingScreen from 'src/screens/OnboardingScreen/OnboardingScreen';
 import { setCurrentLanguage } from 'src/store/currentLanguageSlice/currentLanguageSlice';
@@ -15,12 +13,17 @@ const Core: FC = () => {
   const dispatch = useAppDispatch();
   const currenLanguage = useAppSelector((state) => state.currentLanguage.language);
 
-  const { user } = useCurrentUser();
-
   const [isOnboarding, setIsOnboarding] = useState(true);
-  const [isLoggin, setIsLoggin] = useState(false);
 
   useEffect(() => {
+    (async() => {
+      const isFirstLoad = await getItemFromStrorage('onboarding');
+
+      if (isFirstLoad) {
+        setIsOnboarding(false);
+      }
+    })()
+
     const locales = RNLocalize.getLocales();
 
     if (Array.isArray(locales)) {
@@ -44,33 +47,6 @@ const Core: FC = () => {
   }, []);
 
   useEffect(() => {
-    const init = async () => {
-      const isFirstLoad = await getItemFromStrorage('onboarding');
-
-      if (isFirstLoad) {
-        setIsOnboarding(false);
-      }
-
-      const token = await getItemFromStrorage('token');
-
-      // const fcmToken = await messaging().getToken();
-      // console.log(fcmToken);
-
-      if (token) {
-        setIsLoggin(true);
-
-        return;
-      }
-
-      setIsLoggin(false);
-    };
-
-    init().finally(async () => {
-      await RNBootSplash.hide({ fade: true });
-    });
-  }, [user]);
-
-  useEffect(() => {
     MyTranslator.locale = currenLanguage;
   }, [currenLanguage]);
 
@@ -79,7 +55,7 @@ const Core: FC = () => {
       {
         isOnboarding
           ? <OnboardingScreen setOnboarding={setIsOnboarding} />
-          : <Navigation isLoggin={isLoggin} />
+          : <Navigation />
       }
     </>
   );

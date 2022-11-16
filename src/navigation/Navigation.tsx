@@ -3,23 +3,48 @@ import React, { useEffect, useState } from 'react';
 import messaging from '@react-native-firebase/messaging';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RNBootSplash from 'react-native-bootsplash';
 
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import Modal from 'src/components/ModalWindow/ModalWindow';
+import Modal from 'src/components/NotificationModalWindow/NotificationModalWindow';
 import type { DataType, ModalType } from 'src/types/modalTypes';
 import AuthNavigation from './AuthStack';
 import RootStack from './RootStack';
+import { getItemFromStrorage } from 'src/utils/storageWorker';
+import useCurrentUser from 'src/hooks/useCurrentUser';
+
 
 const Stack = createNativeStackNavigator<NavigatorMainStackType>();
 
-type PropType = {
-  isLoggin: boolean;
-};
-
-export const Navigation: FC<PropType> = ({ isLoggin }) => {
+export const Navigation: FC = () => {
   const [initialRoute, setInitialRoute] = useState<keyof NavigatorRootStackParamListType>('All');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalType>({});
+  const [isLoggin, setIsLoggin] = useState(false);
+
+
+  const { user } = useCurrentUser();
+
+  useEffect(() => {
+    const init = async () => {
+      const token = await getItemFromStrorage('token');
+
+      // const fcmToken = await messaging().getToken();
+      // console.log(fcmToken);
+
+      if (token) {
+        setIsLoggin(true);
+
+        return;
+      }
+
+      setIsLoggin(false);
+    };
+
+    init().finally(async () => {
+      await RNBootSplash.hide({ fade: true });
+    });
+  }, [user]);
 
   useEffect(() => {
     const subscribe = messaging().onMessage(async (remoteMessage) => {

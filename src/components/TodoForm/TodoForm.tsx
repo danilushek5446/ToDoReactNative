@@ -1,4 +1,5 @@
-/* eslint-disable no-nested-ternary */
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { FC } from 'react';
 import React, { useMemo, useState } from 'react';
 import type {
@@ -9,10 +10,9 @@ import type {
 import {
   Text,
   Image,
-  TextInput,
   View,
-  ScrollView,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 import Animated, {
   FadeIn,
@@ -20,7 +20,6 @@ import Animated, {
   ZoomInUp,
 } from 'react-native-reanimated';
 
-import MyText from 'src/components/MyText';
 import TodoItem from 'src/components/TodoItem/TodoItem';
 import TodoItemEdit from 'src/components/TodoItem/TodoItemEdit';
 import images from 'src/constants/images';
@@ -34,17 +33,25 @@ import {
   removeToDo,
   setEditable,
 } from 'src/store/todoSlice';
+import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 
 import type { TodoItemType } from 'src/types/todoTypes';
 import MyTranslator from 'src/utils/MyTranslator';
+import AddTodoModal from '../AddTodoModal/AddTodoModal';
 
 import { formStyles } from './TodoFormStyles';
 
 const ToDoForm: FC = () => {
   const [inputValue, setIputValue] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const filteredTodos: TodoItemType[] = useAppSelector(selectTodoByFilter);
   const allTodos: TodoItemType[] = useAppSelector((state) => state.todo.todoList);
   const filter = useAppSelector((state) => state.todo.filter);
+
+  const navigate =
+    useNavigation<
+      NativeStackNavigationProp<NavigatorRootStackParamListType, never>
+    >();
 
   const { user } = useCurrentUser();
 
@@ -73,6 +80,9 @@ const ToDoForm: FC = () => {
       return;
     }
 
+    // console.log('asd');
+    // navigate.navigate('Profile');
+
     dispatch(addToDo(inputValue));
 
     setIputValue('');
@@ -93,6 +103,11 @@ const ToDoForm: FC = () => {
   const changeTodo = (id: number, taskText: string) => {
     dispatch(editToDo({ id, value: taskText }));
   };
+
+  const onNavigateProfile = () => {
+    navigate.navigate('Profile');
+  };
+
   const renderItem: ListRenderItem<TodoItemType> = (item) => (!item.item.edit ? (
     <TodoItem
       task={item.item.task}
@@ -116,36 +131,24 @@ const ToDoForm: FC = () => {
       <View style={formStyles.elipsisContainer}>
         <Image source={images.whiteElipsis} />
       </View>
+      {isModalOpen && <AddTodoModal setIsOpen={setIsModalOpen} />}
 
       <View style={formStyles.header}>
-          <View style={formStyles.textContainer}>
-            <Text style={formStyles.textStyles}>
-              {`${MyTranslator.t('Hi there, ')} ${user.username}`}
-            </Text>
-            <Text style={formStyles.textStyles}>
-              {MyTranslator.t('Add a Profile Picture')}
-            </Text>
-          </View>
-        <View style={formStyles.userAvaterContainer}>
-
-          <Image style={formStyles.userAvater} source={images.newUser} />
+        <View style={formStyles.textContainer}>
+          <Text style={formStyles.textStyles}>
+            {`${MyTranslator.t('Hi there, ')} ${user.username}`}
+          </Text>
+          <Text style={formStyles.textStyles}>
+            {MyTranslator.t('Add a Profile Picture')}
+          </Text>
         </View>
+
+        <TouchableOpacity style={formStyles.userAvaterContainer} onPress={onNavigateProfile}>
+          <Image style={formStyles.userAvater} source={images.newUser} />
+        </TouchableOpacity>
       </View>
 
       <View style={formStyles.contentContaiber}>
-        <View style={formStyles.titleInput}>
-          <MyText textValue="todos" isBold={false} />
-          <TextInput
-            value={inputValue}
-            style={formStyles.input}
-            onChangeText={setIputValue}
-            onSubmitEditing={addNewToD}
-          />
-        </View>
-
-        <View style={formStyles.taskTitlesContainer}>
-          <MyText textValue={title} isBold={false} />
-        </View>
 
         <SafeAreaView style={formStyles.itemList}>
           <Animated.FlatList
@@ -159,6 +162,10 @@ const ToDoForm: FC = () => {
           />
         </SafeAreaView>
       </View>
+
+      <TouchableOpacity style={formStyles.addTodoButton} onPress={() => setIsModalOpen(true)}>
+        <Image source={images.addButton} />
+      </TouchableOpacity>
 
     </Animated.View>
   );

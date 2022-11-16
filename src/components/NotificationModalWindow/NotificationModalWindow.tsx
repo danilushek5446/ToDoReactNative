@@ -4,7 +4,7 @@ import { Alert, Modal, Pressable, View } from 'react-native';
 import type { ModalType } from 'src/types/modalTypes';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import MyText from '../MyText';
+import MyText from '../MyText/MyText';
 import styles from './ModalWindowStyles';
 
 type PropType = {
@@ -13,7 +13,7 @@ type PropType = {
   modalInfo: ModalType;
 };
 
-const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
+const MyNotificationModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
   const onAccept = () => {
     setInitialRoute('Profile');
     setIsOpen(false);
@@ -30,10 +30,10 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View style={styles.modalText}>
-            <MyText textValue={modalInfo.messageTitle || ''} />
+            <MyText textValue={modalInfo.messageTitle || ''} isBold />
           </View>
           <View style={styles.modalText}>
-            <MyText textValue={modalInfo.messageBody || ''} />
+            <MyText textValue={modalInfo.messageBody || ''} isBold={false} />
           </View>
           {modalInfo.data?.type === 'Profile'
             ? (
@@ -42,13 +42,13 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
                   style={[styles.button, styles.buttonOpen]}
                   onPress={onAccept}
                 >
-                  <MyText textValue="Accept" />
+                  <MyText textValue="Accept" isBold />
                 </Pressable>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => setIsOpen(false)}
                 >
-                  <MyText textValue="Decline" />
+                  <MyText textValue="Decline" isBold />
                 </Pressable>
               </View>
             )
@@ -57,7 +57,7 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setIsOpen(false)}
               >
-                <MyText textValue="Ok" />
+                <MyText textValue="Ok" isBold={false} />
               </Pressable>
             )
           }
@@ -67,4 +67,4 @@ const MyModal: FC<PropType> = ({ setIsOpen, setInitialRoute, modalInfo }) => {
   );
 };
 
-export default MyModal;
+export default MyNotificationModal;

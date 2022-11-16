@@ -75,6 +75,9 @@ const MyTabBar: FC<PropsType> = ({ state, descriptors, navigation }) => {
     <Animated.View style={MyTabBarStyles.barStyle} onLayout={onBarLayout}>
       <Animated.View style={[MyTabBarStyles.animatedBackground, animatedStyles]} />
       {state.routes.map((route, index) => {
+        if (route.name === 'Profile') {
+          return;
+        }
         const { options } = descriptors[route.key];
 
         const isFocused = state.index === index;
