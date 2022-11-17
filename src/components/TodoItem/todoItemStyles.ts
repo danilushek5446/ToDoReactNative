@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export const todoItemStyles = StyleSheet.create({
   input: {
@@ -41,30 +41,56 @@ export const todoItemStyles = StyleSheet.create({
     maxWidth: wp('65%'),
     fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
-    color: 'black',
-    backgroundColor: 'palegreen',
+    color: '#BDBDBD',
     textDecorationLine: 'line-through',
   },
   textActive: {
     maxWidth: wp('65%'),
     fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
-    color: 'black',
+    color: '#00000090',
     backgroundColor: 'white',
     textDecorationLine: 'none',
   },
   activeCheckbox: {
-    backgroundColor: '#DCDCDC',
-    borderRadius: 10,
-    width: 25,
-    height: 25,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 2,
+    width: 20,
+    height: 20,
     marginRight: 10,
+    borderColor: '#89E3E3',
+    borderWidth: 1,
   },
   checkedCheckbox: {
-    backgroundColor: 'palegreen',
-    borderRadius: 10,
-    width: 25,
-    height: 25,
+    backgroundColor: '#89E3E3',
+    borderRadius: 2,
+    width: 20,
+    height: 20,
     marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dropDownContainer: {
+    width: 72,
+    height: 72,
+    backgroundColor: '#FFFFFF',
+    elevation: 10,
+    borderRadius: 12,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuItem: {
+    width: 46,
+    height: 35,
+  },
+  menuItemText: {
+    width: 46,
+    height: 20,
+    fontSize: 14,
+    lineHeight: 18,
+    marginTop: 15,
+    textAlign: 'center',
+    justifyContent: 'center',
   },
 });

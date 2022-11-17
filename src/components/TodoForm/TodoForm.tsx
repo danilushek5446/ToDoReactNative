@@ -1,11 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { FC } from 'react';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import type {
   ListRenderItem,
-  NativeSyntheticEvent,
-  TextInputSubmitEditingEventData,
 } from 'react-native';
 import {
   Text,
@@ -27,7 +25,6 @@ import useCurrentUser from 'src/hooks/useCurrentUser';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { selectTodoByFilter } from 'src/store/selectors';
 import {
-  addToDo,
   changeCompletion,
   editToDo,
   removeToDo,
@@ -42,11 +39,8 @@ import AddTodoModal from '../AddTodoModal/AddTodoModal';
 import { formStyles } from './TodoFormStyles';
 
 const ToDoForm: FC = () => {
-  const [inputValue, setIputValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const filteredTodos: TodoItemType[] = useAppSelector(selectTodoByFilter);
-  const allTodos: TodoItemType[] = useAppSelector((state) => state.todo.todoList);
-  const filter = useAppSelector((state) => state.todo.filter);
 
   const navigate =
     useNavigation<
@@ -56,37 +50,6 @@ const ToDoForm: FC = () => {
   const { user } = useCurrentUser();
 
   const dispatch = useAppDispatch();
-
-  const title = useMemo(() => {
-    if (!allTodos.length) {
-      return 'Set up your task lists for tomorrow';
-    }
-
-    if (filter === 'Completed') {
-      return 'Tasks Completed!';
-    }
-
-    if (filter === 'Active') {
-      return 'Active tasks';
-    }
-
-    return 'Tasks List for tomorrow';
-  }, [allTodos.length, filter]);
-
-  const addNewToD = ({
-    nativeEvent,
-  }: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-    if (!nativeEvent.text) {
-      return;
-    }
-
-    // console.log('asd');
-    // navigate.navigate('Profile');
-
-    dispatch(addToDo(inputValue));
-
-    setIputValue('');
-  };
 
   const removeTask = (id: number) => {
     dispatch(removeToDo(id));
@@ -159,6 +122,7 @@ const ToDoForm: FC = () => {
             renderItem={renderItem}
             keyExtractor={(item) => item.id.toString()}
             extraData={filteredTodos}
+            contentContainerStyle={{ display: 'flex' }}
           />
         </SafeAreaView>
       </View>

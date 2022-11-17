@@ -7,4 +7,6 @@ export default {
   hide: require('src/assets/icons/Group.png'),
   newUser: require('src/assets/images/newUser.png'),
   addButton: require('src/assets/images/addButton.png'),
+  checkMark: require('src/assets/icons/checkMark.png'),
+  vertDots: require('src/assets/icons/vertdots.png'),
 };

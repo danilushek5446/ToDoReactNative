@@ -2,19 +2,6 @@ import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const formStyles = StyleSheet.create({
-  input: {
-    width: wp('65%'),
-    height: 40,
-    margin: 10,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: '#FFFAFA',
-    borderRadius: 20,
-    border: 'none',
-    outline: 'none',
-    color: 'black',
-  },
-
   itemList: {
     backgroundColor: '#00000000',
     borderRadius: 16,
@@ -26,19 +13,8 @@ export const formStyles = StyleSheet.create({
   },
 
   flatList: {
-    flexGrow: 0,
     borderRadius: 16,
-  },
-
-  titleInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 2,
-  },
-
-  title: {
-    width: 50,
-    height: 50,
+    marginBottom: 10,
   },
 
   screen: {

@@ -7410,6 +7410,11 @@
   "resolved" "https://registry.npmjs.org/react-native-localize/-/react-native-localize-2.2.4.tgz"
   "version" "2.2.4"
 
+"react-native-material-menu@^2.0.0":
+  "integrity" "sha512-SmO9PLE3E469EPbVWZqvdu6JGPPZIm7YjqDcWs2PPoY0k7w2V9tFo3BmmLXNzNZDCVCAi+PPSsL7h/5WkfHcSg=="
+  "resolved" "https://registry.npmjs.org/react-native-material-menu/-/react-native-material-menu-2.0.0.tgz"
+  "version" "2.0.0"
+
 "react-native-notifier@^1.9.0":
   "integrity" "sha512-p9NpDCCSNNpfiJTRSu2rtSGGxekejDWSh3mX5rvjMllGCPyoJS3d36x9O+roYcH8qSqLf4QDcmwCMSUuaGTgXg=="
   "resolved" "https://registry.npmjs.org/react-native-notifier/-/react-native-notifier-1.9.0.tgz"

@@ -1,6 +1,8 @@
+/* eslint-disable no-inline-styles/no-inline-styles */
 import * as React from 'react';
 import { useWindowDimensions, View } from 'react-native';
-import { TabView, SceneMap, TabBar, SceneRendererProps, NavigationState } from 'react-native-tab-view';
+import type { SceneRendererProps, NavigationState } from 'react-native-tab-view';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
 import { useAppDispatch } from 'src/store/hooks';
 import { changeFilter } from 'src/store/todoSlice/todoSlice';
@@ -8,7 +10,7 @@ import { changeFilter } from 'src/store/todoSlice/todoSlice';
 type RouteType = {
   key: string;
   title: string;
-}
+};
 
 type PropsType = {
   props: TabBarPropType;
@@ -17,8 +19,7 @@ type PropsType = {
 type TabBarPropType = {
   props: SceneRendererProps;
   navigationState: NavigationState<RouteType>;
-}
-
+};
 
 const FirstRoute: React.FC = () => (
   <HomeScreen />
@@ -32,18 +33,22 @@ const ThirdRoute: React.FC = () => (
   <HomeScreen />
 );
 
-const renderTabBar = (props: SceneRendererProps & { navigationState: NavigationState<RouteType>; }) => {
+const renderTabBar = (
+  props: SceneRendererProps
+  & { navigationState: NavigationState<RouteType> },
+) => {
   return (
-    <View style={{position: 'absolute', top: 250, zIndex: 9, width: '100%'}}>
+    <View style={{ position: 'absolute', top: 250, zIndex: 1, width: '100%' }}>
       <TabBar
         {...props}
-        indicatorStyle={{ backgroundColor: '#3FBFBF', width: '25%', height: 2, zIndex: 2, position: 'absolute', bottom: -2, left: 20  }}
-        activeColor='#3FBFBF'
-        inactiveColor='#BDBDBD'
-        style={{ backgroundColor: '#00000000', borderBottomWidth: 2, borderBottomColor: '#BDBDBD', elevation: 0, paddingBottom: 3, zIndex: 1 }} />
+        indicatorStyle={{ backgroundColor: '#3FBFBF', width: '25%', height: 2, zIndex: 2, position: 'absolute', bottom: -2, left: 20 }}
+        activeColor="#3FBFBF"
+        inactiveColor="#BDBDBD"
+        style={{ backgroundColor: '#00000000', borderBottomWidth: 2, borderBottomColor: '#BDBDBD', elevation: 0, paddingBottom: 3, zIndex: 1 }}
+/>
     </View>
-  )
-}
+  );
+};
 
 const MyTabView: React.FC = () => {
   const layout = useWindowDimensions();
@@ -76,8 +81,7 @@ const MyTabView: React.FC = () => {
     }
 
     dispatch(changeFilter('Completed'));
-  }, [index])
-
+  }, [index]);
 
   return (
     <TabView
@@ -91,6 +95,6 @@ const MyTabView: React.FC = () => {
       renderTabBar={renderTabBar}
     />
   );
-}
+};
 
 export default MyTabView;
