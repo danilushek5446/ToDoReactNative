@@ -1,20 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
+    backgroundColor: '#00000060',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00000060'
   },
   modalView: {
     width: wp('95%'),
-    margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -26,33 +24,57 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 10,
-    // width: 60,
+    width: wp('35%'),
     paddingVertical: 15,
-    paddingHorizontal: 55,
     elevation: 2,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   buttonOpen: {
-    backgroundColor: '#43E88E',
+    backgroundColor: '#3FBFBF',
   },
   buttonClose: {
-    backgroundColor: '#DF3547',
-  },
-  textStyle: {
-    color: 'black',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#3FBFBF',
   },
   modalText: {
-    marginBottom: 15,
     textAlign: 'center',
     color: 'black',
+    alignSelf: 'center',
   },
   buttonscontainer: {
-    width: 130,
+    width: wp('80%'),
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  cancelText: {
+    color: '#3FBFBF',
+    width: 60,
+    fontFamily: 'EncodeSans-Bold',
+    lineHeight: 20,
+  },
+  addText: {
+    color: '#FFFFFF',
+    width: 50,
+    fontSize: 16,
+    fontFamily: 'EncodeSans-Bold',
+    lineHeight: 20,
+  },
+  inputContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#3FBFBF',
+    marginBottom: 10,
+  },
+  inputText: {
+    padding: 10,
+    fontSize: 14,
+    fontFamily: 'EncodeSans-Regular',
+    color: 'black',
+  },
+
+  countSymbolsContainer: {
+    paddingBottom: 28,
   },
 });
 

@@ -3,15 +3,14 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export const todoItemStyles = StyleSheet.create({
   input: {
-    width: wp('65%'),
-    height: 40,
+    width: wp('85%'),
     margin: 8,
     borderWidth: 0,
     padding: 10,
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     borderRadius: 16,
     border: 'none',
     outline: 'none',
@@ -25,7 +24,7 @@ export const todoItemStyles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 4
+    elevation: 8,
   },
   button: {
     width: 25,
@@ -33,13 +32,13 @@ export const todoItemStyles = StyleSheet.create({
   },
   checkboxContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: 'white',
   },
   checkbox: {
     marginRight: 10,
   },
   textCheked: {
+    maxWidth: wp('65%'),
     fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
     color: 'black',
@@ -47,6 +46,7 @@ export const todoItemStyles = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   textActive: {
+    maxWidth: wp('65%'),
     fontFamily: 'EncodeSans-Regular',
     fontSize: 18,
     color: 'black',

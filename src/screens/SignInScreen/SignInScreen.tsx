@@ -36,8 +36,8 @@ const SignInScreen: FC = () => {
 
     if (!userArray) {
       Notifier.showNotification({
-        title: 'No users',
-        description: 'sign up please',
+        title: MyTranslator.t('No users'),
+        description: MyTranslator.t('Sign up please'),
         duration: 0,
         showAnimationDuration: 800,
         hideOnPress: true,
@@ -52,8 +52,8 @@ const SignInScreen: FC = () => {
 
     if (!isLoginRight) {
       Notifier.showNotification({
-        title: 'Wrong login',
-        description: 'check your login please',
+        title: MyTranslator.t('Wrong Email'),
+        description: MyTranslator.t('Check your Email'),
         duration: 0,
         showAnimationDuration: 800,
         hideOnPress: true,
@@ -68,8 +68,8 @@ const SignInScreen: FC = () => {
 
     if (!isPasswordRight) {
       Notifier.showNotification({
-        title: 'Wrong password',
-        description: 'check your password please',
+        title: MyTranslator.t('Wrong password'),
+        description: MyTranslator.t('Сheck your password'),
         duration: 0,
         showAnimationDuration: 800,
         hideOnPress: true,

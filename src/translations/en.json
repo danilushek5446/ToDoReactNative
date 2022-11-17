@@ -48,5 +48,13 @@
   "Set up your task lists for tomorrow": "Set up your task lists for tomorrow",
   "Tasks Completed!": "Tasks Completed!",
   "Active tasks": "Active tasks",
-  "Add new TODO": "Add new TODO"
+  "Add new TODO": "Add new TODO",
+  "symbols": "symbols",
+  "No users": "No users was found",
+  "Sign up please": "Sign up please",
+  "Wrong Email": "Wrong Email",
+  "Check your Email": "Check your Email",
+  "Wrong password": "Wrong password",
+  "Сheck your password": "Сheck your password",
+  "Too many symbols": "Too many symbols"
 }

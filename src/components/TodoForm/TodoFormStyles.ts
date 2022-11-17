@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { LinearGradient } from 'react-native-svg';
 
 export const formStyles = StyleSheet.create({
   input: {
@@ -21,8 +20,8 @@ export const formStyles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 0,
     border: 0,
-    height: hp('30%'),
-    width: wp('75%'),
+    height: hp('40%'),
+    width: wp('95%'),
     padding: 10,
   },
 
@@ -44,7 +43,6 @@ export const formStyles = StyleSheet.create({
 
   screen: {
     flex: 1,
-    // alignItems: 'center',
     backgroundColor: '#00000000',
     position: 'relative',
   },
@@ -53,16 +51,7 @@ export const formStyles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#00000000',
-
-    shadowColor: 'red',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.8,
-    shadowRadius: 10,
-
-    zIndex: 200,
+    paddingTop: 59,
   },
 
   elipsisContainer: {

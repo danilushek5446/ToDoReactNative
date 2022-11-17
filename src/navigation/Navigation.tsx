@@ -8,11 +8,10 @@ import RNBootSplash from 'react-native-bootsplash';
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import Modal from 'src/components/NotificationModalWindow/NotificationModalWindow';
 import type { DataType, ModalType } from 'src/types/modalTypes';
-import AuthNavigation from './AuthStack';
-import RootStack from './RootStack';
 import { getItemFromStrorage } from 'src/utils/storageWorker';
 import useCurrentUser from 'src/hooks/useCurrentUser';
-
+import AuthNavigation from './AuthStack';
+import RootStack from './RootStack';
 
 const Stack = createNativeStackNavigator<NavigatorMainStackType>();
 
@@ -21,7 +20,6 @@ export const Navigation: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalType>({});
   const [isLoggin, setIsLoggin] = useState(false);
-
 
   const { user } = useCurrentUser();
 

@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import * as RNLocalize from 'react-native-localize';
+import RNBootSplash from 'react-native-bootsplash';
 
 import { Navigation } from 'src/navigation/Navigation';
 import OnboardingScreen from 'src/screens/OnboardingScreen/OnboardingScreen';
@@ -16,13 +17,17 @@ const Core: FC = () => {
   const [isOnboarding, setIsOnboarding] = useState(true);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const isFirstLoad = await getItemFromStrorage('onboarding');
 
-      if (isFirstLoad) {
-        setIsOnboarding(false);
+      if (!isFirstLoad) {
+        RNBootSplash.hide({ fade: true });
+
+        return;
       }
-    })()
+
+      setIsOnboarding(false);
+    })();
 
     const locales = RNLocalize.getLocales();
 
