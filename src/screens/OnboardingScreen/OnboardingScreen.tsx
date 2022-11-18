@@ -2,8 +2,8 @@ import type { FC } from 'react';
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 
-import MyButton from 'src/components/MyButton/MyButton';
-import MyText from 'src/components/MyText/MyText';
+import MyButton from 'src/components/MyButton';
+import MyText from 'src/components/MyText';
 import images from 'src/constants/images';
 import MyTranslator from 'src/utils/MyTranslator';
 import { setItemToStrorage } from 'src/utils/storageWorker';

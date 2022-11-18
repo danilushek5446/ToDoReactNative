@@ -3,17 +3,16 @@ import React, { useState } from 'react';
 import { Text, TextInput, View, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
 import { Notifier } from 'react-native-notifier';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import { getUserFromStorage, setItemToStrorage } from 'src/utils/storageWorker';
+import { getUsersFromStorage, setItemToStrorage } from 'src/utils/storageWorker';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import MyText from 'src/components/MyText/MyText';
-import MyButton from 'src/components/MyButton/MyButton';
+import MyText from 'src/components/MyText';
+import MyButton from 'src/components/MyButton';
 import images from 'src/constants/images';
 import MyTranslator from 'src/utils/MyTranslator';
-import MyInput from 'src/components/MyInput/MyInput';
+import MyInput from 'src/components/MyInput';
 import { signInScreenStyles } from './SignInScreenStyles';
 
 const SignInScreen: FC = () => {
@@ -32,7 +31,7 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    const userArray = await getUserFromStorage('user');
+    const userArray = await getUsersFromStorage('user');
 
     if (!userArray) {
       Notifier.showNotification({
@@ -46,11 +45,11 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    const isLoginRight = userArray.users.some(
+    const user = userArray.users.find(
       (item) => item.login === loginValue,
     );
 
-    if (!isLoginRight) {
+    if (!user) {
       Notifier.showNotification({
         title: MyTranslator.t('Wrong Email'),
         description: MyTranslator.t('Check your Email'),
@@ -62,11 +61,7 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    const isPasswordRight = userArray.users.some(
-      (item) => item.password === passwordValue,
-    );
-
-    if (!isPasswordRight) {
+    if (!(user.password === passwordValue)) {
       Notifier.showNotification({
         title: MyTranslator.t('Wrong password'),
         description: MyTranslator.t('Сheck your password'),
@@ -78,9 +73,9 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    setItemToStrorage('token', loginValue);
+    setItemToStrorage('token', user.id || '');
 
-    setUser(loginValue);
+    setUser(user);
   };
 
   const toggleCheckBox = () => {

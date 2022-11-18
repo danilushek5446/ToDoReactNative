@@ -14,7 +14,7 @@ import { TouchableOpacity } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring } from 'react-native-reanimated';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { setActiveTubNumber } from 'src/store/activeTubNumberSlice/activeTubNumberSlice';
+import { setActiveTubNumber } from 'src/store/activeTubNumberSlice';
 import { MyTabBarStyles } from './MyTabBarStyles';
 
 type PropsType = {

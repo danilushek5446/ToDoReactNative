@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
 import { Text } from 'react-native';
+
 import MyTranslator from 'src/utils/MyTranslator';
 import styles from './MyTextStyles';
 

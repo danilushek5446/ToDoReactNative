@@ -1,12 +1,12 @@
 import type { FC } from 'react';
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SignInScreen from 'src/screens/SignInScreen/';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import SignUpScreen from 'src/screens/SignUpScreen/';
+import SignUpScreen from 'src/screens/SignUpScreen';
 import MyTranslator from 'src/utils/MyTranslator';
-import ForgotPassScreen from 'src/screens/ForgotPassScreen/ForgotPassScreen';
+import ForgotPassScreen from 'src/screens/ForgotPassScreen';
 
 const stack = createNativeStackNavigator<NavigatorRootStackParamListType>();
 

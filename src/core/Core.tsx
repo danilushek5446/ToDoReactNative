@@ -4,8 +4,8 @@ import * as RNLocalize from 'react-native-localize';
 import RNBootSplash from 'react-native-bootsplash';
 
 import { Navigation } from 'src/navigation/Navigation';
-import OnboardingScreen from 'src/screens/OnboardingScreen/OnboardingScreen';
-import { setCurrentLanguage } from 'src/store/currentLanguageSlice/currentLanguageSlice';
+import OnboardingScreen from 'src/screens/OnboardingScreen';
+import { setCurrentLanguage } from 'src/store/currentLanguageSlice';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import MyTranslator from 'src/utils/MyTranslator';
 import { getItemFromStrorage } from 'src/utils/storageWorker';

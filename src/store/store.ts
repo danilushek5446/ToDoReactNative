@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import activeTubNumberSlice from './activeTubNumberSlice';
-import currentLanguageSlice from './currentLanguageSlice/currentLanguageSlice';
+import currentLanguageSlice from './currentLanguageSlice';
 
 import todoSlice from './todoSlice';
 import userSlice from './userSlice';

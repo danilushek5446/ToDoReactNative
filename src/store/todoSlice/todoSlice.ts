@@ -1,6 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import type { StateType, TodoItemType, ChangeTodoType } from '../../types/todoTypes';
+
+import type { StateType, TodoItemType, ChangeTodoType } from 'src/types/todoTypes';
 
 export const initialState: StateType = {
   todoList: [],

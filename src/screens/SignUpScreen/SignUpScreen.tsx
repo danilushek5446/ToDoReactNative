@@ -3,21 +3,21 @@ import React, { useState } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
 import { Notifier } from 'react-native-notifier';
+import { v4 as uuidv4 } from 'uuid';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
-  getUserFromStorage,
+  getUsersFromStorage,
   setItemToStrorage,
   setUserToStorage,
 } from 'src/utils/storageWorker';
-import MyText from 'src/components/MyText/MyText';
-import MyButton from 'src/components/MyButton/MyButton';
+import MyText from 'src/components/MyText';
+import MyButton from 'src/components/MyButton';
 import MyTranslator from 'src/utils/MyTranslator';
 import images from 'src/constants/images';
-import MyInput from 'src/components/MyInput/MyInput';
+import MyInput from 'src/components/MyInput';
 import { SignUpScreenStyles } from './SignUpScreenStyles';
 
 const SignUpScreen: FC = () => {
@@ -82,7 +82,7 @@ const SignUpScreen: FC = () => {
       return;
     }
 
-    const usersArray = await getUserFromStorage('user');
+    const usersArray = await getUsersFromStorage('user');
 
     if (usersArray?.users.some((item) => item.login === loginValue)) {
       Notifier.showNotification({
@@ -96,11 +96,15 @@ const SignUpScreen: FC = () => {
       return;
     }
 
-    setUserToStorage('user', { login: loginValue, password: passwordValue, name: nameValue });
+    const id = uuidv4();
 
-    setItemToStrorage('token', loginValue);
+    const user = { login: loginValue, password: passwordValue, name: nameValue, id };
 
-    setUser(loginValue);
+    setUserToStorage('user', user);
+
+    setItemToStrorage('token', id);
+
+    setUser(user);
   };
 
   const onNavigateSignin = () => {

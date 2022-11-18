@@ -1,16 +1,15 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import { Image, KeyboardAvoidingView, Text, View } from 'react-native';
-
 import { Notifier } from 'react-native-notifier';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
   changeUserPasswordInStorage,
-  getUserFromStorage,
+  getUsersFromStorage,
   setItemToStrorage,
 } from 'src/utils/storageWorker';
-import MyText from 'src/components/MyText/MyText';
+import MyText from 'src/components/MyText';
 import MyButton from 'src/components/MyButton/MyButton';
 import MyTranslator from 'src/utils/MyTranslator';
 import images from 'src/constants/images';
@@ -73,9 +72,25 @@ const ForgotPassScreen: FC = () => {
       return;
     }
 
-    const usersArray = await getUserFromStorage('user');
+    const usersArray = await getUsersFromStorage('user');
 
-    if (!usersArray?.users.some((item) => item.login === loginValue)) {
+    if (!usersArray) {
+      Notifier.showNotification({
+        title: MyTranslator.t('No users'),
+        description: MyTranslator.t('Sign up please'),
+        duration: 0,
+        showAnimationDuration: 800,
+        hideOnPress: true,
+      });
+
+      return;
+    }
+
+    const user = usersArray.users.find(
+      (item) => item.login === loginValue,
+    );
+
+    if (!user) {
       Notifier.showNotification({
         title: MyTranslator.t('User with this email is not exists'),
         description: MyTranslator.t('Check your email'),
@@ -89,9 +104,9 @@ const ForgotPassScreen: FC = () => {
 
     changeUserPasswordInStorage('user', loginValue, passwordValue);
 
-    setItemToStrorage('token', loginValue);
+    setItemToStrorage('token', user.id || '');
 
-    setUser(loginValue);
+    setUser(user);
   };
 
   return (

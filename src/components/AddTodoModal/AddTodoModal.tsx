@@ -4,7 +4,7 @@ import { Alert, Modal, Pressable, View, TextInput, Text } from 'react-native';
 import { Notifier } from 'react-native-notifier';
 
 import { useAppDispatch } from 'src/store/hooks';
-import { addToDo } from 'src/store/todoSlice/todoSlice';
+import { addToDo } from 'src/store/todoSlice';
 import MyTranslator from 'src/utils/MyTranslator';
 import MyText from '../MyText/MyText';
 import styles from './AddTodoModalStyles';

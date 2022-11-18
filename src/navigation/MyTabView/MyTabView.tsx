@@ -1,24 +1,16 @@
-/* eslint-disable no-inline-styles/no-inline-styles */
 import * as React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import type { SceneRendererProps, NavigationState } from 'react-native-tab-view';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
+
+import HomeScreen from 'src/screens/HomeScreen';
 import { useAppDispatch } from 'src/store/hooks';
-import { changeFilter } from 'src/store/todoSlice/todoSlice';
+import { changeFilter } from 'src/store/todoSlice';
+import { MyBarStyles } from './MyTabViewStyles';
 
 type RouteType = {
   key: string;
   title: string;
-};
-
-type PropsType = {
-  props: TabBarPropType;
-};
-
-type TabBarPropType = {
-  props: SceneRendererProps;
-  navigationState: NavigationState<RouteType>;
 };
 
 const FirstRoute: React.FC = () => (
@@ -38,13 +30,13 @@ const renderTabBar = (
   & { navigationState: NavigationState<RouteType> },
 ) => {
   return (
-    <View style={{ position: 'absolute', top: 250, zIndex: 1, width: '100%' }}>
+    <View style={MyBarStyles.barStyleContainer}>
       <TabBar
         {...props}
-        indicatorStyle={{ backgroundColor: '#3FBFBF', width: '25%', height: 2, zIndex: 2, position: 'absolute', bottom: -2, left: 20 }}
+        indicatorStyle={MyBarStyles.indicatorStyle}
         activeColor="#3FBFBF"
         inactiveColor="#BDBDBD"
-        style={{ backgroundColor: '#00000000', borderBottomWidth: 2, borderBottomColor: '#BDBDBD', elevation: 0, paddingBottom: 3, zIndex: 1 }}
+        style={MyBarStyles.tabBarStyle}
 />
     </View>
   );
@@ -89,9 +81,6 @@ const MyTabView: React.FC = () => {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
-      sceneContainerStyle={{ position: 'relative' }}
-      pagerStyle={{ position: 'relative' }}
-      style={{ position: 'relative' }}
       renderTabBar={renderTabBar}
     />
   );

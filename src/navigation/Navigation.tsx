@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RNBootSplash from 'react-native-bootsplash';
 
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
-import Modal from 'src/components/NotificationModalWindow/NotificationModalWindow';
+import Modal from 'src/components/NotificationModalWindow';
 import type { DataType, ModalType } from 'src/types/modalTypes';
 import { getItemFromStrorage } from 'src/utils/storageWorker';
 import useCurrentUser from 'src/hooks/useCurrentUser';
