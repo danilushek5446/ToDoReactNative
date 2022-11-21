@@ -66,7 +66,7 @@ export const ForgotPassScreenStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#00000000',
     maxWidth: wp('85%'),
-    // paddingTop: hp('20%'),
+    paddingTop: hp('20%'),
   },
   forgotPasswordText: {
     textAlign: 'center',

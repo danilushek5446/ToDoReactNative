@@ -10,7 +10,6 @@ export const todoItemStyles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
     borderRadius: 16,
     border: 'none',
     outline: 'none',
@@ -33,6 +32,7 @@ export const todoItemStyles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
+    alignItems: 'center',
   },
   checkbox: {
     marginRight: 10,

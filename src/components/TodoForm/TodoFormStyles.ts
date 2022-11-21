@@ -39,7 +39,7 @@ export const formStyles = StyleSheet.create({
 
   header: {
     backgroundColor: '#3FBFBF',
-    height: hp('35%'),
+    height: hp('25%'),
     maxWidth: hp('100%'),
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -68,6 +68,7 @@ export const formStyles = StyleSheet.create({
 
   textContainer: {
     paddingLeft: hp('3%'),
+    paddingBottom: 10,
   },
 
   taskTitlesContainer: {

@@ -1,9 +1,10 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Text, TextInput, View, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { Notifier } from 'react-native-notifier';
+import { KeyboardAwareScrollView } from '@pietile-native-kit/keyboard-aware-scrollview';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import { getUsersFromStorage, setItemToStrorage } from 'src/utils/storageWorker';
@@ -73,7 +74,9 @@ const SignInScreen: FC = () => {
       return;
     }
 
-    setItemToStrorage('token', user.id || '');
+    if (isSavePass) {
+      setItemToStrorage('token', user.id || '');
+    }
 
     setUser(user);
   };
@@ -91,7 +94,10 @@ const SignInScreen: FC = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={signInScreenStyles.screen}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={signInScreenStyles.screen}
+      extraHeight={10}
+    >
       <View style={signInScreenStyles.elipsisContainer}>
         <Image source={images.elipsis} />
       </View>
@@ -161,7 +167,7 @@ const SignInScreen: FC = () => {
         </View>
       </View>
 
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   );
 };
 

@@ -1,7 +1,8 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
-import { Image, KeyboardAvoidingView, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { Notifier } from 'react-native-notifier';
+import { KeyboardAwareScrollView } from '@pietile-native-kit/keyboard-aware-scrollview';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import {
@@ -110,7 +111,7 @@ const ForgotPassScreen: FC = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={ForgotPassScreenStyles.screen}>
+    <KeyboardAwareScrollView contentContainerStyle={ForgotPassScreenStyles.screen}>
       <View style={ForgotPassScreenStyles.elipsisContainer}>
         <Image source={images.elipsis} />
       </View>
@@ -155,7 +156,7 @@ const ForgotPassScreen: FC = () => {
             <MyButton onPress={onPress} textValue="Sign in" size="big" />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   );
 };
 

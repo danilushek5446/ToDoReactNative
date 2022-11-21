@@ -7,6 +7,7 @@ export const SignUpScreenStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#00000000',
     position: 'relative',
+    // maxHeight: hp('100%'),
   },
   container: {
     flex: 1,
@@ -20,8 +21,8 @@ export const SignUpScreenStyles = StyleSheet.create({
     backgroundColor: '#00000000',
     maxWidth: wp('85%'),
   },
-  inputPadding: {
-    margin: 5,
+  buttonContainer: {
+    padding: 5,
     width: wp('85%'),
   },
   inputStyles: {

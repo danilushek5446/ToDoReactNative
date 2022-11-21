@@ -23,16 +23,12 @@ const ProfileScreen: FC = () => {
     };
     launchImageLibrary(options, (response) => {
       if (response.didCancel) {
-        // Alert.alert('User cancelled camera picker');
         return;
-      } if (response.errorCode === 'camera_unavailable') {
-        // Alert.alert('Camera not available on device');
+      }
+      if (response.errorCode === 'camera_unavailable') {
         return;
-      } if (response.errorCode === 'permission') {
-        // Alert.alert('Permission not satisfied');
-        return;
-      } if (response.errorCode === 'others') {
-        // Alert.alert(response.errorMessage || '');
+      }
+      if (response.errorCode) {
         return;
       }
       if (response.assets) {

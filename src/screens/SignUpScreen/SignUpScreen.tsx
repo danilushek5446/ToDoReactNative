@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Notifier } from 'react-native-notifier';
 import uuid from 'react-native-uuid';
+import { KeyboardAwareScrollView } from '@pietile-native-kit/keyboard-aware-scrollview';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
@@ -117,7 +118,7 @@ const SignUpScreen: FC = () => {
   };
 
   return (
-    <View style={SignUpScreenStyles.screen}>
+    <KeyboardAwareScrollView contentContainerStyle={SignUpScreenStyles.screen}>
       <View style={SignUpScreenStyles.elipsisContainer}>
         <Image source={images.elipsis} />
       </View>
@@ -166,7 +167,7 @@ const SignUpScreen: FC = () => {
             />
           </View>
 
-          <View style={SignUpScreenStyles.inputPadding}>
+          <View style={SignUpScreenStyles.buttonContainer}>
             <MyButton onPress={onPress} textValue="Sign up" size="big" />
             <View style={SignUpScreenStyles.signUpContainer}>
               <MyText textValue="Allready have an account?" isBold={false} />
@@ -179,7 +180,7 @@ const SignUpScreen: FC = () => {
           </View>
         </View>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

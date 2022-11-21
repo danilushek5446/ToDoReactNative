@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export const MyBarStyles = StyleSheet.create({
   barStyleContainer: {
     position: 'absolute',
-    top: 250,
+    top: hp('25%'),
     zIndex: 1,
     width: '100%',
   },
