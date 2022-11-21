@@ -1,23 +1,21 @@
 import type { FC } from 'react';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import type { MediaType, PhotoQuality } from 'react-native-image-picker';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import { useAppSelector } from 'src/store/hooks';
 import MyTranslator from 'src/utils/MyTranslator';
-import { changeUserAvatarInStorage, getItemFromStrorage, getUserById, removeItemFromStorage } from 'src/utils/storageWorker';
+import { changeUserAvatarInStorage, removeItemFromStorage } from 'src/utils/storageWorker';
 import images from 'src/constants/images';
 import { profileScreenStyles } from './ProfileScreenStyles';
 
 const ProfileScreen: FC = () => {
-  const currentLanguage = useAppSelector((state) => state.currentLanguage.language);
-
-  const { user, setUser, setUserPhoto, deleteUser } = useCurrentUser();
+  const { user, setUserPhoto, deleteUser } = useCurrentUser();
 
   const chooseFile = (type: MediaType) => {
     const options = {
+      includeBase64: true,
       mediaType: type,
       maxWidth: 300,
       maxHeight: 550,
@@ -38,9 +36,9 @@ const ProfileScreen: FC = () => {
         return;
       }
       if (response.assets) {
-        changeUserAvatarInStorage('user', user.login || '', response.assets[0].uri || '');
+        changeUserAvatarInStorage('user', user.login || '', response.assets[0].base64 || '');
 
-        setUserPhoto(response.assets[0].uri || '');
+        setUserPhoto(response.assets[0].base64 || '');
       }
     });
   };
@@ -51,36 +49,14 @@ const ProfileScreen: FC = () => {
     deleteUser();
   };
 
-  useEffect(() => {
-    (async () => {
-      const id = await getItemFromStrorage('token');
-
-      const user = await getUserById(id || '');
-
-      if (user) {
-        setUser(user);
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
-    MyTranslator.locale = currentLanguage;
-  }, [currentLanguage]);
-
   return (
     <View style={profileScreenStyles.screenContainer}>
       <View style={profileScreenStyles.contentContainer}>
-        {
-          user.photo
-            ? (<Image
-              source={{ uri: user.photo }}
-              style={profileScreenStyles.avatar}
-            />)
-            : (<Image
-              source={images.newUser}
-              style={profileScreenStyles.avatar}
-            />)
-        }
+
+        <Image
+          source={user.photo ? { uri: `data:image/jpg;base64,${user.photo}` } : images.newUser}
+          style={profileScreenStyles.avatar}
+        />
 
         <View style={profileScreenStyles.loginContainer}>
           <Text style={profileScreenStyles.text}>{user.name || ''}</Text>

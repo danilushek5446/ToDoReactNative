@@ -81,6 +81,11 @@ export const signInScreenStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#00000000',
     maxWidth: wp('85%'),
+    // maxHeight: hp('30%'),
     paddingTop: hp('10%'),
+  },
+  logoPicture: {
+    maxWidth: 105,
+    maxHeight: 161,
   },
 });

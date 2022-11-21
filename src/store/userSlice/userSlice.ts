@@ -16,8 +16,13 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUserToState: (state, action: PayloadAction<UserType>) => {
-      // eslint-disable-next-line no-param-reassign
-      state = action.payload;
+      // // eslint-disable-next-line no-param-reassign
+      // state = action.payload;
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.photo = action.payload.photo;
+      state.login = action.payload.login;
+      state.password = action.payload.password;
     },
 
     deleteUserFromState: (state) => {

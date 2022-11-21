@@ -98,7 +98,7 @@ const SignInScreen: FC = () => {
 
       <View style={signInScreenStyles.container}>
         <View style={signInScreenStyles.logocontainer}>
-          <Image source={images.logo} />
+          <Image style={signInScreenStyles.logoPicture} source={images.logo} />
           <MyText textValue="Sign in" isBold />
         </View>
 

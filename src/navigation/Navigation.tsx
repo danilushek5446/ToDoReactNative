@@ -8,8 +8,9 @@ import RNBootSplash from 'react-native-bootsplash';
 import type { NavigatorMainStackType, NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import Modal from 'src/components/NotificationModalWindow';
 import type { DataType, ModalType } from 'src/types/modalTypes';
-import { getItemFromStrorage } from 'src/utils/storageWorker';
+import { getItemFromStrorage, getUserById } from 'src/utils/storageWorker';
 import useCurrentUser from 'src/hooks/useCurrentUser';
+import { setUserToState } from 'src/store/userSlice/userSlice';
 import AuthNavigation from './AuthStack';
 import RootStack from './RootStack';
 
@@ -31,7 +32,13 @@ export const Navigation: FC = () => {
       // console.log(fcmToken);
 
       if (token) {
-        setIsLoggin(true);
+        const user = await getUserById(token);
+        if (user) {
+          // console.log(user);
+          setUserToState(user);
+
+          setIsLoggin(true);
+        }
 
         return;
       }

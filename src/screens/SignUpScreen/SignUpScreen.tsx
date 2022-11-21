@@ -4,7 +4,7 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Notifier } from 'react-native-notifier';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid';
 
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 import useCurrentUser from 'src/hooks/useCurrentUser';
@@ -96,9 +96,14 @@ const SignUpScreen: FC = () => {
       return;
     }
 
-    const id = uuidv4();
+    const id = uuid.v4().toString();
 
-    const user = { login: loginValue, password: passwordValue, name: nameValue, id };
+    const user = {
+      login: loginValue,
+      password: passwordValue,
+      name: nameValue,
+      id,
+    };
 
     setUserToStorage('user', user);
 

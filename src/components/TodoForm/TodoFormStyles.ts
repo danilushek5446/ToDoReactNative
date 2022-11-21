@@ -46,8 +46,9 @@ export const formStyles = StyleSheet.create({
   },
 
   userAvater: {
-    Height: 106,
-    Width: 106,
+    height: 106,
+    width: 106,
+    borderRadius: 100,
     resizeMode: 'contain',
   },
 

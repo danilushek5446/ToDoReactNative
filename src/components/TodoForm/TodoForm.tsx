@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import type {
   ListRenderItem,
 } from 'react-native';
@@ -34,7 +34,6 @@ import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes'
 
 import type { TodoItemType } from 'src/types/todoTypes';
 import MyTranslator from 'src/utils/MyTranslator';
-import { getItemFromStrorage, getUserById } from 'src/utils/storageWorker';
 import AddTodoModal from '../AddTodoModal';
 
 import { formStyles } from './TodoFormStyles';
@@ -48,7 +47,7 @@ const ToDoForm: FC = () => {
       NativeStackNavigationProp<NavigatorRootStackParamListType, never>
     >();
 
-  const { user, setUser } = useCurrentUser();
+  const { user } = useCurrentUser();
 
   const dispatch = useAppDispatch();
 
@@ -90,19 +89,6 @@ const ToDoForm: FC = () => {
     />
   ));
 
-  useEffect(() => {
-    (async () => {
-      const id = await getItemFromStrorage('token');
-
-      const userFromStorage = await getUserById(id || '');
-      if (userFromStorage) {
-        setUser(userFromStorage);
-      }
-    })();
-  }, [user]);
-
-  console.log(user.photo);
-
   return (
     <Animated.View style={formStyles.screen} entering={ZoomInUp}>
       <View style={formStyles.elipsisContainer}>
@@ -111,21 +97,25 @@ const ToDoForm: FC = () => {
       {isModalOpen && <AddTodoModal setIsOpen={setIsModalOpen} />}
 
       <View style={formStyles.header}>
-        <View style={formStyles.textContainer}>
-          <Text style={formStyles.textStyles}>
-            {`${MyTranslator.t('Hi there, ')} ${user.name}`}
-          </Text>
-          <Text style={formStyles.textStyles}>
-            {MyTranslator.t('Add a Profile Picture')}
-          </Text>
-        </View>
-
         <TouchableOpacity style={formStyles.userAvaterContainer} onPress={onNavigateProfile}>
           <Image
             style={formStyles.userAvater}
-            source={{ uri: user.photo || '' }}
+            source={user.photo ? { uri: `data:image/jpg;base64,${user.photo}` } : images.newUser}
           />
         </TouchableOpacity>
+
+        <View style={formStyles.textContainer}>
+          <Text style={formStyles.textStyles}>
+            {`${MyTranslator.t(user.photo ? 'Welcome Back, ' : 'Hi there, ')} ${user.name}!`}
+          </Text>
+          {
+            !user.photo && (
+              <Text style={formStyles.textStyles}>
+                {MyTranslator.t('Add a Profile Picture')}
+              </Text>
+            )
+          }
+        </View>
       </View>
 
       <View style={formStyles.contentContaiber}>
