@@ -29,7 +29,11 @@ const OnboardingScreen: FC<PropType> = ({ setOnboarding }) => {
       <View style={onboardingScreenStyles.contentContainer}>
         <View style={onboardingScreenStyles.contentContainer}>
           <Image source={images.onBoardingPicture} />
-          <MyText textValue="onBoardTitle" isBold />
+
+          <View style={onboardingScreenStyles.titleContainer}>
+            <MyText textValue="onBoardTitle" isBold />
+          </View>
+
           <View style={onboardingScreenStyles.mainTextContainer}>
             <Text style={onboardingScreenStyles.mainText}>
               {MyTranslator.t('onBoardTextContent')}

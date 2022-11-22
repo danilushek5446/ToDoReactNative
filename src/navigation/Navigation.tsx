@@ -34,7 +34,6 @@ export const Navigation: FC = () => {
       if (token) {
         const user = await getUserById(token);
         if (user) {
-          // console.log(user);
           setUserToState(user);
 
           setIsLoggin(true);

@@ -14,6 +14,7 @@ export const onboardingScreenStyles = StyleSheet.create({
   },
   mainTextContainer: {
     maxWidth: 267,
+    paddingTop: 4,
   },
   mainText: {
     textAlign: 'center',
@@ -25,5 +26,8 @@ export const onboardingScreenStyles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     maxHeight: 62,
+  },
+  titleContainer: {
+    paddingTop: 17,
   },
 });

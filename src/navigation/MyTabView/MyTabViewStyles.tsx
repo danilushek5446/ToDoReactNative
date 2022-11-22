@@ -31,7 +31,7 @@ export const MyBarStyles = StyleSheet.create({
     fontFamily: 'EncodeSans-Bold',
     fontWeight: '700',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 18,
     lineHeight: 18,
     paddingTop: 10,
   },

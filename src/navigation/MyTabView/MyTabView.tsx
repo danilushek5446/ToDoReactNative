@@ -88,7 +88,7 @@ const MyTabView: React.FC = () => {
     }
 
     dispatch(changeFilter('Completed'));
-  }, [index]);
+  }, [dispatch, index]);
 
   return (
     <TabView
