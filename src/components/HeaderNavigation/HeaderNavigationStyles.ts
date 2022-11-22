@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
     lineHeight: 22,
-    fontFamily: 'EncodeSans-Bold',
+    fontFamily: 'Poppins-Bold',
     fontWeight: 'bold',
     letterSpacing: 1,
   },

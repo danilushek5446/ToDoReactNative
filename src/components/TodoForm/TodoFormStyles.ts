@@ -39,7 +39,7 @@ export const formStyles = StyleSheet.create({
 
   header: {
     backgroundColor: '#3FBFBF',
-    height: hp('25%'),
+    height: 200,
     maxWidth: hp('100%'),
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -53,7 +53,7 @@ export const formStyles = StyleSheet.create({
   },
 
   userAvaterContainer: {
-    paddingBottom: 13,
+    paddingBottom: 15,
     paddingLeft: hp('3%'),
     zIndex: 200,
   },
@@ -62,8 +62,8 @@ export const formStyles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 13,
     textAlign: 'center',
-    fontFamily: 'EncodeSans-Regular',
-    paddingBottom: 4,
+    fontFamily: 'Poppins-Bold',
+    paddingBottom: 8,
   },
 
   textContainer: {

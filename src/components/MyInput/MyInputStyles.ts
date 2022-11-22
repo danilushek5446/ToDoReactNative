@@ -14,7 +14,7 @@ export const MyInputStyles = StyleSheet.create({
   passwordIcon: {
     position: 'absolute',
     right: 10,
-    top: 46,
+    top: 52,
   },
   inputPadding: {
     margin: 5,

@@ -2,7 +2,6 @@ export type TodoItemType = {
   id: number;
   task: string;
   complete: boolean;
-  edit: boolean;
 };
 
 export type StateType = {

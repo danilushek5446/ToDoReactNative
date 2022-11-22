@@ -61,5 +61,7 @@
   "Delete": "Delete",
   "CHANGE PHOTO": "CHANGE PHOTO",
   "SIGN OUT": "SIGN OUT",
-  "Welcome Back, ": "Welcome Back, "
+  "Welcome Back, ": "Welcome Back, ",
+  "Edit TODO": "Edit TODO",
+  "CHANGE": "CHANGE"
 }

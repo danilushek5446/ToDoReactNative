@@ -24,7 +24,7 @@ type PropType = {
   complete: boolean;
   toggleCheck(id: number): void;
   removeTask(id: number): void;
-  toggleEditable(id: number): void;
+  toggleEditable(id: number, taskText: string): void;
 };
 
 const TodoItem: FC<PropType> = ({
@@ -40,7 +40,7 @@ const TodoItem: FC<PropType> = ({
 
   const OnEditPress = () => {
     setIsDropdownOpen(false);
-    toggleEditable(id);
+    toggleEditable(id, task);
   };
 
   const showMenu = () => setIsDropdownOpen(true);
@@ -66,7 +66,6 @@ const TodoItem: FC<PropType> = ({
             style={
               complete ? todoItemStyles.textCheked : todoItemStyles.textActive
             }
-            onLongPress={() => toggleEditable(id)}
             onPressOut={() => toggleCheck(id)}
           >
             {task}
@@ -99,9 +98,3 @@ const TodoItem: FC<PropType> = ({
 };
 
 export default TodoItem;
-
-// eslint-disable-next-line no-inline-styles/no-inline-styles
-// <View style={todoItemStyles.dropDownContainer}>
-//   <MyText textValue="Edit" isBold={false} />
-//   <MyText textValue="Delete" isBold={false} />
-// </View>

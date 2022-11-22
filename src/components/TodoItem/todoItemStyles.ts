@@ -39,14 +39,14 @@ export const todoItemStyles = StyleSheet.create({
   },
   textCheked: {
     maxWidth: wp('65%'),
-    fontFamily: 'EncodeSans-Regular',
+    fontFamily: 'Poppins-Regular',
     fontSize: 18,
     color: '#BDBDBD',
     textDecorationLine: 'line-through',
   },
   textActive: {
     maxWidth: wp('65%'),
-    fontFamily: 'EncodeSans-Regular',
+    fontFamily: 'Poppins-Regular',
     fontSize: 18,
     color: '#00000090',
     backgroundColor: 'white',

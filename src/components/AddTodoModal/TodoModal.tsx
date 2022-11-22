@@ -7,14 +7,18 @@ import { useAppDispatch } from 'src/store/hooks';
 import { addToDo } from 'src/store/todoSlice';
 import MyTranslator from 'src/utils/MyTranslator';
 import MyText from '../MyText/MyText';
-import styles from './AddTodoModalStyles';
+import styles from './TodoModalStyles';
 
 type PropType = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  currentText: string | null;
+  todoId: number | null;
+  isEdit: boolean;
+  changeTodo(id: number, taskText: string): void;
 };
 
-const AddTodoModal: FC<PropType> = ({ setIsOpen }) => {
-  const [inputValue, setInputValue] = useState('');
+const AddTodoModal: FC<PropType> = ({ setIsOpen, currentText, isEdit, todoId, changeTodo }) => {
+  const [inputValue, setInputValue] = useState(currentText || '');
   const dispatch = useAppDispatch();
 
   const onAccept = () => {
@@ -29,6 +33,14 @@ const AddTodoModal: FC<PropType> = ({ setIsOpen }) => {
         showAnimationDuration: 800,
         hideOnPress: true,
       });
+
+      return;
+    }
+
+    if (isEdit && todoId) {
+      changeTodo(todoId, inputValue);
+
+      setIsOpen(false);
 
       return;
     }
@@ -48,7 +60,7 @@ const AddTodoModal: FC<PropType> = ({ setIsOpen }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View style={styles.modalText}>
-            <MyText textValue="Add new TODO" isBold />
+            <MyText textValue={isEdit ? 'Edit TODO' : 'Add new TODO'} isBold />
           </View>
 
           <View style={styles.inputContainer}>
@@ -57,7 +69,7 @@ const AddTodoModal: FC<PropType> = ({ setIsOpen }) => {
               onChangeText={setInputValue}
               multiline
               numberOfLines={4}
-              placeholder="Add new TODO"
+              placeholder={isEdit ? 'Edit TODO' : 'Add new TODO'}
               style={styles.inputText}
             />
           </View>
@@ -80,7 +92,7 @@ const AddTodoModal: FC<PropType> = ({ setIsOpen }) => {
               style={[styles.button, styles.buttonOpen]}
               onPress={onAccept}
             >
-              <Text style={styles.addText}>ADD</Text>
+              <Text style={styles.addText}>{isEdit ? 'CHANGE' : 'ADD'}</Text>
             </Pressable>
           </View>
         </View>

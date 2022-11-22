@@ -2,11 +2,11 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   textRegular: {
-    fontFamily: 'EncodeSans-Regular',
+    fontFamily: 'Poppins-Regular',
     color: 'black',
   },
   textBold: {
-    fontFamily: 'EncodeSans-Bold',
+    fontFamily: 'Poppins-Bold',
     color: 'black',
   },
 });

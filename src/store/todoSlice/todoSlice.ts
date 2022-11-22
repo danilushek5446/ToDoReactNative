@@ -17,7 +17,6 @@ export const todoSlice = createSlice({
         id: Date.now(),
         task: action.payload,
         complete: false,
-        edit: false,
       };
       state.todoList.push(newItem);
     },
@@ -45,19 +44,11 @@ export const todoSlice = createSlice({
       });
     },
 
-    setEditable: (state, action: PayloadAction<number>) => {
-      const index = state.todoList.findIndex(
-        (todo) => todo.id === action.payload,
-      );
-      state.todoList[index].edit = !state.todoList[index].edit;
-    },
-
     editToDo: (state, action: PayloadAction<ChangeTodoType>) => {
       const index: number = state.todoList.findIndex(
         (todo) => todo.id === action.payload.id,
       );
       state.todoList[index].task = action.payload.value;
-      state.todoList[index].edit = false;
     },
 
     changeFilter: (state, action: PayloadAction<string>) => {
@@ -72,7 +63,6 @@ export const {
   changeCompletion,
   deleteAllCompleted,
   checkAll,
-  setEditable,
   editToDo,
   changeFilter,
 } = todoSlice.actions;

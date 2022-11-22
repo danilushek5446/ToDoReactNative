@@ -143,9 +143,9 @@ const SignUpScreen: FC = () => {
               textValue={loginValue}
               setTextValue={setLoginValue}
               placeholderText="Enter your email"
-              isSecureTextEntry={false}
               titleText="email"
               isBold
+              isSecureTextEntry={false}
             />
             <MyInput
               textValue={passwordValue}

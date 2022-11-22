@@ -20,6 +20,7 @@ const SignInScreen: FC = () => {
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [isSavePass, setIsSavePass] = useState(false);
+  const [isHide, setIsHide] = useState(true);
 
   const navigate =
     useNavigation<
@@ -93,6 +94,10 @@ const SignInScreen: FC = () => {
     navigate.navigate('forgotPas');
   };
 
+  const setIsSecureField = () => {
+    setIsHide(!isHide);
+  };
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={signInScreenStyles.screen}
@@ -113,11 +118,11 @@ const SignInScreen: FC = () => {
             textValue={loginValue}
             setTextValue={setLoginValue}
             placeholderText="Enter your email"
-            isSecureTextEntry={false}
             titleText="email"
+            isSecureTextEntry={false}
             isBold
           />
-          <View style={signInScreenStyles.inputPadding}>
+          <View style={signInScreenStyles.inputsContainer}>
             <View style={signInScreenStyles.titlePaddig}>
               <MyText textValue="password" isBold />
             </View>
@@ -126,10 +131,17 @@ const SignInScreen: FC = () => {
                 style={signInScreenStyles.inputStyles}
                 value={passwordValue}
                 onChangeText={setPasswordValue}
-                secureTextEntry
+                secureTextEntry={isHide}
                 placeholder={MyTranslator.t('Enter your password')}
               />
-              <Image style={signInScreenStyles.passwordIcon} source={images.hide} />
+
+              <TouchableOpacity
+                style={signInScreenStyles.passwordIcon}
+                onPress={setIsSecureField}
+              >
+                <Image source={images.hide} />
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={signInScreenStyles.forgotPassContainer}
                 onPress={onNavigateForgotPass}
@@ -140,6 +152,7 @@ const SignInScreen: FC = () => {
               </TouchableOpacity>
             </View>
           </View>
+
           <View style={signInScreenStyles.rememberMeContainer}>
             <TouchableOpacity onPressOut={toggleCheckBox}>
               <View

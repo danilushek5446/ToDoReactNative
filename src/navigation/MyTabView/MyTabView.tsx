@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useWindowDimensions, View } from 'react-native';
+import { Text, useWindowDimensions, View } from 'react-native';
 import type { SceneRendererProps, NavigationState } from 'react-native-tab-view';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import type { Scene } from 'react-native-tab-view/lib/typescript/types';
 
 import HomeScreen from 'src/screens/HomeScreen';
 import { useAppDispatch } from 'src/store/hooks';
@@ -36,9 +37,23 @@ const renderTabBar = (
         indicatorStyle={MyBarStyles.indicatorStyle}
         activeColor="#3FBFBF"
         inactiveColor="#BDBDBD"
+        renderLabel={renderLabel}
         style={MyBarStyles.tabBarStyle}
 />
     </View>
+  );
+};
+
+const renderLabel = (scene: Scene<RouteType> & {
+  focused: boolean;
+  color: string;
+}) => {
+  const color = scene.color;
+
+  return (
+    <Text style={[MyBarStyles.labelTextStyle, { color }]}>
+      {scene.route.title}
+    </Text>
   );
 };
 

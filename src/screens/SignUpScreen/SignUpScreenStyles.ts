@@ -7,7 +7,6 @@ export const SignUpScreenStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#00000000',
     position: 'relative',
-    // maxHeight: hp('100%'),
   },
   container: {
     flex: 1,

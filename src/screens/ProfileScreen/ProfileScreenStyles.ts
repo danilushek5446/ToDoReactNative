@@ -22,7 +22,7 @@ export const profileScreenStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   text: {
-    fontFamily: 'EncodeSans-Regular',
+    fontFamily: 'Poppins-Regular',
     color: 'white',
     fontSize: 13,
     fontWeight: '700',

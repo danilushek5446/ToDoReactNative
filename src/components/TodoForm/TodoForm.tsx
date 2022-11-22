@@ -18,8 +18,7 @@ import Animated, {
   ZoomInUp,
 } from 'react-native-reanimated';
 
-import TodoItem from 'src/components/TodoItem/TodoItem';
-import TodoItemEdit from 'src/components/TodoItem/TodoItemEdit';
+import TodoItem from 'src/components/TodoItem';
 import images from 'src/constants/images';
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
@@ -28,19 +27,21 @@ import {
   changeCompletion,
   editToDo,
   removeToDo,
-  setEditable,
 } from 'src/store/todoSlice';
 import type { NavigatorRootStackParamListType } from 'src/types/navigationTypes';
 
 import type { TodoItemType } from 'src/types/todoTypes';
 import MyTranslator from 'src/utils/MyTranslator';
-import AddTodoModal from '../AddTodoModal';
+import AddTodoModal from '../AddTodoModal/TodoModal';
 
 import { formStyles } from './TodoFormStyles';
 
 const ToDoForm: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const filteredTodos: TodoItemType[] = useAppSelector(selectTodoByFilter);
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentId, setCurrentId] = useState<number | null>(null);
+  const [currentText, setCurrentText] = useState<string | null>(null);
 
   const navigate =
     useNavigation<
@@ -59,19 +60,25 @@ const ToDoForm: FC = () => {
     dispatch(changeCompletion(id));
   };
 
-  const toggleEditable = (id: number) => {
-    dispatch(setEditable(id));
+  const toggleEditable = (id: number, taskText: string) => {
+    setIsEdit(true);
+    setIsModalOpen(true);
+    setCurrentId(id);
+    setCurrentText(taskText);
   };
 
   const changeTodo = (id: number, taskText: string) => {
     dispatch(editToDo({ id, value: taskText }));
+    setIsEdit(false);
+    setCurrentId(null);
+    setCurrentText(null);
   };
 
   const onNavigateProfile = () => {
     navigate.navigate('Profile');
   };
 
-  const renderItem: ListRenderItem<TodoItemType> = (item) => (!item.item.edit ? (
+  const renderItem: ListRenderItem<TodoItemType> = (item) => (
     <TodoItem
       task={item.item.task}
       complete={item.item.complete}
@@ -79,22 +86,22 @@ const ToDoForm: FC = () => {
       toggleCheck={toggleCheck}
       removeTask={removeTask}
       toggleEditable={toggleEditable}
-    />
-  ) : (
-    <TodoItemEdit
-      task={item.item.task}
-      id={item.item.id}
-      toggleEditable={toggleEditable}
-      changeTodo={changeTodo}
-    />
-  ));
+    />);
 
   return (
     <Animated.View style={formStyles.screen} entering={ZoomInUp}>
       <View style={formStyles.elipsisContainer}>
         <Image source={images.whiteElipsis} />
       </View>
-      {isModalOpen && <AddTodoModal setIsOpen={setIsModalOpen} />}
+      {isModalOpen && (
+        <AddTodoModal
+          isEdit={isEdit}
+          setIsOpen={setIsModalOpen}
+          todoId={currentId}
+          currentText={currentText}
+          changeTodo={changeTodo}
+        />
+      )}
 
       <View style={formStyles.header}>
         <TouchableOpacity style={formStyles.userAvaterContainer} onPress={onNavigateProfile}>
@@ -106,15 +113,8 @@ const ToDoForm: FC = () => {
 
         <View style={formStyles.textContainer}>
           <Text style={formStyles.textStyles}>
-            {`${MyTranslator.t(user.photo ? 'Welcome Back, ' : 'Hi there, ')} ${user.name}!`}
+            {`${MyTranslator.t('Welcome Back, ')} ${user.name}!`}
           </Text>
-          {
-            !user.photo && (
-              <Text style={formStyles.textStyles}>
-                {MyTranslator.t('Add a Profile Picture')}
-              </Text>
-            )
-          }
         </View>
       </View>
 

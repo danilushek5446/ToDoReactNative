@@ -25,17 +25,21 @@ const OnboardingScreen: FC<PropType> = ({ setOnboarding }) => {
       <View>
         <Image source={images.elipsis} />
       </View>
+
       <View style={onboardingScreenStyles.contentContainer}>
-        <Image source={images.onBoardingPicture} />
-        <MyText textValue="onBoardTitle" isBold />
-        <View style={onboardingScreenStyles.mainTextContainer}>
-          <Text style={onboardingScreenStyles.mainText}>
-            {MyTranslator.t('onBoardTextContent')}
-          </Text>
+        <View style={onboardingScreenStyles.contentContainer}>
+          <Image source={images.onBoardingPicture} />
+          <MyText textValue="onBoardTitle" isBold />
+          <View style={onboardingScreenStyles.mainTextContainer}>
+            <Text style={onboardingScreenStyles.mainText}>
+              {MyTranslator.t('onBoardTextContent')}
+            </Text>
+          </View>
         </View>
-      </View>
-      <View style={onboardingScreenStyles.buttonContainer}>
-        <MyButton onPress={onPress} textValue="get started" size="big" />
+
+        <View style={onboardingScreenStyles.buttonContainer}>
+          <MyButton onPress={onPress} textValue="get started" size="big" />
+        </View>
       </View>
     </View>
   );

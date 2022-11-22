@@ -50,16 +50,17 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     color: '#3FBFBF',
-    width: 60,
-    fontFamily: 'EncodeSans-Bold',
+    maxWidth: 60,
+    fontFamily: 'Poppins-Bold',
     lineHeight: 20,
   },
   addText: {
     color: '#FFFFFF',
-    width: 50,
+    maxWidth: 70,
     fontSize: 16,
-    fontFamily: 'EncodeSans-Bold',
+    fontFamily: 'Poppins-Bold',
     lineHeight: 20,
+    textAlign: 'center',
   },
   inputContainer: {
     borderBottomWidth: 1,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   inputText: {
     padding: 10,
     fontSize: 14,
-    fontFamily: 'EncodeSans-Regular',
+    fontFamily: 'Poppins-Regular',
     color: 'black',
   },
 
